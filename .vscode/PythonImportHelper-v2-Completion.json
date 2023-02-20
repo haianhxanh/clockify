@@ -740,6 +740,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1937,6 +1953,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "workspace.migrations.0018_alter_task_max_allocated_hours",
+        "description": "workspace.migrations.0018_alter_task_max_allocated_hours",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('workspace', '0017_alter_project_status'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='task',\n            name='max_allocated_hours',\n            field=models.FloatField(blank=True, default=0.0, null=True),\n        ),",
+        "detail": "workspace.migrations.0018_alter_task_max_allocated_hours",
+        "documentation": {}
+    },
+    {
         "label": "TimeRecordQuerySetTestCase",
         "kind": 6,
         "importPath": "workspace.tests.test_queryset",
@@ -2058,7 +2083,7 @@
         "kind": 6,
         "importPath": "workspace.models",
         "description": "workspace.models",
-        "peekOfCode": "class Project(models.Model):\n    name = models.CharField(max_length=255)\n    description = models.TextField(null=True, blank=True)\n    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name=\"currency\")\n    hex_color = models.CharField(max_length=7, null=True, blank=True)  # predefined colors + color picker\n    hourly_rate = models.FloatField(null=True)\n    status = models.CharField(max_length=36, choices=ProjectStatusChoices)\n    def __str__(self):\n        return self.name\nclass Task(models.Model):",
+        "peekOfCode": "class Project(models.Model):\n    name = models.CharField(max_length=255)\n    description = models.TextField(null=True, blank=True)\n    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name=\"currency\")\n    hex_color = models.CharField(max_length=7, null=True, blank=True)  # predefined colors + color picker\n    hourly_rate = models.FloatField(null=True)\n    status = models.CharField(max_length=36, choices=ProjectStatusChoices)\n    def __str__(self):\n        return self.name\n    def get_tracked_hours(self):",
         "detail": "workspace.models",
         "documentation": {}
     },
@@ -2067,7 +2092,7 @@
         "kind": 6,
         "importPath": "workspace.models",
         "description": "workspace.models",
-        "peekOfCode": "class Task(models.Model):\n    id = models.AutoField(primary_key=True)\n    name = models.CharField(max_length=255)\n    description = models.TextField()\n    max_allocated_hours = models.FloatField(null=True, blank=True)\n    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name=\"tasks\")\n    status = models.CharField(max_length=36, choices=TaskStatusChoices)\n    def __str__(self):\n        return f\"[{self.id}] {self.project.name} - {self.name}\"\n    @property",
+        "peekOfCode": "class Task(models.Model):\n    id = models.AutoField(primary_key=True)\n    name = models.CharField(max_length=255)\n    description = models.TextField()\n    max_allocated_hours = models.FloatField(null=True, blank=True, default=0.0)\n    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name=\"tasks\")\n    status = models.CharField(max_length=36, choices=TaskStatusChoices)\n    def __str__(self):\n        return f\"[{self.id}] {self.project.name} - {self.name}\"\n    def get_tracked_hours(self):",
         "detail": "workspace.models",
         "documentation": {}
     },
@@ -2247,7 +2272,7 @@
         "kind": 6,
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
-        "peekOfCode": "class TaskSerializer(serializers.ModelSerializer):\n    task_users = UserTaskSerializer(many=True)\n    def create(self, validated_data):\n        project_id = self.context['request'].project.id\n        task = Task(name=validated_data[\"name\"], project_id=project_id)\n        task.save()\n        return task\n    class Meta:\n        model = Task\n        fields = [\"id\", \"name\", \"max_allocated_hours\", \"task_users\", \"project_id\", \"time_records\"]",
+        "peekOfCode": "class TaskSerializer(serializers.ModelSerializer):\n    task_users = UserTaskSerializer(many=True)\n    def create(self, validated_data):\n        project_id = self.context['request'].project.id\n        task = Task(name=validated_data[\"name\"], project_id=project_id)\n        task.save()\n        return task\n    class Meta:\n        model = Task\n        fields = [\"id\", \"name\", \"max_allocated_hours\", \"tracked_hours\", \"task_users\", \"project_id\", \"time_records\"]",
         "detail": "workspace.serializers",
         "documentation": {}
     },
@@ -2292,7 +2317,7 @@
         "kind": 6,
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
-        "peekOfCode": "class TaskTimeRecordSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):\n    user = serializers.SerializerMethodField()\n    class Meta:\n        model = TimeRecord\n        fields = [\"id\", \"description\", \"start_time\", \"end_time\", \"date\", \"user\"]\n    def get_user(self, TimeRecord):\n        return TimeRecord.user.username\nclass TimeRecordSerializer(serializers.ModelSerializer):\n    # user = serializers.SerializerMethodField()\n    user = UserSerializer(required=False)",
+        "peekOfCode": "class TaskTimeRecordSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):\n    user = serializers.SerializerMethodField()\n    class Meta:\n        model = TimeRecord\n        fields = [\"id\", \"description\", \"start_time\", \"end_time\", \"tracked_hours\", \"date\", \"user\"]\n    def get_user(self, TimeRecord):\n        return TimeRecord.user.username\nclass TimeRecordSerializer(serializers.ModelSerializer):\n    # user = serializers.SerializerMethodField()\n    user = UserSerializer(required=False)",
         "detail": "workspace.serializers",
         "documentation": {}
     },
@@ -2301,7 +2326,7 @@
         "kind": 6,
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
-        "peekOfCode": "class TimeRecordSerializer(serializers.ModelSerializer):\n    # user = serializers.SerializerMethodField()\n    user = UserSerializer(required=False)\n    task = serializers.PrimaryKeyRelatedField(queryset=Task.objects.all())\n    class Meta:\n        model = TimeRecord\n        fields = [\"id\", \"description\", \"start_time\", \"end_time\", \"date\", \"task\", \"user\"]\n    # def validate(self, data):\n    #     validated_data = super().validate(data)\n    #     print(validated_data)",
+        "peekOfCode": "class TimeRecordSerializer(serializers.ModelSerializer):\n    # user = serializers.SerializerMethodField()\n    user = UserSerializer(required=False)\n    task = serializers.PrimaryKeyRelatedField(queryset=Task.objects.all())\n    class Meta:\n        model = TimeRecord\n        fields = [\"id\", \"description\", \"start_time\", \"end_time\", \"tracked_hours\", \"date\", \"task\", \"user\"]\nclass UpdateTimeRecordSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = TimeRecord",
         "detail": "workspace.serializers",
         "documentation": {}
     },
@@ -2400,7 +2425,7 @@
         "kind": 6,
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
-        "peekOfCode": "class ProjectDetailSerializer(serializers.ModelSerializer):\n    tasks = TaskSimpleSerializer(many=True)\n    project_users = UserProjectSerializer(many=True)\n    currency = CurrencySerializer()\n    class Meta:\n        model = Project\n        fields = [\"id\", \"name\", \"description\", \"hourly_rate\", \"currency\", \"tasks\", \"project_users\"]\n    def get_currency(self, Project):\n        return Project.currency.shortcut_name",
+        "peekOfCode": "class ProjectDetailSerializer(serializers.ModelSerializer):\n    tasks = TaskSimpleSerializer(many=True)\n    project_users = UserProjectSerializer(many=True)\n    currency = CurrencySerializer()\n    class Meta:\n        model = Project\n        fields = [\"id\", \"name\", \"description\", \"hourly_rate\", \"total_allocated_hours\", \"tracked_hours\", \"currency\", \"tasks\", \"project_users\"]\n    def get_currency(self, Project):\n        return Project.currency.shortcut_name",
         "detail": "workspace.serializers",
         "documentation": {}
     },
