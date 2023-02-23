@@ -100,5 +100,8 @@ urlpatterns = [
     path("tracking/start", views.TrackingStart.as_view(), name="tracker-start"),
     path("tracking/stop", views.TrackingStop.as_view(), name="tracker-stop"),
     path('__debug__/', include('debug_toolbar.urls')),
+    path('report/', views.FilterAPIView.as_view()),
+    path('pdf_view/', views.ViewPDFView.as_view(), name="pdf_view"),
+    path('pdf_download/', views.DownloadPDFView.as_view(), name="pdf_download"),
 ]
 

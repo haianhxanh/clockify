@@ -17,6 +17,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import render
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+from django.views import View
+from xhtml2pdf import pisa
 
 from workspace.serializers import (
     AddUserProjectSerializer,
@@ -31,6 +37,7 @@ from workspace.serializers import (
     UserProjectSerializer,
     UserSerializer, ProjectTaskSerializer, ListProjectsSerializer, UserTaskSerializer,
     AddUserTaskSerializer, ProjectTimeRecordSerializer, TaskTimeRecordSerializer, UpdateTimeRecordSerializer,
+    FilterSerializer,
 )
 from .enums import RoleEnum
 from .forms import RegistrationForm
@@ -324,3 +331,101 @@ class TaskUsers(ModelViewSet):
 
     def get_queryset(self):
         return UserTask.objects.filter(task__project_id=self.kwargs["project_pk"])
+
+
+class FilterAPIView(APIView):
+
+    def get(self, request):
+        qs = Project.objects.all()
+
+        projects_values = self.request.query_params.get('projects', None)
+        if projects_values:
+            projects_ids = tuple(map(int, projects_values.split(',')))
+            qs = qs.filter(id__in=projects_ids)
+
+        serializer = ProjectSerializer(qs, many=True)
+
+        return Response(serializer.data)
+
+
+class RenderPDFView(View):
+
+    def filter_projects(self, request):
+        projects = Project.objects.all()
+
+        projects_values = request.GET.get('projects', None)
+
+        if projects_values:
+            projects_ids = tuple(map(int, projects_values.split(',')))
+            projects = projects.filter(id__in=projects_ids)
+
+        return projects
+
+    def render_to_pdf(self, template_src, context_dict={}):
+        template = get_template(template_src)
+        html = template.render(context_dict)
+        result = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        if not pdf.err:
+            return HttpResponse(result.getvalue(), content_type='application/pdf')
+        return None
+
+
+data = {
+    "date": "2/4/2021 - 9/4/2021",
+    "projects": [
+        {
+            "name": "Project #1",
+            "bill": "1200",
+            "status": "In progress",
+            "tasks": [
+                {
+                    "tracking": 12,
+                    "bill": 1200
+                }
+            ]
+        },
+        {
+            "name": "Project #2",
+            "bill": "300",
+            "status": "In progress",
+            "tasks": [
+                {
+                    "tracking": 3,
+                    "bill": 300
+                }
+            ]
+        },
+    ],
+    "total": 1200
+}
+
+
+# Opens up page as PDF
+class ViewPDFView(RenderPDFView):
+    def get(self, request, *args, **kwargs):
+        projects = self.filter_projects(request)
+        data = {
+            "date": "02/04/2022 - 02/05/2022",
+            "projects": [project.to_dict() for project in projects]
+        }
+
+        pdf = self.render_to_pdf('pdf_template.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+
+# Automatically downloads to PDF file
+class DownloadPDFView(RenderPDFView):
+    def get(self, request, *args, **kwargs):
+        pdf = self.render_to_pdf('pdf_template.html', data)
+
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = "Report_%s.pdf" % "12341231"
+        content = "attachment; filename='%s'" % filename
+        response['Content-Disposition'] = content
+        return response
+
+
+def index(request):
+    context = {}
+    return render(request, 'index.html', context)

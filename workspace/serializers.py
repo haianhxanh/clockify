@@ -44,7 +44,7 @@ class UserSerializer(serializers.ModelSerializer):
 class TaskSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ["id", "name"]
+        fields = ["id", "name", "status"]
 
 
 class UserTaskSerializer(serializers.ModelSerializer):
@@ -88,7 +88,8 @@ class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ["id", "name", "max_allocated_hours", "tracked_hours", "task_users", "project_id", "time_records"]
+        fields = ["id", "name", "max_allocated_hours", "tracked_hours", "status", "task_users", "project_id",
+                  "time_records"]
 
 
 class TaskItemSerializer(serializers.ModelSerializer):
@@ -258,7 +259,14 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ["id", "name", "description", "hourly_rate", "total_allocated_hours", "tracked_hours", "currency", "tasks", "project_users"]
+        fields = ["id", "name", "description", "status", "hourly_rate", "total_allocated_hours", "tracked_hours",
+                  "currency", "tasks", "project_users"]
 
     def get_currency(self, Project):
         return Project.currency.shortcut_name
+
+
+class FilterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = "__all__"

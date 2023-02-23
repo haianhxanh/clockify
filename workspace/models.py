@@ -13,6 +13,8 @@ from workspace.querysets import TimeRecordQuerySet
 
 
 # Create your models here.
+DECIMAL_PLACES = 2
+HOUR_IN_SECONDS = 3600
 
 
 class Currency(models.Model):
@@ -27,23 +29,28 @@ class Project(models.Model):
     description = models.TextField(null=True, blank=True)
     currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name="currency")
     hex_color = models.CharField(max_length=7, null=True, blank=True)  # predefined colors + color picker
+    # change model to have default 0
     hourly_rate = models.FloatField(null=True)
     status = models.CharField(max_length=36, choices=ProjectStatusChoices)
 
     def __str__(self):
         return self.name
 
-    def get_tracked_hours(self):
+    def to_dict(self):
+        hourly_rate = self.hourly_rate or 0
+        return {
+            "name": self.name,
+            "bill": self.get_tracked_hours() * hourly_rate,
+            "status": self.status,
+            "tasks": [task.to_dict() for task in self.tasks.all()]
+        }
+
+    def get_tracked_hours(self) -> float:
         tasks = self.tasks.all()
         total = 0
         for task in tasks:
-            trackings = task.time_records.all()
-            for tracking in trackings:
-                start = datetime.strptime(tracking.start_time.strftime('%H:%M:%S'), "%H:%M:%S")
-                end = datetime.strptime(tracking.end_time.strftime('%H:%M:%S'), "%H:%M:%S")
-                delta = end - start
-                total = total + int(delta.total_seconds())
-        return round(total / 3600, 2)
+            total += task.get_tracked_hours()
+        return round(total / HOUR_IN_SECONDS, DECIMAL_PLACES)
 
     @property
     def tracked_hours(self):
@@ -75,15 +82,21 @@ class Task(models.Model):
     def __str__(self):
         return f"[{self.id}] {self.project.name} - {self.name}"
 
+    def to_dict(self):
+        tracked_hours = self.get_tracked_hours()
+        # change model to have default 0
+        hourly_rate = self.project.hourly_rate or 0
+        return {
+            "tracked_hours": tracked_hours,
+            "bill": tracked_hours * hourly_rate
+        }
+
     def get_tracked_hours(self):
         total = 0
-        trackings = self.time_records.all()
+        trackings = self.time_records.filter(end_time__isnull=False)
         for tracking in trackings:
-            start = datetime.strptime(tracking.start_time.strftime('%H:%M:%S'), "%H:%M:%S")
-            end = datetime.strptime(tracking.end_time.strftime('%H:%M:%S'), "%H:%M:%S")
-            delta = end - start
-            total = total + int(delta.total_seconds())
-        return round(total / 3600, 2)
+            total += tracking.get_tracked_hours()
+        return round(total / HOUR_IN_SECONDS, DECIMAL_PLACES)
 
     @property
     def tracked_hours(self):
@@ -139,11 +152,12 @@ class TimeRecord(models.Model):
 
     def get_tracked_hours(self):
         total = 0
+
         start = datetime.strptime(self.start_time.strftime('%H:%M:%S'), "%H:%M:%S")
         end = datetime.strptime(self.end_time.strftime('%H:%M:%S'), "%H:%M:%S")
         delta = end - start
         total = total + int(delta.total_seconds())
-        return round(total / 3600, 2)
+        return round(total / HOUR_IN_SECONDS, DECIMAL_PLACES)
 
     @property
     def tracked_hours(self):
