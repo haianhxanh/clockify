@@ -40,6 +40,7 @@ from workspace.serializers import (
     FilterSerializer,
 )
 from .enums import RoleEnum
+from .filters import ProjectFilter
 from .forms import RegistrationForm
 from .models import Project, Task, TimeRecord, User, UserProject, UserTask
 from .permissions import isProjectAdmin, IsProjectMember, IsGuest, isProjectAdminOrMember, isAuthenticated
@@ -351,15 +352,26 @@ class FilterAPIView(APIView):
 class RenderPDFView(View):
 
     def filter_projects(self, request):
-        projects = Project.objects.all()
+        # projects = Project.objects.all()
 
-        projects_values = request.GET.get('projects', None)
+        projects = Project.objects.filter(
+            project_users__user_id=self.request.user.id,
+            project_users__role__name__in=[RoleEnum.ADMIN.value, RoleEnum.MEMBER.value]
+        )
+        print(projects)
 
-        if projects_values:
-            projects_ids = tuple(map(int, projects_values.split(',')))
-            projects = projects.filter(id__in=projects_ids)
+        # projects_values = request.GET.get('projects', None)
+        #
+        # if projects_values:
+        #     projects_ids = tuple(map(int, projects_values.split(',')))
+        #     projects = projects.filter(id__in=projects_ids)
+        #
+        # return projects
 
-        return projects
+        # rewrite with django-filters
+        project_filter = ProjectFilter(request.GET, queryset=projects).qs
+        print(project_filter)
+        return project_filter.distinct()
 
     def render_to_pdf(self, template_src, context_dict={}):
         template = get_template(template_src)
@@ -371,53 +383,34 @@ class RenderPDFView(View):
         return None
 
 
-data = {
-    "date": "2/4/2021 - 9/4/2021",
-    "projects": [
-        {
-            "name": "Project #1",
-            "bill": "1200",
-            "status": "In progress",
-            "tasks": [
-                {
-                    "tracking": 12,
-                    "bill": 1200
-                }
-            ]
-        },
-        {
-            "name": "Project #2",
-            "bill": "300",
-            "status": "In progress",
-            "tasks": [
-                {
-                    "tracking": 3,
-                    "bill": 300
-                }
-            ]
-        },
-    ],
-    "total": 1200
-}
-
-
 # Opens up page as PDF
-class ViewPDFView(RenderPDFView):
+class StandardPDFView(RenderPDFView):
+    def get(self, request, *args, **kwargs):
+        # projects = self.filter_projects(request)
+        projects = self.filter_projects(request)
+        data = {
+            "projects": [project.to_dict() for project in projects]
+            # "projects": RenderPDFView.filter_projects(self, request)
+        }
+
+        pdf = self.render_to_pdf('pdf_standard.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+class DetailedPDFView(RenderPDFView):
     def get(self, request, *args, **kwargs):
         projects = self.filter_projects(request)
         data = {
-            "date": "02/04/2022 - 02/05/2022",
             "projects": [project.to_dict() for project in projects]
         }
 
-        pdf = self.render_to_pdf('pdf_template.html', data)
+        pdf = self.render_to_pdf('pdf_detailed.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
 
 
 # Automatically downloads to PDF file
 class DownloadPDFView(RenderPDFView):
     def get(self, request, *args, **kwargs):
-        pdf = self.render_to_pdf('pdf_template.html', data)
+        pdf = self.render_to_pdf('pdf_standard.html', data)
 
         response = HttpResponse(pdf, content_type='application/pdf')
         filename = "Report_%s.pdf" % "12341231"

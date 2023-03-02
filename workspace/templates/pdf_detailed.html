@@ -1,0 +1,86 @@
+<head>
+<style>
+    @page {
+        size: a4 portrait;
+        @frame header_frame {           /* Static Frame */
+            -pdf-frame-content: header_content;
+            left: 50pt; width: 512pt; top: 50pt; height: 40pt;
+        }
+        @frame content_frame {          /* Content Frame */
+            left: 50pt; width: 512pt; top: 90pt; height: 632pt;
+        }
+        @frame footer_frame {           /* Another static Frame */
+            -pdf-frame-content: footer_content;
+            left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+        }
+    }
+</style>
+</head>
+
+{% extends 'pdf_template.html' %}
+<body>
+  {% block reportTitle %}
+    <div id="header_content">
+    	<h3>
+            DETAILED REPORT
+        </h3>
+    </div>
+    {% endblock %}
+
+    <!-- HTML Content -->
+
+    {% block content %}
+        <div>
+            <table>
+                <tr>
+                    <th>Project</th>
+                    <th>Status</th>
+                    <th>Due Date</th>
+                    <th>Allocated Hours</th>
+                    <th>Tracked Hours</th>
+                    <th>Budget</th>
+                </tr>
+
+                {% for project in projects %}
+                    <tr>
+                        <td>{{ project.name }}</td>
+                        <td>{{ project.status }}</td>
+                        <td>
+                            {% if project.due_date %}
+                                {{ project.due_date }}
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ project.allocated_hours }}
+                        </td>
+                        <td>
+                            {{ project.tracked_hours }}
+                        </td>
+                        <td>
+                            {% if project.budget %}
+                                {{ project.currency }} {{ project.budget }}
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <table>
+
+                        {% for task in project.tasks %}
+                        <tr>
+                            <td>{{ task.name }}</td>
+                            <td>{{ task.status }}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+                <br>
+                {% endfor %}
+            </table>
+        </div>
+    {% endblock content %}
+</body>
+</html>

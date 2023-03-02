@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     "rest_framework",
     "workspace.apps.WorkspaceConfig",
+    'django_filters',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"

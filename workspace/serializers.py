@@ -1,8 +1,11 @@
+import itertools
+
 from django.contrib.auth.hashers import make_password
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 from rest_framework import serializers
 from drf_writable_nested.serializers import WritableNestedModelSerializer
 
+from workspace.enums import ProjectStatusChoices, ProjectStatusEnum
 from workspace.models import Currency, Project, Task, User, TimeRecord, UserProject, UserTask, Role
 
 
@@ -233,6 +236,16 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class UpdateProjectSerializer(serializers.ModelSerializer):
+
+    def get_status_value(self, data):
+        status_dict = dict(ProjectStatusChoices)
+        key_list = list(status_dict.keys())
+        val_list = list(status_dict.values())
+
+        status_name = val_list.index('in progress')
+        status_value = key_list[status_name]
+        return status_value
+
     class Meta:
         model = Project
         fields = "__all__"

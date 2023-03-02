@@ -1,6 +1,7 @@
 from django.urls import include, path
 from . import views
 from rest_framework import permissions
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
 project_list = views.ProjectViewSet.as_view({'get': 'list', 'post': 'create'})
@@ -101,7 +102,10 @@ urlpatterns = [
     path("tracking/stop", views.TrackingStop.as_view(), name="tracker-stop"),
     path('__debug__/', include('debug_toolbar.urls')),
     path('report/', views.FilterAPIView.as_view()),
-    path('pdf_view/', views.ViewPDFView.as_view(), name="pdf_view"),
+    path('pdf/standard/', views.StandardPDFView.as_view(), name="pdf-standard"),
+    path('pdf/detailed/', views.DetailedPDFView.as_view(), name="pdf-detailed"),
     path('pdf_download/', views.DownloadPDFView.as_view(), name="pdf_download"),
+    path('api/token/', TokenObtainPairView.as_view()),
+    path('api/token/refresh', TokenRefreshView.as_view())
 ]
 

@@ -34,5 +34,13 @@ class TaskStatusEnum(Enum):
     CANCELLED = 'cancelled'
     TO_DO = "to do"
 
+    @staticmethod
+    def from_value(value: str):
+        for member in TaskStatusEnum:
+            if member.value == value:
+                return member
+
+        raise ValueError(f"Couldn't parse value {value} to enum")
+
 
 TaskStatusChoices = [(status.name, status.value) for status in TaskStatusEnum]

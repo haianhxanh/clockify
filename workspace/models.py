@@ -3,10 +3,6 @@ from gc import get_objects
 from time import strftime, localtime
 from django.db import models, connection
 from django.contrib.auth.models import AbstractUser
-from typing import Optional
-from django.shortcuts import get_object_or_404
-from django.utils import timezone
-from pprint import pprint
 
 from workspace.enums import TaskStatusChoices, ProjectStatusChoices
 from workspace.querysets import TimeRecordQuerySet
@@ -32,6 +28,7 @@ class Project(models.Model):
     # change model to have default 0
     hourly_rate = models.FloatField(null=True)
     status = models.CharField(max_length=36, choices=ProjectStatusChoices)
+    due_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -40,23 +37,24 @@ class Project(models.Model):
         hourly_rate = self.hourly_rate or 0
         return {
             "name": self.name,
-            "bill": self.get_tracked_hours() * hourly_rate,
+            "bill": self.tracked_hours * hourly_rate,
+            "budget": self.total_allocated_hours * hourly_rate,
             "status": self.status,
+            "allocated_hours": self.total_allocated_hours,
+            "tracked_hours": self.tracked_hours,
             "tasks": [task.to_dict() for task in self.tasks.all()]
         }
 
-    def get_tracked_hours(self) -> float:
+    @property
+    def tracked_hours(self):
         tasks = self.tasks.all()
         total = 0
         for task in tasks:
-            total += task.get_tracked_hours()
-        return round(total / HOUR_IN_SECONDS, DECIMAL_PLACES)
+            total += task.tracked_hours
+        return round(total, 2)
 
     @property
-    def tracked_hours(self):
-        return self.get_tracked_hours()
-
-    def get_total_allocated_hours(self):
+    def total_allocated_hours(self):
         tasks = self.tasks.all()
         total = 0
         for task in tasks:
@@ -64,11 +62,7 @@ class Project(models.Model):
                 total = total + 0
             else:
                 total = total + task.max_allocated_hours
-        return total
-
-    @property
-    def total_allocated_hours(self):
-        return self.get_total_allocated_hours()
+        return round(total, 2)
 
 
 class Task(models.Model):
@@ -83,24 +77,22 @@ class Task(models.Model):
         return f"[{self.id}] {self.project.name} - {self.name}"
 
     def to_dict(self):
-        tracked_hours = self.get_tracked_hours()
+        tracked_hours = self.tracked_hours
         # change model to have default 0
         hourly_rate = self.project.hourly_rate or 0
         return {
+            "name": self.name,
             "tracked_hours": tracked_hours,
             "bill": tracked_hours * hourly_rate
         }
 
-    def get_tracked_hours(self):
+    @property
+    def tracked_hours(self):
         total = 0
         trackings = self.time_records.filter(end_time__isnull=False)
         for tracking in trackings:
-            total += tracking.get_tracked_hours()
-        return round(total / HOUR_IN_SECONDS, DECIMAL_PLACES)
-
-    @property
-    def tracked_hours(self):
-        return self.get_tracked_hours()
+            total += tracking.tracked_hours
+        return total
 
 
 class TimeRecord(models.Model):
@@ -117,6 +109,23 @@ class TimeRecord(models.Model):
         if self.task:
             return f"{self.task} - {self.start_time}"
         return f"{self.id} - {self.start_time}"
+
+    def save(self, *args, **kwargs):
+        # make sure updated end_time is not earlier than start_time
+        if self.pk and self.end_time:
+            if self.end_time < self.start_time:
+                self.end_time = self.start_time
+
+        super().save(*args, **kwargs)
+        # try:
+        #     object_last_version = TimeRecord.objects.get(pk=self.pk)
+        #     if object_last_version.end_time:
+        #         if self.end_time < self.start_time:
+        #             self.end_time = self.start_time
+        #         super().save(*args, **kwargs)
+        # except TimeRecord.DoesNotExist:
+        #     super().save(*args, **kwargs)
+
 
     def change_start_time(self, start_time):
         self.start_time = start_time
@@ -150,18 +159,15 @@ class TimeRecord(models.Model):
                 user=self.user,
             )
 
-    def get_tracked_hours(self):
-        total = 0
-
-        start = datetime.strptime(self.start_time.strftime('%H:%M:%S'), "%H:%M:%S")
-        end = datetime.strptime(self.end_time.strftime('%H:%M:%S'), "%H:%M:%S")
-        delta = end - start
-        total = total + int(delta.total_seconds())
-        return round(total / HOUR_IN_SECONDS, DECIMAL_PLACES)
-
     @property
     def tracked_hours(self):
-        return self.get_tracked_hours()
+        total = 0
+        start = datetime.strptime(self.start_time.strftime('%H:%M:%S'), "%H:%M:%S")
+        end = datetime.strptime(self.end_time.strftime('%H:%M:%S'), "%H:%M:%S")
+        if end > start:
+            delta = end - start
+            total = total + int(delta.total_seconds())
+        return round(total / HOUR_IN_SECONDS, DECIMAL_PLACES)
 
 
 class Report(models.Model):
