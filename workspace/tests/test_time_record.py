@@ -59,6 +59,10 @@ class TimeRecordTestCase(TestCase):
         start_time = datetime.datetime.strptime('12:30:00', "%H:%M:%S")
         end_time = datetime.datetime.strptime('16:00:00', "%H:%M:%S")
         date = datetime.datetime.now().date()
+
+        start_time = datetime.datetime.strptime('12:30:00', "%H:%M:%S")
+        end_time = datetime.datetime.strptime('16:00:00', "%H:%M:%S")
+        date = datetime.datetime.now().date()
         timer = TimeRecord.objects.create(user=self.user, start_time=start_time, end_time=end_time, date=date)
         tracked_hours = timer.tracked_hours
         self.assertEqual(tracked_hours, 3.50)
