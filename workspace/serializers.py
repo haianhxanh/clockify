@@ -272,7 +272,7 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ["id", "name", "description", "status", "hourly_rate", "total_allocated_hours", "tracked_hours",
+        fields = ["id", "name", "description", "status", "due_date", "hourly_rate", "total_allocated_hours", "tracked_hours",
                   "currency", "tasks", "project_users"]
 
     def get_currency(self, Project):

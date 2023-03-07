@@ -3,6 +3,7 @@ from . import views
 from rest_framework import permissions
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from .views import PDFHTMLView
 
 project_list = views.ProjectViewSet.as_view({'get': 'list', 'post': 'create'})
 
@@ -105,7 +106,10 @@ urlpatterns = [
     path('pdf/standard/', views.StandardPDFView.as_view(), name="pdf-standard"),
     path('pdf/detailed/', views.DetailedPDFView.as_view(), name="pdf-detailed"),
     path('pdf_download/', views.DownloadPDFView.as_view(), name="pdf_download"),
-    path('api/token/', TokenObtainPairView.as_view()),
-    path('api/token/refresh', TokenRefreshView.as_view())
+    path('test/', PDFHTMLView.as_view(), name="pdf_html"),
+    path('api/login/', TokenObtainPairView.as_view()),
+    path('api/login/refresh', TokenRefreshView.as_view()),
+
+    # path('api/login/', include('rest_social_auth.urls_jwt_pair')),
 ]
 

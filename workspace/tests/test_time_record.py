@@ -44,7 +44,6 @@ class TimeRecordTestCase(TestCase):
         date = now.date()
         timer = TimeRecord.objects.create(user=self.user, start_time=start_time, date=date)
         timer.stop_time()
-        print(start_time)
         self.assertEqual(timer.date, date)
         self.assertEqual(timer.end_time, strftime("%H:%M"))
 
@@ -70,13 +69,5 @@ class TimeRecordTestCase(TestCase):
         date = datetime.datetime.now().date()
         timer = TimeRecord.objects.create(user=self.user, start_time=start_time, end_time=end_time, date=date)
         tracked_hours = timer.tracked_hours
-        print(timer.tracked_hours)
         self.assertEqual(tracked_hours, 0)
 
-# user = User.objects.create(username="test7")
-# start_time = strftime("%H:%M")
-# now = datetime.datetime.now()
-# today = now.date()
-# stop_time = now
-# timer = TimeRecord.objects.create(user=user, start_time=start_time, date=today)
-# print(timer.now)

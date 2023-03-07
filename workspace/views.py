@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.http import Http404, HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
@@ -358,7 +359,6 @@ class RenderPDFView(View):
             project_users__user_id=self.request.user.id,
             project_users__role__name__in=[RoleEnum.ADMIN.value, RoleEnum.MEMBER.value]
         )
-        print(projects)
 
         # projects_values = request.GET.get('projects', None)
         #
@@ -370,7 +370,6 @@ class RenderPDFView(View):
 
         # rewrite with django-filters
         project_filter = ProjectFilter(request.GET, queryset=projects).qs
-        print(project_filter)
         return project_filter.distinct()
 
     def render_to_pdf(self, template_src, context_dict={}):
@@ -396,6 +395,7 @@ class StandardPDFView(RenderPDFView):
         pdf = self.render_to_pdf('pdf_standard.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
 
+
 class DetailedPDFView(RenderPDFView):
     def get(self, request, *args, **kwargs):
         projects = self.filter_projects(request)
@@ -405,6 +405,15 @@ class DetailedPDFView(RenderPDFView):
 
         pdf = self.render_to_pdf('pdf_detailed.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
+
+
+class PDFHTMLView(RenderPDFView):
+    def get(self, request, *args, **kwargs):
+        projects = self.filter_projects(request)
+        data = {
+            "projects": [project.to_dict() for project in projects]
+        }
+        return render(request, 'pdf_detailed.html', data)
 
 
 # Automatically downloads to PDF file

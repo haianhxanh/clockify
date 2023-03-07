@@ -1,0 +1,47 @@
+    th {
+        text-align: left;
+    }
+
+    thead tr td {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .project-item__body td {
+        padding: 10px 5px;
+    }
+
+    table table {
+        margin-left: 20px;
+    }
+
+    .project-table {
+        display: flex;
+        flex-direction: column
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .flex-basis-100 span {
+        flex-basis: 100%;
+    }
+
+    .flex-basis-100 span:not(.first-child) {
+        padding: 10px 5px;
+    }
+
+    .project-item__body span:not(.first-child) {
+        padding: 10px 5px;
+        background-color: #DDE2FF;
+    }
+
+    .project-item__tasks span:not(.first-child) {
+        padding: 5px 5px;
+    }
+
+    .project-item__tasks span.first-child {
+        padding-left: 10px;
+        flex-basis: calc(100% - 10px);
+    }

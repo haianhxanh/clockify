@@ -30,34 +30,31 @@
     <!-- HTML Content -->
 
     {% block content %}
-        <div>
-            <table>
-                <tr>
-                    <th>Project</th>
-                    <th>Status</th>
-                    <th>Due Date</th>
-                    <th>Allocated Hours</th>
-                    <th>Tracked Hours</th>
-                    <th>Budget</th>
-                </tr>
+        <div class="project-table">
+            <table class="project">
+                <thead class="project-table__header flex flex-basis-100">
+                    <td>Project</td>
+                    <td>Status</td>
+                    <td>Due Date</td>
+                    <td>Allocated Hours</td>
+                    <td>Tracked Hours</td>
+                    <td>Rate</td>
+                    <td>Budget</td>
+                </thead>
 
+                <tbody class="project-item">
                 {% for project in projects %}
-                    <tr>
+                    <tr class="project-item__body flex flex-basis-100">
                         <td>{{ project.name }}</td>
                         <td>{{ project.status }}</td>
-                        <td>
-                            {% if project.due_date %}
-                                {{ project.due_date }}
-                            {% else %}
-                                N/A
-                            {% endif %}
-                        </td>
+                        <td>{{ project.due_date }}</td>
                         <td>
                             {{ project.allocated_hours }}
                         </td>
                         <td>
                             {{ project.tracked_hours }}
                         </td>
+                        <td>{{ project.rate }}</td>
                         <td>
                             {% if project.budget %}
                                 {{ project.currency }} {{ project.budget }}
@@ -67,18 +64,21 @@
                         </td>
                     </tr>
 
-                    <table>
 
                         {% for task in project.tasks %}
-                        <tr>
-                            <td>{{ task.name }}</td>
+                        <tr class="flex flex-basis-100 project-item__task">
+                            <td><span class="first-child">{{ task.name }}</span></td>
                             <td>{{ task.status }}</td>
+                            <td>{{ task.due_date }}</td>
+                            <td>{{ task.allocated_hours }}</td>
+                            <td>{{ task.tracked_hours }}</td>
+                            <td></td>
+                            <td>{{ task.budget }}</td>
                         </tr>
                         {% endfor %}
 
-                    </table>
-                <br>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
     {% endblock content %}

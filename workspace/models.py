@@ -1,6 +1,8 @@
 from datetime import datetime, date, timedelta
 from gc import get_objects
 from time import strftime, localtime
+
+from django.core.validators import BaseValidator
 from django.db import models, connection
 from django.contrib.auth.models import AbstractUser
 
@@ -42,7 +44,9 @@ class Project(models.Model):
             "status": self.status,
             "allocated_hours": self.total_allocated_hours,
             "tracked_hours": self.tracked_hours,
-            "tasks": [task.to_dict() for task in self.tasks.all()]
+            "tasks": [task.to_dict() for task in self.tasks.all()],
+            "rate": self.hourly_rate,
+            "due_date": self.due_date
         }
 
     @property
@@ -72,18 +76,30 @@ class Task(models.Model):
     max_allocated_hours = models.FloatField(null=True, blank=True, default=0.0)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tasks")
     status = models.CharField(max_length=36, choices=TaskStatusChoices)
+    due_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"[{self.id}] {self.project.name} - {self.name}"
 
+    def save(self, *args, **kwargs):
+        if self.pk and self.max_allocated_hours < 0:
+            self.max_allocated_hours = 0
+        super().save(*args, **kwargs)
+
     def to_dict(self):
         tracked_hours = self.tracked_hours
-        # change model to have default 0
         hourly_rate = self.project.hourly_rate or 0
+        allocated_hours = self.max_allocated_hours or 0
+        # change model to have default 0
         return {
             "name": self.name,
+            "bill": tracked_hours * hourly_rate,
             "tracked_hours": tracked_hours,
-            "bill": tracked_hours * hourly_rate
+            "budget": allocated_hours * hourly_rate,
+            "status": self.status,
+            "allocated_hours": allocated_hours,
+            "rate": self.project.hourly_rate,
+            "due_date": self.due_date
         }
 
     @property
