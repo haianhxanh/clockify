@@ -69,5 +69,6 @@ class TimeRecordTestCase(TestCase):
         date = datetime.datetime.now().date()
         timer = TimeRecord.objects.create(user=self.user, start_time=start_time, end_time=end_time, date=date)
         tracked_hours = timer.tracked_hours
+        
         self.assertEqual(tracked_hours, 0)
 
