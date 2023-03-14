@@ -109,7 +109,7 @@ urlpatterns = [
     path('test/', PDFHTMLView.as_view(), name="pdf_html"),
     path('api/login/', TokenObtainPairView.as_view()),
     path('api/login/refresh', TokenRefreshView.as_view()),
-
+    path('accounts/', include('allauth.urls')),
     # path('api/login/', include('rest_social_auth.urls_jwt_pair')),
 ]
 
