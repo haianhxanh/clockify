@@ -1,9 +1,12 @@
 import itertools
 
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.password_validation import MinimumLengthValidator, NumericPasswordValidator
+from django.core.validators import EmailValidator
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 from rest_framework import serializers
 from drf_writable_nested.serializers import WritableNestedModelSerializer
+from rest_framework.exceptions import ValidationError
 
 from workspace.enums import ProjectStatusChoices, ProjectStatusEnum
 from workspace.models import Currency, Project, Task, User, TimeRecord, UserProject, UserTask, Role
@@ -20,6 +23,45 @@ class UserCreateSerializer(BaseUserCreateSerializer):
             "first_name",
             "last_name",
         )
+
+# todo test serializer
+class RegisterSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=256)
+    email = serializers.CharField(max_length=256)
+    password_1 = serializers.CharField(max_length=256)
+    password_2 = serializers.CharField(max_length=256)
+
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise ValidationError("User with this email already exists")
+
+        return value
+
+    def validate_password_1(self, value):
+        validators = [MinimumLengthValidator, NumericPasswordValidator]
+
+        for validator in validators:
+            v = validator()
+            v.validate(value)
+        return value
+
+    def validate_password_2(self, value):
+        return self.validate_password_1(value)
+
+    def validate_username(self, value):
+        return value
+
+    def validate(self, attrs):
+        validated_data = super().validate(attrs)
+
+        if validated_data["password_1"] != validated_data["password_2"]:
+            raise ValidationError("Passwords doesn't match")
+        else:
+            validated_data["password"] = validated_data["password_1"]
+
+        return validated_data
+
+
 
 
 class CurrencySerializer(serializers.ModelSerializer):

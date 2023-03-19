@@ -23,6 +23,8 @@ from io import BytesIO
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.views import View
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView
 from xhtml2pdf import pisa
 
 from workspace.serializers import (
@@ -38,7 +40,7 @@ from workspace.serializers import (
     UserProjectSerializer,
     UserSerializer, ProjectTaskSerializer, ListProjectsSerializer, UserTaskSerializer,
     AddUserTaskSerializer, ProjectTimeRecordSerializer, TaskTimeRecordSerializer, UpdateTimeRecordSerializer,
-    FilterSerializer,
+    FilterSerializer, RegisterSerializer,
 )
 from .enums import RoleEnum
 from .filters import ProjectFilter
@@ -94,6 +96,22 @@ class Register(APIView):
         username = form.cleaned_data.get("username")
         messages.success(request, f"Hi {username}, your account was successfully created")
         return redirect("home")
+
+
+class RestRegister(APIView):
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        user = User()
+        user.set_password(serializer.validated_data["password"])
+        user.email = serializer.validated_data.get("email")
+        user.username = serializer.validated_data["username"]
+
+        user.save()
+        # return jwt token based on user
+        # token = RefreshToken.for_user(user)
+        return Response(UserSerializer(instance=user).data, status=status.HTTP_201_CREATED)
 
 
 class TrackingStart(APIView):
