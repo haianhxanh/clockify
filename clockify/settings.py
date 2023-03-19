@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -38,17 +38,17 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    "workspace.apps.WorkspaceConfig",
     "djoser",
     'debug_toolbar',
     "rest_framework",
-    "workspace.apps.WorkspaceConfig",
     'django_filters',
     'social_django',
     'rest_social_auth',
     'django_extensions',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
 ]
@@ -180,6 +180,8 @@ SITE_ID = 2
 #         }
 #     }
 # }
+# ACCOUNT_ADAPTER = "workspace.adapters.CustomAccountAdapter"
+# ACCOUNT_SIGNUP_FORM_CLASS = 'workspace.forms.CustomSignupForm'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -201,10 +203,11 @@ SOCIALACCOUNT_PROVIDERS = {
             'id',
             'first_name',
             'last_name',
-            'short_name'
+            'short_name',
         ],
         'EXCHANGE_TOKEN': True,
         'VERIFIED_EMAIL': False,
+        'ACCOUNT_EMAIL_REQUIRED': True,
         'VERSION': 'v13.0',
         'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
     }
