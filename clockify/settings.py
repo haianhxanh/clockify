@@ -13,6 +13,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 from decouple import config
+from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    'corsheaders'
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -64,6 +66,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+
 ]
 
 ROOT_URLCONF = "clockify.urls"
@@ -157,7 +161,9 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=100),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=90),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=100),
+    "SIGNING_KEY": config('SECRET_KEY'),
 }
 
 # SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
@@ -171,16 +177,6 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 2
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'APP': {
-#             'client_id': config('SOCIAL_AUTH_GOOGLE_CLIENT_ID'),
-#             'secret': config('SOCIAL_AUTH_GOOGLE_CLIENT_SECRET'),
-#             'key': ''
-#         }
-#     }
-# }
-# ACCOUNT_ADAPTER = "workspace.adapters.CustomAccountAdapter"
 # ACCOUNT_SIGNUP_FORM_CLASS = 'workspace.forms.CustomSignupForm'
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -218,3 +214,16 @@ SOCIALACCOUNT_PROVIDERS = {
 #         "current_user": "workspace.serializers.UserSerializer",
 #     },
 # }
+
+CORS_ALLOWED_ALL_ORIGINS = True
+
+
+ACCOUNT_AUTHENTICATION_METHOD = "email" # Defaults to username_email
+ACCOUNT_USERNAME_REQUIRED = False       # Defaults to True
+ACCOUNT_EMAIL_REQUIRED = True           # Defaults to False
+SOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_ADAPTER = "workspace.adapters.CustomAccountAdapter"
+LOGIN_URL = "/"
+LOGIN_REDIRECT_URL = "/"
