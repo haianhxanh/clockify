@@ -160,28 +160,12 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=100),
 }
 
-# SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
-# SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
-
 AUTHENTICATION_BACKENDS = (
-    # 'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 SITE_ID = 2
-
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'APP': {
-#             'client_id': config('SOCIAL_AUTH_GOOGLE_CLIENT_ID'),
-#             'secret': config('SOCIAL_AUTH_GOOGLE_CLIENT_SECRET'),
-#             'key': ''
-#         }
-#     }
-# }
-# ACCOUNT_ADAPTER = "workspace.adapters.CustomAccountAdapter"
-# ACCOUNT_SIGNUP_FORM_CLASS = 'workspace.forms.CustomSignupForm'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -212,9 +196,3 @@ SOCIALACCOUNT_PROVIDERS = {
         'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
     }
 }
-
-# DJOSER = {
-#     "SERIALIZERS": {
-#         "current_user": "workspace.serializers.UserSerializer",
-#     },
-# }
