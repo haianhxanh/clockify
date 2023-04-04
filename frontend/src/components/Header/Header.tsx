@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useSession, signIn } from "next-auth/react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,8 +14,15 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import WorkspacesIcon from "@mui/icons-material/Workspaces";
 import SecondaryMenu from "../SecondaryMenu/SecondaryMenu";
+import { useSession } from "next-auth/react";
+import ThemeToggleButton from "../ThemeToggleButton";
 
-function Header() {
+export type HeaderProps = {
+  ColorModeContext: React.Context<{ toggleColorMode: () => void }>;
+};
+
+const Header = (props: HeaderProps) => {
+  const { ColorModeContext } = props;
   const { data: session } = useSession();
   const userProfileImg = session?.user?.image as string;
   const userName = session?.user?.name as string;
@@ -116,39 +122,38 @@ function Header() {
             Timepal
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
-
-          {session ? (
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open profile settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt={userName} src={userProfileImg} />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <SecondaryMenu handleCloseUserMenu={handleCloseUserMenu} />
-              </Menu>
-            </Box>
-          ) : (
-            <a href="/login">Sign In</a>
-          )}
+          <ThemeToggleButton ColorModeContext={ColorModeContext} />
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open profile settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar
+                  alt={session?.user?.name as string}
+                  src={userProfileImg}
+                />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              <SecondaryMenu handleCloseUserMenu={handleCloseUserMenu} />
+            </Menu>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
-}
+};
 export default Header;
