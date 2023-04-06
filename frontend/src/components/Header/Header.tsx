@@ -51,7 +51,7 @@ const Header = (props: HeaderProps) => {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl" className="bg-slate-600">
+      <Container maxWidth="xl" className="">
         <Toolbar disableGutters>
           <WorkspacesIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography

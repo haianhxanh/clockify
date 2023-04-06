@@ -8,11 +8,11 @@ const Login = () => {
     const userProfileImg = session.user?.image as string;
     const userName = session.user?.name as string;
     return (
-      <>
+      <div>
         Hi {session.user?.name}
         <Avatar alt={userName} src={userProfileImg} />
         <button onClick={() => signOut()}>Sign out</button>
-      </>
+      </div>
     );
   }
   return (

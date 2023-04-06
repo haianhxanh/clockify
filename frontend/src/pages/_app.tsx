@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
+import "../styles/globals.css";
 import {
   Box,
   CssBaseline,
@@ -11,6 +12,7 @@ import {
 import React from "react";
 import darkTheme from "@/theme/darkTheme";
 import lightTheme from "@/theme/lightTheme";
+import Layout from "@/components/Layout/Layout";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -51,7 +53,11 @@ export default function App({
       >
         <SessionProvider session={session}>
           <CssBaseline />
-          <Component {...pageProps} />
+          <Layout>
+            <main>
+              <Component {...pageProps} />
+            </main>
+          </Layout>
         </SessionProvider>
       </ThemeProvider>
     </ColorModeContext.Provider>
