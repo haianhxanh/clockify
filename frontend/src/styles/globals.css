@@ -42,6 +42,8 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+
+  --main-section-padding: 40px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -105,11 +107,20 @@ a {
 }
 
 main {
-  padding: 6rem;
+  padding-block: 6rem;
+  padding-inline: calc(65px + var(--main-section-padding));
+}
+
+main.sidebar--open {
+  padding-left: calc(249px + var(--main-section-padding));
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+}
+
+.header-toolbar.sidebar--open {
+  padding-inline: 0px;
 }

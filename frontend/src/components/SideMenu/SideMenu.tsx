@@ -52,7 +52,7 @@ const pagesPrimary = [
     id: 4,
     name: "Reports",
     icon: <ReportIcon />,
-    url: "/report",
+    url: "/reports",
   },
   {
     id: 5,
@@ -176,14 +176,20 @@ export default function SideMenu({
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar
+          className={
+            open
+              ? "header-toolbar sidebar--open"
+              : "header-toolbar sidebar--closed"
+          }
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
-              marginRight: 5,
+              marginRight: 2,
               ...(open && { display: "none" }),
             }}
           >

@@ -2,8 +2,18 @@ import React from "react";
 import SideMenu from "../SideMenu/SideMenu";
 import Head from "next/head";
 
-const Layout = ({ props }: { props: any }) => {
-  const [open, setOpen] = React.useState(true);
+const Layout = ({
+  open,
+  drawerClose,
+  drawerOpen,
+  children,
+}: {
+  open: boolean;
+  drawerClose: any;
+  drawerOpen: any;
+  children: any;
+}) => {
+  // const [open, setOpen] = React.useState(true);
   return (
     <>
       <Head>
@@ -12,12 +22,10 @@ const Layout = ({ props }: { props: any }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SideMenu
-        drawerOpen={(open: boolean) => setOpen(true)}
-        drawerClose={(open: boolean) => setOpen(false)}
-        open={open}
-      />
-      {props}
+      <SideMenu drawerOpen={drawerOpen} drawerClose={drawerClose} open={open} />
+      <main className={open ? "sidebar--open" : "sidebar--closed"}>
+        {children}
+      </main>
     </>
   );
 };

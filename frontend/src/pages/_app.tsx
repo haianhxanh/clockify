@@ -20,6 +20,7 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
+  const [open, setOpen] = React.useState(true);
   const [mode, setMode] = React.useState<"light" | "dark">("dark");
   const colorMode = React.useMemo(
     () => ({
@@ -53,10 +54,12 @@ export default function App({
       >
         <SessionProvider session={session}>
           <CssBaseline />
-          <Layout>
-            <main>
-              <Component {...pageProps} />
-            </main>
+          <Layout
+            drawerOpen={(open: boolean) => setOpen(true)}
+            drawerClose={(open: boolean) => setOpen(false)}
+            open={open}
+          >
+            <Component {...pageProps} />
           </Layout>
         </SessionProvider>
       </ThemeProvider>

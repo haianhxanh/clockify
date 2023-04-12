@@ -2,17 +2,21 @@ import React from "react";
 const settings = ["Account", "Dashboard", "Logout"];
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import { signOut } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const SecondaryMenu = (handleCloseUserMenu) => {
+  const { data: session } = useSession();
   return (
     <>
-      <MenuItem onClick={handleCloseUserMenu}>
-        <Typography textAlign="center">Profile</Typography>
-      </MenuItem>
-      <MenuItem onClick={signOut}>
-        <Typography textAlign="center">Sign out</Typography>
-      </MenuItem>
+      {session ? (
+        <MenuItem onClick={signOut}>
+          <Typography textAlign="center">Sign out</Typography>
+        </MenuItem>
+      ) : (
+        <MenuItem onClick={signIn}>
+          <Typography textAlign="center">Sign in</Typography>
+        </MenuItem>
+      )}
     </>
   );
 };
