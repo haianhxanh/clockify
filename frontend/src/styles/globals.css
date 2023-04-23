@@ -124,3 +124,17 @@ main.sidebar--open {
 .header-toolbar.sidebar--open {
   padding-inline: 0px;
 }
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+td {
+  padding-inline: 20px;
+  border: 1px solid gray;
+}
+
+tr {
+  width: 100%;
+}
