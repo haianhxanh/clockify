@@ -2869,8 +2869,17 @@
         "kind": 5,
         "importPath": "workspace.urls",
         "description": "workspace.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.home, name=\"home\"),\n    path(\"auth/\", include(\"djoser.urls\")),\n    path(\"auth/\", include(\"djoser.urls.jwt\")),\n    path(\"register/\", views.Register.as_view(), name=\"register\"),\n    path(\"projects/\", project_list, name=\"list-projects\"),\n    path(\"projects/<int:pk>/\", project_details, name=\"project-details\"),\n    path(\"projects/<int:project_pk>/users/\", project_users_list, name=\"list-project-users\"),\n    path(\"projects/<int:project_pk>/users/<pk>/\", project_user_details, name=\"project-user-detail\"),\n    path(\"projects/<int:project_pk>/tasks/\", project_tasks_list, name=\"list-project-tasks\"),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.home, name=\"home\"),\n    path(\"auth/\", include(\"djoser.urls\")),\n    path(\"auth/\", include(\"djoser.urls.jwt\")),\n    path(\"auth/sso/callback\", views.SSORedirectView.as_view(), name=\"sso-auth\"),\n    path(\"register/\", views.Register.as_view(), name=\"register\"),\n    path(\"projects/\", project_list, name=\"list-projects\"),\n    path(\"projects/<int:pk>/\", project_details, name=\"project-details\"),\n    path(\"projects/<int:project_pk>/users/\", project_users_list, name=\"list-project-users\"),\n    path(\"projects/<int:project_pk>/users/<pk>/\", project_user_details, name=\"project-user-detail\"),",
         "detail": "workspace.urls",
+        "documentation": {}
+    },
+    {
+        "label": "SSORedirectView",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class SSORedirectView(View):\n    def get(self, request, **kwargs):\n        #...   \n        return redirect(\"frontend url\", data={\"token\":\"token\"})\nclass RegistrationView(CreateView):\n    template_name = \"workspace/register.html\"\n    form_class = RegistrationForm\n    # permission_classes = [isProjectAdmin]\n    def get_context_data(self, *args, **kwargs):\n        context = super().get_context_data(*args, **kwargs)Tr",
+        "detail": "workspace.views",
         "documentation": {}
     },
     {
@@ -2878,7 +2887,7 @@
         "kind": 6,
         "importPath": "workspace.views",
         "description": "workspace.views",
-        "peekOfCode": "class RegistrationView(CreateView):\n    template_name = \"workspace/register.html\"\n    form_class = RegistrationForm\n    # permission_classes = [isProjectAdmin]\n    def get_context_data(self, *args, **kwargs):\n        context = super().get_context_data(*args, **kwargs)\n        context[\"next\"] = self.request.GET.get(\"next\")\n        return context\n    def get_success_url(self):\n        next_url = self.request.POST.get(\"next\")",
+        "peekOfCode": "class RegistrationView(CreateView):\n    template_name = \"workspace/register.html\"\n    form_class = RegistrationForm\n    # permission_classes = [isProjectAdmin]\n    def get_context_data(self, *args, **kwargs):\n        context = super().get_context_data(*args, **kwargs)Tr\n        context[\"next\"] = self.request.GET.get(\"next\")\n        return context\n    def get_success_url(self):\n        next_url = self.request.POST.get(\"next\")",
         "detail": "workspace.views",
         "documentation": {}
     },
@@ -3085,7 +3094,7 @@
         "kind": 2,
         "importPath": "workspace.views",
         "description": "workspace.views",
-        "peekOfCode": "def home(request):\n    return render(request, \"workspace/home.html\")\nclass RegistrationView(CreateView):\n    template_name = \"workspace/register.html\"\n    form_class = RegistrationForm\n    # permission_classes = [isProjectAdmin]\n    def get_context_data(self, *args, **kwargs):\n        context = super().get_context_data(*args, **kwargs)\n        context[\"next\"] = self.request.GET.get(\"next\")\n        return context",
+        "peekOfCode": "def home(request):\n    return render(request, \"workspace/home.html\")\nclass SSORedirectView(View):\n    def get(self, request, **kwargs):\n        #...   \n        return redirect(\"frontend url\", data={\"token\":\"token\"})\nclass RegistrationView(CreateView):\n    template_name = \"workspace/register.html\"\n    form_class = RegistrationForm\n    # permission_classes = [isProjectAdmin]",
         "detail": "workspace.views",
         "documentation": {}
     },

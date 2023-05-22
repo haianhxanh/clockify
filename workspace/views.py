@@ -23,6 +23,7 @@ from io import BytesIO
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.views import View
+from rest_framework_simplejwt.views import TokenObtainPairView
 from xhtml2pdf import pisa
 
 from workspace.serializers import (
@@ -38,10 +39,10 @@ from workspace.serializers import (
     UserProjectSerializer,
     UserSerializer, ProjectTaskSerializer, ListProjectsSerializer, UserTaskSerializer,
     AddUserTaskSerializer, ProjectTimeRecordSerializer, TaskTimeRecordSerializer, UpdateTimeRecordSerializer,
-    FilterSerializer,
+    FilterSerializer, CustomTokenObtainPairSerializer,
 )
 from .enums import RoleEnum
-from .filters import ProjectFilter
+from .filters import ProjectFilter, TrackingFilter
 from .forms import RegistrationForm
 from .models import Project, Task, TimeRecord, User, UserProject, UserTask
 from .permissions import isProjectAdmin, IsProjectMember, IsGuest, isProjectAdminOrMember, isAuthenticated
@@ -52,6 +53,12 @@ from .permissions import isProjectAdmin, IsProjectMember, IsGuest, isProjectAdmi
 
 def home(request):
     return render(request, "workspace/home.html")
+
+
+class SSORedirectView(View):
+    def get(self, request, **kwargs):
+        # ...
+        return redirect("frontend url", data={"token": "token"})
 
 
 class RegistrationView(CreateView):
@@ -108,17 +115,21 @@ class TrackingStart(APIView):
     # start new
     def post(self, request):
         serializer = TimeRecordStartSerializer(data=request.POST)
-
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         start_time = strftime("%H:%M")
         date_now = date.today()
         self.find_and_kill_all_running(request.user)
-        time_record = serializer.save(start_time=start_time, date=date_now, user=request.user)
+
+        # QA: how to rewrite this and make request.data optional
+        if 'description' in request.data:
+            time_record = serializer.save(start_time=start_time, date=date_now, user=request.user,
+                                          description=request.data['description'])
+        else:
+            time_record = serializer.save(start_time=start_time, date=date_now, user=request.user)
+
         response_serializer = TimeRecordSerializer(time_record)
-        # TimeRecord.objects.create(**serializer.validated_data, start_time=start_time, date=date_now,
-        # user=request.user)
         return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -196,7 +207,11 @@ class TimeRecordViewSet(ModelViewSet):
     permission_classes = [isProjectAdmin | IsProjectMember]
 
     def get_queryset(self):
-        return TimeRecord.objects.filter(user=self.request.user)
+        return TimeRecord.objects.filter(user=self.request.user).order_by("-updated")
+
+    def filter_queryset(self, queryset):
+        filtered = TrackingFilter(self.request.GET, queryset=queryset).qs
+        return filtered
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -212,6 +227,14 @@ class TimeRecordViewSet(ModelViewSet):
 
         self.perform_update(serializer)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ListAllTasks(ListAPIView):
+    serializer_class = TaskSerializer
+    permission_classes = [isProjectAdmin | IsProjectMember]
+
+    def get_queryset(self):
+        return Task.objects.filter(user=self.request.user).order_by("-updated")
 
 
 class UpdateTimeRecordViewSet(ModelViewSet):
@@ -294,8 +317,13 @@ class ProjectViewSet(ModelViewSet):
         return ProjectSerializer
 
     def get_queryset(self):
-        return Project.objects.filter(project_users__user_id=self.request.user.id, project_users__role__isnull=False)
+        return Project.objects.filter(project_users__user_id=self.request.user.id,
+                                      project_users__role__isnull=False).order_by("-updated")
         # .filter(Q(project_users__role__name="member") | Q(project_users__role__name="admin"))
+
+    def filter_queryset(self, queryset):
+        filtered = ProjectFilter(self.request.GET, queryset=queryset).qs
+        return filtered
 
 
 class TaskViewSet(ModelViewSet):
@@ -352,8 +380,13 @@ class FilterAPIView(APIView):
 
 class RenderPDFView(View):
 
+    def get(self, request, *args, **kwargs):
+        print(self)
+        return HttpResponse("Hello, World!")
+
     def filter_projects(self, request):
-        # projects = Project.objects.all()
+        ps = Project.objects.all()
+        print(self.request)
 
         projects = Project.objects.filter(
             project_users__user_id=self.request.user.id,
@@ -385,7 +418,6 @@ class RenderPDFView(View):
 # Opens up page as PDF
 class StandardPDFView(RenderPDFView):
     def get(self, request, *args, **kwargs):
-        # projects = self.filter_projects(request)
         projects = self.filter_projects(request)
         data = {
             "projects": [project.to_dict() for project in projects]
@@ -431,3 +463,8 @@ class DownloadPDFView(RenderPDFView):
 def index(request):
     context = {}
     return render(request, 'index.html', context)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+    token_obtain_pair = TokenObtainPairView.as_view()

@@ -44,9 +44,9 @@ const pagesPrimary = [
   },
   {
     id: 3,
-    name: "Tasks",
+    name: "Tracking",
     icon: <TaskIcon />,
-    url: "/tasks",
+    url: "/tracking",
   },
   {
     id: 4,

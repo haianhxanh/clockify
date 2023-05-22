@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SideMenu from "../SideMenu/SideMenu";
 import Head from "next/head";
+import { useSession } from "next-auth/react";
+
+interface Project {
+  name: string;
+}
 
 const Layout = ({
   open,
@@ -14,6 +19,59 @@ const Layout = ({
   children: any;
 }) => {
   // const [open, setOpen] = React.useState(true);
+  let dataArray: any;
+  const [recentProjects, setRecentProjects] = useState();
+  const session = useSession();
+  const [sessionStatus, setSessionStatus] = useState<string>("unauthenticated");
+
+  useEffect(() => {
+    setSessionStatus(session.status);
+  }, [session.status]);
+
+  useEffect(() => {
+    if (sessionStatus == "authenticated") {
+      // async function getProjects() {
+      //   const response = await fetch("http://localhost:9000/projects/", {
+      //     method: "GET",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: "Bearer " + String(session.data.user.access),
+      //     },
+      //   });
+      //   const jsonData = await response.json();
+
+      //   setRecentProjects(jsonData);
+      //   console.log(recentProjects);
+      // }
+
+      // getProjects();
+
+      fetch("http://localhost:9000/projects/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + String(session.data.user.access),
+        },
+      })
+        .then((x) => x.json())
+        .then((data) => handleProjects(data));
+
+      console.log(recentProjects);
+    }
+  }, [sessionStatus]);
+
+  function handleProjects(data: any) {
+    setRecentProjects(data);
+    console.log(recentProjects);
+  }
+
+  // useEffect(() => {
+  //   if (dataArray != undefined) {
+  //     console.log("2 watch for change in data array");
+  //     setRecentProjects(dataArray);
+  //   }
+  // }, [dataArray]);
+
   return (
     <>
       <Head>

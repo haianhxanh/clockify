@@ -15,6 +15,14 @@ DECIMAL_PLACES = 2
 HOUR_IN_SECONDS = 3600
 
 
+class BaseModel(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
 class Currency(models.Model):
     shortcut_name = models.CharField(max_length=3)
 
@@ -22,7 +30,7 @@ class Currency(models.Model):
         return self.shortcut_name
 
 
-class Project(models.Model):
+class Project(BaseModel):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name="currency")
@@ -69,7 +77,7 @@ class Project(models.Model):
         return round(total, 2)
 
 
-class Task(models.Model):
+class Task(BaseModel):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -111,7 +119,7 @@ class Task(models.Model):
         return total
 
 
-class TimeRecord(models.Model):
+class TimeRecord(BaseModel):
     description = models.TextField(max_length=1024, null=True, blank=True)
     start_time = models.TimeField()  # auto add time when Object is created, make it editable
     end_time = models.TimeField(null=True, blank=True)
@@ -128,9 +136,9 @@ class TimeRecord(models.Model):
 
     def save(self, *args, **kwargs):
         # make sure updated end_time is not earlier than start_time
-        if self.pk and self.end_time:
-            if self.end_time < self.start_time:
-                self.end_time = self.start_time
+        # if self.pk and self.end_time:
+        #     if self.end_time < self.start_time:
+        #         self.end_time = self.start_time
 
         super().save(*args, **kwargs)
         # try:
@@ -148,7 +156,7 @@ class TimeRecord(models.Model):
         self.save()
 
     def stop_time(self):
-
+        start_time = self.start_time.strftime("%H:%M")
         end_time = strftime("%H:%M")
         now = datetime.now()
         start_date = self.date  # datetime.date(2022, 12, 19)
@@ -191,7 +199,7 @@ class Report(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
 
-class User(AbstractUser):
+class User(BaseModel, AbstractUser):
     tasks = models.ManyToManyField(Task, through="UserTask")
     projects = models.ManyToManyField(Project, through="UserProject")
 

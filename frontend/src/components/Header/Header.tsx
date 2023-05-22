@@ -23,9 +23,9 @@ export type HeaderProps = {
 
 const Header = (props: HeaderProps) => {
   const { ColorModeContext } = props;
-  const { data: session } = useSession();
-  const userProfileImg = session?.user?.image as string;
-  const userName = session?.user?.name as string;
+  // const { data: session } = useSession();
+  // const userProfileImg = session?.user?.image as string;
+  // const userName = session?.user?.name as string;
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -77,16 +77,6 @@ const Header = (props: HeaderProps) => {
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -131,8 +121,8 @@ const Header = (props: HeaderProps) => {
             <Tooltip title="Open profile settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
-                  alt={session?.user?.name as string}
-                  src={userProfileImg}
+                // alt={session?.user?.name as string}
+                // src={userProfileImg}
                 />
               </IconButton>
             </Tooltip>

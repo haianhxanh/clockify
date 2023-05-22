@@ -3,7 +3,7 @@ from . import views
 from rest_framework import permissions
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from .views import PDFHTMLView
+from .views import PDFHTMLView, CustomTokenObtainPairView
 
 project_list = views.ProjectViewSet.as_view({'get': 'list', 'post': 'create'})
 
@@ -79,6 +79,7 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("auth/", include("djoser.urls")),
     path("auth/", include("djoser.urls.jwt")),
+    path("auth/sso/callback", views.SSORedirectView.as_view(), name="sso-auth"),
     path("register/", views.Register.as_view(), name="register"),
     path("projects/", project_list, name="list-projects"),
     path("projects/<int:pk>/", project_details, name="project-details"),
@@ -95,6 +96,7 @@ urlpatterns = [
     path("projects/<int:project_pk>/tracking/", project_time_records, name="list-project-time-records"),
     path("projects/<int:project_pk>/tracking/<pk>/", project_time_record_details,
          name="project-time-record-details"),
+    path("tasks/", views.ListAllTasks.as_view(), name="list-tasks"),
     path("users/", views.ListAllUsers.as_view(), name="list-users"),
     path("tracking/", time_records_list, name="list-time-records"),
     path("tracking/<pk>/", time_record_detail, name="time-record-detail"),
@@ -107,9 +109,8 @@ urlpatterns = [
     path('pdf/detailed/', views.DetailedPDFView.as_view(), name="pdf-detailed"),
     path('pdf_download/', views.DownloadPDFView.as_view(), name="pdf_download"),
     path('test/', PDFHTMLView.as_view(), name="pdf_html"),
-    path('api/login/', TokenObtainPairView.as_view()),
-    path('api/login/refresh', TokenRefreshView.as_view()),
-
+    path('api/login/', CustomTokenObtainPairView.as_view()),
+    path('api/login/refresh/', TokenRefreshView.as_view()),
     # path('api/login/', include('rest_social_auth.urls_jwt_pair')),
 ]
 

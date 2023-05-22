@@ -107,8 +107,9 @@ a {
 }
 
 main {
-  padding-block: 6rem;
+  padding-block: 3rem;
   padding-inline: calc(65px + var(--main-section-padding));
+  padding-right: 1rem;
 }
 
 main.sidebar--open {

@@ -4,6 +4,7 @@ from django.contrib.auth.hashers import make_password
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 from rest_framework import serializers
 from drf_writable_nested.serializers import WritableNestedModelSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from workspace.enums import ProjectStatusChoices, ProjectStatusEnum
 from workspace.models import Currency, Project, Task, User, TimeRecord, UserProject, UserTask, Role
@@ -162,6 +163,12 @@ class TimeRecordSerializer(serializers.ModelSerializer):
         fields = ["id", "description", "start_time", "end_time", "tracked_hours", "date", "task", "user"]
 
 
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = "__all__"
+
+
 class UpdateTimeRecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeRecord
@@ -253,7 +260,11 @@ class UpdateProjectSerializer(serializers.ModelSerializer):
 
 class CreateProjectSerializers(serializers.ModelSerializer):
     def create(self, validated_data):
-        project = Project(name=validated_data["name"])
+        project = Project(
+                name=validated_data["name"],
+                description=validated_data["description"],
+                hourly_rate=validated_data["hourly_rate"]
+                )
         project.save()
         user_id = self.context['request'].user.id
         role = Role.objects.get(name="admin")
@@ -272,7 +283,8 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ["id", "name", "description", "status", "due_date", "hourly_rate", "total_allocated_hours", "tracked_hours",
+        fields = ["id", "name", "description", "status", "due_date", "hourly_rate", "total_allocated_hours",
+                  "tracked_hours",
                   "currency", "tasks", "project_users"]
 
     def get_currency(self, Project):
@@ -283,3 +295,19 @@ class FilterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = "__all__"
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    # def validate(self, attrs):
+    #     data = super(CustomTokenObtainPairSerializer, self).validate(attrs)
+    #     data.update({'user': self.user.username})
+    #     data.update({'id': self.user.id})
+    #     return data
+
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['first_name'] = user.first_name
+        token['last_name'] = user.last_name
+        token['username'] = user.username
+        return token

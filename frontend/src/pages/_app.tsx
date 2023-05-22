@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react";
 import "../styles/globals.css";
 import {
   Box,
@@ -9,10 +9,11 @@ import {
   createTheme,
   useTheme,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import darkTheme from "@/theme/darkTheme";
 import lightTheme from "@/theme/lightTheme";
 import Layout from "@/components/Layout/Layout";
+import AuthContext, { AuthProvider } from "@/context/AuthContext";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -52,16 +53,19 @@ export default function App({
       <ThemeProvider
         theme={mode === "dark" ? darkThemeChosen : lightThemeChosen}
       >
+        {/* <AuthProvider> */}
         <SessionProvider session={session}>
           <CssBaseline />
           <Layout
             drawerOpen={(open: boolean) => setOpen(true)}
             drawerClose={(open: boolean) => setOpen(false)}
             open={open}
+            // user={user}
           >
             <Component {...pageProps} />
           </Layout>
         </SessionProvider>
+        {/* </AuthProvider> */}
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
