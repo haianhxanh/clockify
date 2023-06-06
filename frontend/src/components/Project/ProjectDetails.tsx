@@ -26,15 +26,27 @@ const ProjectDetails = ({ project }: Project) => {
             </Typography>
           </Grid>
           <Grid item xs={3}>
-            <Button
-              variant="contained"
-              style={{
-                backgroundColor: STATUS.PROJECT[project.status].color,
-                color: "#fff",
-              }}
-            >
-              {STATUS.PROJECT[project.status].label}
-            </Button>
+            {project.status ? (
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: STATUS.PROJECT[project.status].color,
+                  color: "#fff",
+                }}
+              >
+                {STATUS.PROJECT[project.status].label}
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: STATUS.PROJECT["CREATED"].color,
+                  color: "#fff",
+                }}
+              >
+                {STATUS.PROJECT["CREATED"].label}
+              </Button>
+            )}
           </Grid>
           <Grid item xs={3}>
             <Button
@@ -61,10 +73,13 @@ const ProjectDetails = ({ project }: Project) => {
           </Grid>
         </Grid>
       </Container>
-      <Box sx={{ ...commonStyles, borderRadius: "16px" }}>
+      <Box
+        sx={{ ...commonStyles, borderRadius: "4px" }}
+        style={{ marginBlock: "16px", marginInline: "0px" }}
+      >
         {project.description}
       </Box>
-      <TaskList projectId={project.id} />
+      <TaskList projectId={project.id} key={project.id} />
     </>
   );
 };

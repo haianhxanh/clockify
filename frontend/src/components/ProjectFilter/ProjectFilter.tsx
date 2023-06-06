@@ -111,7 +111,7 @@ const ProjectFilter = ({ onSelectProject, paramIds, projects }: Props) => {
           );
         })} */}
 
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl sx={{ m: 1, width: 300 }} style={{ marginLeft: 0 }}>
         <InputLabel id="demo-multiple-checkbox-label">
           Filter Projects
         </InputLabel>

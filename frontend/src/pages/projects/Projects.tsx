@@ -57,24 +57,14 @@ const Projects = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+
   const selectedProjectsHandle = (id: number, e: Event) => {
     if (e.target.checked == true) {
-      // let project = projects.find((project) => project.id === id);
-      // let newProject = {
-      //   ...filteredProjects,
-      //   id: project.id,
-      //   name: project.name,
-      // };
-      // setFilteredProjects([...filteredProjects, newProject]);
-
       if (paramIds.includes(id.toString())) {
         return;
       }
       setParamIds((paramIds) => [...paramIds, id.toString()]);
     } else {
-      // let newProjects = filteredProjects.filter((project) => project.id != id);
-      // setFilteredProjects(newProjects);
-
       setParamIds(paramIds.filter((item) => item !== id.toString()));
     }
   };
@@ -224,22 +214,11 @@ const Projects = () => {
         </Modal>
       </div>
 
-      {/* <ProjectFilter onSelectProject={(id) => setSelectedProject(id)} /> */}
       <ProjectFilter
         projects={projects}
         onSelectProject={(id, e) => selectedProjectsHandle(id, e)}
         paramIds={paramIds}
       />
-
-      {/* {filteredProjects.length > 0 ? (
-        <ProjectList key={selectedProject} projects={filteredProjects} />
-      ) : (
-        <ProjectList
-          key={selectedProject}
-          projects={projects}
-          apiProjectDelete={apiProjectDelete}
-        />
-      )} */}
 
       <ProjectList
         key={selectedProject}

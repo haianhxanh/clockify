@@ -33,7 +33,7 @@ export const TASK = {
     color: "#A10E25",
   },
   TO_DO: {
-    label: "created",
+    label: "to do",
     color: "#D4A72D",
   },
 };

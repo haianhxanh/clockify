@@ -3,15 +3,6 @@ import React, { useState } from "react";
 import * as API from "@/constants/api";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-// interface TimeRecord {
-//   id: number;
-//   description: string;
-//   start_time: string;
-//   end_time: string | null;
-//   task: number | null;
-//   tracked_hours: number;
-// }
-
 const TimeRecord = ({ record, apiTrackingDelete }: Props) => {
   return (
     <>

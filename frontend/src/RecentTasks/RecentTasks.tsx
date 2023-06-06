@@ -59,7 +59,9 @@ const RecentTasks = () => {
 
   return (
     <>
-      <Typography>You've been working on</Typography>
+      <Typography style={{ marginTop: "30px" }}>
+        You've been working on
+      </Typography>
       <TimeRecordList
         key={records.length}
         records={records}

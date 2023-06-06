@@ -15,11 +15,15 @@ const Task = ({ task }: Props) => {
           <Button
             variant="contained"
             style={{
-              backgroundColor: STATUS.TASK[task.status].color,
+              backgroundColor: task.status
+                ? STATUS.TASK[task.status].color
+                : STATUS.TASK["TO_DO"].color,
               color: "#fff",
             }}
           >
-            {STATUS.TASK[task.status].label}
+            {task.status
+              ? STATUS.TASK[task.status].label
+              : STATUS.TASK["TO_DO"].label}
           </Button>
         </TableCell>
         <TableCell>

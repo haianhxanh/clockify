@@ -1,4 +1,5 @@
 import * as API from "@/constants/api";
+import cookie from "cookie";
 
 export const getRecords = async () => {
   try {
@@ -31,4 +32,29 @@ export const apiTrackingDelete = async (id: number) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export function parseCookies(req) {
+  return cookie.parse(req ? req.headers.cookie || "" : document.cookie);
+}
+
+export const getDuration = (time: number) => {
+  let timeStampInSec = time / 1000;
+  let hours = Math.floor(timeStampInSec / 3600);
+  let remainSeconds = timeStampInSec % 3600;
+  let minutes = Math.floor(remainSeconds / 60);
+  let seconds = remainSeconds % 60;
+  return [hours, minutes, seconds];
+};
+
+export const timeToString = (timestamp: number) => {
+  const date = new Date(timestamp);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  return [hours, minutes];
+};
+
+export const getTime = () => {
+  let time = new Date().getTime();
+  return time;
 };
