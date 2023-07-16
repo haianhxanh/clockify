@@ -37,3 +37,10 @@ export const TASK = {
     color: "#D4A72D",
   },
 };
+
+export const TRACKING = {
+  NEW: {
+    label: "new",
+    color: "#89CFF0",
+  },
+};

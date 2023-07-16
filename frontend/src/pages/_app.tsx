@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import { SessionProvider, useSession } from "next-auth/react";
 import "../styles/globals.css";
 import {
+  Alert,
   Box,
   CssBaseline,
   IconButton,
@@ -31,7 +32,6 @@ export default function App({
   const [mode, setMode] = React.useState<"light" | "dark">("dark");
   const [trackingCookie, setTrackingCookie] = useCookies(["tracking"]);
   const [runningTracking, setRunningTracking] = useState<runningTracking>();
-  const [testProps, setTestProps] = useState("123");
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {

@@ -17,6 +17,7 @@ const ProjectDetails = ({ project }: Project) => {
       <Container
         style={{
           padding: "1rem 0",
+          minWidth: "100%",
         }}
       >
         <Grid container spacing={2}>

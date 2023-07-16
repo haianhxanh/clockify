@@ -52,7 +52,9 @@ const RecentProjects = ({ recentProjects }: { recentProjects: any }) => {
 
   return (
     <div>
-      <Typography variant="subtitle1">Recent Projects</Typography>
+      <Typography variant="subtitle1" style={{ marginBlock: "30px" }}>
+        Recent Projects
+      </Typography>
       {/* {projects.length > 0 &&
         projects.map((project) => {
           const { id, name } = project;

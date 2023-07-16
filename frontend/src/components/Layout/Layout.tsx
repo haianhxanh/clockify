@@ -6,6 +6,9 @@ import { withCookies, useCookies, Cookies } from "react-cookie";
 import { parseCookies } from "@/helpers/Helpers";
 import { useRouter } from "next/router";
 import Main from "../Main/Main";
+import { Alert, Snackbar } from "@mui/material";
+import { SnackbarContextProvider } from "@/context/SnackbarContext";
+import { DataContextProvider } from "@/context/DataContext";
 
 interface Project {
   name: string;
@@ -39,22 +42,6 @@ const Layout = ({
 
   useEffect(() => {
     if (sessionStatus == "authenticated") {
-      // async function getProjects() {
-      //   const response = await fetch("http://localhost:9000/projects/", {
-      //     method: "GET",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       Authorization: "Bearer " + String(session.data.user.access),
-      //     },
-      //   });
-      //   const jsonData = await response.json();
-
-      //   setRecentProjects(jsonData);
-      //   console.log(recentProjects);
-      // }
-
-      // getProjects();
-
       fetch("http://localhost:9000/projects/", {
         method: "GET",
         headers: {
@@ -97,7 +84,13 @@ const Layout = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SideMenu drawerOpen={drawerOpen} drawerClose={drawerClose} open={open} />
-      <Main children={children} open={open} runningTracking={runningTracking} />
+      <DataContextProvider>
+        <Main
+          children={children}
+          open={open}
+          runningTracking={runningTracking}
+        />
+      </DataContextProvider>
     </>
   );
 };

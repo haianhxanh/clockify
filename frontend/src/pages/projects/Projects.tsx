@@ -57,7 +57,6 @@ const Projects = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
   const selectedProjectsHandle = (id: number, e: Event) => {
     if (e.target.checked == true) {
       if (paramIds.includes(id.toString())) {
@@ -147,6 +146,7 @@ const Projects = () => {
         },
       });
       getProjects(API.PROJECTS);
+      handleClose();
     } catch (error) {
       console.log(error);
     }
@@ -196,14 +196,14 @@ const Projects = () => {
                 }}
                 defaultValue={0}
               />
-              <TextField
+              {/* <TextField
                 fullWidth
                 margin="normal"
                 id="outlined"
                 label="Currency"
                 placeholder="CZK"
                 name="currency"
-              />
+              /> */}
               <Box>
                 <Button type="submit" variant="outlined" color="success">
                   Create
@@ -220,11 +220,7 @@ const Projects = () => {
         paramIds={paramIds}
       />
 
-      <ProjectList
-        key={selectedProject}
-        projects={projects}
-        apiProjectDelete={apiProjectDelete}
-      />
+      <ProjectList projects={projects} apiProjectDelete={apiProjectDelete} />
     </div>
   );
 };

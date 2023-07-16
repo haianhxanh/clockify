@@ -52,59 +52,54 @@ const ProjectList = ({ projects, apiProjectDelete }: Props) => {
               projects.map((project) => {
                 const { id, name } = project;
                 return (
-                  <>
-                    <TableRow sx={{ th: { border: 0 } }}>
-                      <TableCell scope="row" style={{ width: "40%" }}>
-                        <Box>
-                          <Project
-                            key={project.id}
-                            id={project.id}
-                            project={project}
-                          />
-                        </Box>
-                      </TableCell>
-                      <TableCell>
-                        <Link href={`projects/${id}`}>View</Link>
-                      </TableCell>
-                      <TableCell>
-                        <PopupState
-                          variant="popover"
-                          popupId="demo-popup-popover"
-                        >
-                          {(popupState) => (
-                            <div>
-                              <Button
-                                color="error"
-                                {...bindTrigger(popupState)}
-                              >
-                                <DeleteIcon></DeleteIcon>
-                              </Button>
-                              <Popover
-                                {...bindPopover(popupState)}
-                                anchorOrigin={{
-                                  vertical: "bottom",
-                                  horizontal: "center",
-                                }}
-                                transformOrigin={{
-                                  vertical: "top",
-                                  horizontal: "center",
-                                }}
-                              >
-                                <Typography sx={{ p: 2 }}>
-                                  <Button
-                                    color="error"
-                                    onClick={() => apiProjectDelete(id)}
-                                  >
-                                    Yes, delete
-                                  </Button>
-                                </Typography>
-                              </Popover>
-                            </div>
-                          )}
-                        </PopupState>
-                      </TableCell>
-                    </TableRow>
-                  </>
+                  <TableRow sx={{ th: { border: 0 } }} key={id}>
+                    <TableCell scope="row" style={{ width: "40%" }}>
+                      <Box>
+                        <Project
+                          key={project.id}
+                          id={project.id}
+                          project={project}
+                        />
+                      </Box>
+                    </TableCell>
+                    <TableCell>
+                      <Link href={`projects/${id}`}>View</Link>
+                    </TableCell>
+                    <TableCell>
+                      <PopupState
+                        variant="popover"
+                        popupId="demo-popup-popover"
+                      >
+                        {(popupState) => (
+                          <div>
+                            <Button color="error" {...bindTrigger(popupState)}>
+                              <DeleteIcon></DeleteIcon>
+                            </Button>
+                            <Popover
+                              {...bindPopover(popupState)}
+                              anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "center",
+                              }}
+                              transformOrigin={{
+                                vertical: "top",
+                                horizontal: "center",
+                              }}
+                            >
+                              <Typography sx={{ p: 2 }}>
+                                <Button
+                                  color="error"
+                                  onClick={() => apiProjectDelete(id)}
+                                >
+                                  Yes, delete
+                                </Button>
+                              </Typography>
+                            </Popover>
+                          </div>
+                        )}
+                      </PopupState>
+                    </TableCell>
+                  </TableRow>
                 );
               })}
           </TableBody>

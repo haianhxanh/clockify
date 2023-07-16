@@ -58,6 +58,14 @@ interface Task {
   project: number;
 }
 
+interface TimeRecordData {
+  id: number;
+  description?: string;
+  date: string;
+  start: string;
+  end?: string;
+}
+
 const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [isReset, setIsReset] = useState(false);
@@ -80,6 +88,7 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [taskProjects, setTaskProjects] = useState<Project[]>([]);
   const [timeRecords, setTimeRecords] = useState<TimeRecord[]>([]);
+  const [timeRecordsData, setTimeRecordsData] = useState<TimeRecordData[]>([]);
   const [timeRecord, setTimeRecord] = useState<TimeRecord>();
   const [tempRecordId, setTempRecordId] = useState(null);
   const [trackingCookie, setTrackingCookie, removeTrackingCookie] = useCookies([
@@ -244,11 +253,12 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
       updateTaskProjects(parseInt(e.target.dataset.taskProject));
     } else {
       setTaskProjects(projects);
+      console.log(taskProjects);
     }
   };
 
   const updateTaskProjects = (id: number) => {
-    let newTaskProject = taskProjects.filter((project) => project.id == id);
+    let newTaskProject = projects.filter((project) => project.id == id);
 
     setTaskProjects(newTaskProject);
   };
@@ -265,8 +275,6 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
       project: project.id,
       task: task.id,
     };
-
-    console.log(requestData);
 
     try {
       const response = await fetch(API.TRACKING_START, {
@@ -292,8 +300,6 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
       task: task.id,
     };
 
-    console.log(requestData);
-
     try {
       const response = await fetch(API.TRACKING_STOP, {
         method: "POST",
@@ -316,6 +322,7 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
         project: project,
       };
       setTimeRecords([...timeRecords, newRecord]);
+      console.log(timeRecords);
     } catch (error) {
       console.log(error);
     }
@@ -352,7 +359,7 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
                 <TableCell
                   component="th"
                   scope="row"
-                  style={{ width: "35%", minWidth: 250 }}
+                  style={{ width: "35%", minWidth: 200 }}
                 >
                   <Box>
                     <TextField
@@ -453,7 +460,6 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
         const parsedStartTime = timeToString(startTime);
         const parsedEndTime = timeToString(endTime);
         const totalTime = getDuration(duration);
-
         return (
           <div key={id}>
             <TableContainer component={Paper}>

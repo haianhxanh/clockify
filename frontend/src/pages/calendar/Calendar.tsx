@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import FullCalendar, { formatDate } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -6,6 +6,13 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import DeleteIcon from "@mui/icons-material/Delete";
+import * as STATUS from "@/constants/status";
+import * as SNACKBAR from "@/constants/snackbar";
+import dayjs, { Dayjs } from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
   Box,
   Button,
@@ -18,6 +25,8 @@ import {
   Typography,
 } from "@mui/material";
 import * as API from "@/constants/api";
+import { SnackbarContext } from "@/context/SnackbarContext";
+import { TimeField } from "@mui/x-date-pickers";
 
 interface TimeRecord {
   id: number;
@@ -33,6 +42,8 @@ interface Event {
   id: string;
   title: string | "no description";
   date: string;
+  start: string | null;
+  end: string | null;
 }
 
 const style = {
@@ -40,7 +51,9 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "50%",
+  height: "auto",
+  maxHeight: "80%",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -51,33 +64,62 @@ const style = {
 
 const Calendar = () => {
   const [currentEvents, setCurrentEvents] = useState<Event[]>([]);
+  const [recordDate, setRecordDate] = React.useState<Dayjs | null>(
+    dayjs("2022-04-17")
+  );
+  const [start, setStart] = useState(dayjs("2022-04-17T15:30"));
+  const [end, setEnd] = useState(dayjs("2022-04-17T17:30"));
   const [records, setRecords] = useState<TimeRecord[]>([]);
   const [open, setOpen] = useState(false);
+  const [isNewEvent, setIsNewEvent] = useState(false);
+  const [newEvent, setNewEvent] = useState();
+  const [description, setDescription] = useState("");
+  const [id, setId] = useState(0);
+  const { snackbar, setSnackbar } = useContext(SnackbarContext);
   const handleOpen = (eventId: number) => {
     let record = records.find((record) => record.id == eventId);
+    setStart(dayjs(`${record.date}T${record?.start_time}`));
+    setEnd(dayjs(`${record.date}T${record?.end_time}`));
+    setId(record.id);
+
     let recordModal = document.getElementById("recordModal");
     let inputDescription = recordModal?.querySelector('[name="description"]');
     let trackedHours = recordModal?.querySelector("#trackedHours");
-    inputDescription.value = record.description;
+    inputDescription.value = record?.description;
     trackedHours.innerText = record?.tracked_hours + " hours";
-    let btnTrackingUpdate = recordModal?.querySelector("#trackingUpdateBtn");
-    btnTrackingUpdate?.setAttribute("data-event-id", eventId);
+    let btnTrackingAction = recordModal?.querySelector("#trackingActionBtn");
+    btnTrackingAction?.setAttribute("data-event-id", eventId);
 
     inputDescription.addEventListener("keyup", (e) => {
       inputDescription.value = e.target.value;
     });
 
-    btnTrackingUpdate?.addEventListener("click", (e) => {
-      let id = parseInt(e.target.dataset.eventId);
-      trackingUpdate({ description: inputDescription.value }, id);
-    });
+    // btnTrackingAction?.addEventListener("click", (e) => {
+    //   let id = parseInt(e.target.dataset.eventId);
+    //   let calendar = recordModal?.querySelector("#calendar");
+    //   console.log(calendar);
+
+    //   // let newDateYear = recordDate.$y;
+    //   // let newDateMonth = recordDate.$M + 1;
+    //   // let newDateDate = recordDate.$D;
+    //   // console.log(recordDate);
+
+    //   // console.log(newDateYear, newDateMonth, newDateDate);
+
+    //   // let newDate = `${date.$y}-${date.$M + 1}-${date.$D}`;
+    //   // apiTrackingUpdate(
+    //   //   { description: inputDescription.value, date: newDate },
+    //   //   id
+    //   // );
+    // });
     setOpen(true);
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setIsNewEvent(false);
+  };
 
-  const trackingUpdate = async (body, id: number) => {
-    console.log("update times");
-
+  const apiTrackingUpdate = async (body, id: number) => {
     try {
       const response = await fetch(
         API.TRACKING_UPDATE.replace("[id]", id.toString()),
@@ -91,6 +133,13 @@ const Calendar = () => {
           body: JSON.stringify(body),
         }
       );
+      if (response.ok) {
+        setSnackbar({
+          open: true,
+          status: SNACKBAR.SNACKBAR_STATUS.SUCCESS,
+          message: SNACKBAR.SNACKBAR_MESSAGE.UPDATED,
+        });
+      }
       getRecords();
     } catch (error) {
       console.log(error);
@@ -107,6 +156,8 @@ const Calendar = () => {
         id: record.id.toString(),
         title: record.description ? record.description : "No description",
         date: record.date,
+        start: record.date + "T" + record.start_time,
+        end: record.date + "T" + record.end_time,
       };
       setCurrentEvents((currentEvents) => [...currentEvents, event]);
     });
@@ -130,13 +181,12 @@ const Calendar = () => {
   };
 
   const handleDateClick = (event) => {
+    setOpen(true);
+    setIsNewEvent(true);
     const title = "Record name";
 
     const calendarApi = event.view.calendar;
-    console.log(calendarApi);
-
     calendarApi.unselect();
-
     if (title) {
       calendarApi.addEvent({
         id: `${event.dateStr}-${title}`,
@@ -145,24 +195,72 @@ const Calendar = () => {
         allDay: event.allDay,
       });
     }
+    console.log(event);
+    setNewEvent(event);
+    console.log(calendarApi);
   };
 
   const handleEventClick = (event: React.MouseEvent<HTMLElement>) => {
     let eventId = event.event._def.publicId;
-    handleOpen(parseInt(eventId));
+    console.log(event);
+    let eventDate = event.event.startStr.split("T")[0];
+    console.log(dayjs(eventDate));
+    setRecordDate(dayjs(eventDate));
+
+    if (event.event._def.title != "") {
+      handleOpen(parseInt(eventId));
+    }
+  };
+
+  const handleEvent = (event: Event) => {
+    if (event.target.name == "add") {
+      console.log(newEvent);
+      console.log(description);
+    }
+
+    if (event.target.name == "update") {
+      let start_time = `${start.$H.toString().padStart(2, "0")}:${start.$m
+        .toString()
+        .padStart(2, "0")}:${start.$s.toString().padStart(2, "0")}`;
+      let end_time = `${end.$H.toString().padStart(2, "0")}:${end.$m
+        .toString()
+        .padStart(2, "0")}:${end.$s.toString().padStart(2, "0")}`;
+
+      let new_date = `${recordDate.$y.toString()}-${(recordDate.$M + 1)
+        .toString()
+        .padStart(2, "0")}-${recordDate.$D.toString()}`;
+
+      let data = {
+        description: description,
+        start_time: start_time,
+        end_time: end_time,
+        date: new_date,
+      };
+
+      apiTrackingUpdate(data, id);
+      setOpen(false);
+    }
+  };
+
+  const handleDescription = (event: Event) => {
+    setDescription(event.target.value);
+  };
+
+  const handleNewDate = (event: Event) => {
+    console.log(event);
   };
 
   return (
     <>
       <FullCalendar
         height="75vh"
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
+        plugins={[timeGridPlugin, interactionPlugin, listPlugin]}
         headerToolbar={{
           left: "prev, next today",
           center: "title",
-          right: "dayGridMonth, timeGridWeek, timeGridDay, listMonth",
+          right: "timeGridDay, timeGridWeek",
         }}
-        initialView="dayGridMonth"
+        initialView="timeGridWeek"
         editable={true}
         selectable={true}
         selectMirror={true}
@@ -181,11 +279,68 @@ const Calendar = () => {
         keepMounted={true}
       >
         <Box sx={style}>
-          <Typography
-            variant="caption"
-            color="initial"
-            id="trackedHours"
-          ></Typography>
+          <Box>
+            <Grid
+              container
+              justifyContent="space-between"
+              style={{ marginBottom: 30 }}
+            >
+              <Grid>
+                <Typography
+                  variant="caption"
+                  color="initial"
+                  id="trackedHours"
+                ></Typography>
+              </Grid>
+
+              {!isNewEvent && (
+                <Grid>
+                  <DatePicker
+                    style={{ width: "45%" }}
+                    label="Controlled picker"
+                    value={recordDate}
+                    onChange={(newDate) => setRecordDate(newDate)}
+                    id="calendar"
+                  />
+                </Grid>
+              )}
+
+              {isNewEvent && (
+                <Grid>
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: STATUS.TRACKING["NEW"].color,
+                      color: "#000",
+                    }}
+                  >
+                    {STATUS.TRACKING["NEW"].label}
+                  </Button>
+                </Grid>
+              )}
+            </Grid>
+            <Grid
+              style={{ marginBottom: 30, gap: 30 }}
+              container
+              justifyContent="space-between"
+            >
+              <TimeField
+                label="Start"
+                value={start}
+                onChange={(newStart) => setStart(newStart)}
+                format="HH:mm:ss"
+                style={{ width: "45%" }}
+              />
+              <TimeField
+                label="Finish"
+                value={end}
+                onChange={(newEnd) => setEnd(newEnd)}
+                format="HH:mm:ss"
+                style={{ width: "45%" }}
+              />
+            </Grid>
+          </Box>
+
           <form>
             <Grid>
               <TextField
@@ -197,31 +352,44 @@ const Calendar = () => {
                 variant="standard"
                 name="description"
                 focused
-                sx={{ m: 2 }}
+                InputLabelProps={{ style: { fontSize: 18 } }}
+                onChange={handleDescription}
               />
 
               <Box>
-                <Grid container justifyContent="space-around">
-                  <Grid item xs={4}>
+                <Grid
+                  container
+                  justifyContent="space-between"
+                  alignContent="center"
+                  style={{ marginTop: 20 }}
+                >
+                  <Grid item xs={2}>
                     <Button
                       type="button"
                       variant="outlined"
                       color="success"
-                      id="trackingUpdateBtn"
+                      id="trackingActionBtn"
+                      name={isNewEvent ? "add" : "update"}
+                      style={{ textAlign: "center" }}
+                      onClick={handleEvent}
                     >
-                      Update
+                      {isNewEvent ? "Add" : "Update"}
                     </Button>
                   </Grid>
-                  <Grid item xs={4}>
-                    <Button
-                      type="button"
-                      variant="outlined"
-                      color="error"
-                      id="trackingDeleteBtn"
-                    >
-                      <DeleteIcon></DeleteIcon>
-                    </Button>
-                  </Grid>
+                  {isNewEvent ? (
+                    ""
+                  ) : (
+                    <Grid item xs={2}>
+                      <Button
+                        type="button"
+                        variant="outlined"
+                        color="error"
+                        id="trackingActionBtn"
+                      >
+                        <DeleteIcon></DeleteIcon>
+                      </Button>
+                    </Grid>
+                  )}
                 </Grid>
               </Box>
             </Grid>
