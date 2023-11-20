@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 import { useCookies } from "react-cookie";
 import { NextRequest, NextResponse } from "next/server";
 import {
+  Autocomplete,
   Box,
   Button,
   Container,
@@ -32,6 +33,7 @@ import { Delete, TextFields } from "@mui/icons-material";
 import * as API from "@/constants/api";
 import { middleware } from "@/middleware";
 import { getDuration, getTime, timeToString } from "@/helpers/Helpers";
+import { DataContext } from "@/context/DataContext";
 const SECONDS_PER_HOURS = 3600;
 const SECONDS_PER_MINUTE = 60;
 const HOURS_PER_DAY = 24;
@@ -58,15 +60,21 @@ interface Task {
   project: number;
 }
 
-interface TimeRecordData {
-  id: number;
-  description?: string;
-  date: string;
-  start: string;
-  end?: string;
-}
-
-const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
+const TimeTrackerRecorder = ({
+  tasks,
+  taskOptions,
+  getProjectTasks,
+  projectTasks,
+  setProjectTasks,
+}: {
+  tasks: any;
+  taskOptions: any;
+  getProjectTasks: any;
+  projectTasks: any;
+  setProjectTasks: any;
+}) => {
+  const { snackbar, setSnackbar, getRecords, apiTrackingUpdate } =
+    useContext(DataContext);
   const [isRunning, setIsRunning] = useState(false);
   const [isReset, setIsReset] = useState(false);
   const [startTime, setStartTime] = useState(0);
@@ -87,10 +95,8 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
   });
   const [projects, setProjects] = useState<Project[]>([]);
   const [taskProjects, setTaskProjects] = useState<Project[]>([]);
-  const [timeRecords, setTimeRecords] = useState<TimeRecord[]>([]);
-  const [timeRecordsData, setTimeRecordsData] = useState<TimeRecordData[]>([]);
+  // const [timeRecords, setTimeRecords] = useState<TimeRecord[]>([]);
   const [timeRecord, setTimeRecord] = useState<TimeRecord>();
-  const [tempRecordId, setTempRecordId] = useState(null);
   const [trackingCookie, setTrackingCookie, removeTrackingCookie] = useCookies([
     "tracking",
   ]);
@@ -197,77 +203,97 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
     );
   }, [time]);
 
-  const getSingleRecord = (id: number) => {
-    let record = timeRecords.find((record) => record.id == id);
-    return record;
-  };
+  // const getSingleRecord = (id: number) => {
+  //   let record = timeRecords.find((record) => record.id == id);
+  //   return record;
+  // };
 
-  const updateRecord: EventHandler = (e: Event) => {
-    let recordElm = e.currentTarget.closest(".single-record");
-    let recordId = parseInt(recordElm.dataset.timeRecordId);
-    let updateType = e.target.dataset.updateType;
-    let updateValue = e.target.value;
-    let projectViewLink = recordElm.querySelector(".project-view-link");
-    let elmUpdateRecordSelect = recordElm.querySelector("#updateProjectId");
-    let elmUpdateDescription = recordElm.querySelector(
-      "#updateTaskDescription"
-    );
-    elmUpdateDescription.value = updateValue;
-    console.log(updateValue);
+  // const updateRecord: EventHandler = (e: Event) => {
+  //   let recordElm = e.currentTarget.closest(".single-record");
+  //   let recordId = parseInt(recordElm.dataset.timeRecordId);
+  //   let updateType = e.target.dataset.updateType;
+  //   let updateValue = e.target.value;
+  //   let projectViewLink = recordElm.querySelector(".project-view-link");
+  //   let elmUpdateRecordSelect = recordElm.querySelector("#updateProjectId");
+  //   let elmUpdateDescription = recordElm.querySelector(
+  //     "#updateTaskDescription"
+  //   );
+  //   elmUpdateDescription.value = updateValue;
+  //   console.log(updateValue);
 
-    update(recordId, updateType, updateValue);
+  //   update(recordId, updateType, updateValue);
 
-    function update(recordId: number, updateType: string, updateValue: any) {
-      let record = getSingleRecord(recordId);
-      let newProjectId = parseInt(elmUpdateRecordSelect.value);
-      let project = projects.find((project) => project.id === newProjectId);
-      projectViewLink.href = `/projects/${project.id}`;
+  //   function update(recordId: number, updateType: string, updateValue: any) {
+  //     let record = getSingleRecord(recordId);
+  //     let newProjectId = parseInt(elmUpdateRecordSelect.value);
+  //     let project = projects.find((project) => project.id === newProjectId);
+  //     projectViewLink.href = `/projects/${project.id}`;
 
-      switch (updateType) {
-        case "description":
-          record.taskDesc = updateValue;
-          break;
-        case "project":
-          record.project.id = project.id;
-          record.project.name = project.name;
-          break;
-      }
-      return record;
+  //     switch (updateType) {
+  //       case "description":
+  //         record.taskDesc = updateValue;
+  //         break;
+  //       case "project":
+  //         record.project.id = project.id;
+  //         record.project.name = project.name;
+  //         break;
+  //     }
+  //     return record;
+  //   }
+  // };
+
+  const projectHandle: EventHandler = (e: Event) => {
+    if (e.target.dataset.projectId != undefined) {
+      let projectId = parseInt(e.target.dataset.projectId);
+      console.log(e.target.dataset.projectId);
+
+      let projectName = e.target.dataset.value;
+
+      setProject({
+        id: projectId,
+        name: projectName,
+      });
+
+      getProjectTasks(projectId);
+      console.log(project);
+    } else {
+      setProject({
+        id: undefined,
+        name: "",
+      });
+      setProjectTasks([]);
     }
   };
 
-  const projectHandle: EventHandler = (e: Event) => {
-    setProject({
-      id: parseInt(e.target.dataset.projectId),
-      name: e.target.dataset.value,
-    });
-  };
-
   const taskHandle: EventHandler = (e: Event) => {
+    console.log(e.target.dataset);
+    console.log(e.target.dataset.value);
+
     setTask({
       id: parseInt(e.target.dataset.value),
       name: e.target.dataset.taskName,
       project: parseInt(e.target.dataset.taskProject),
     });
-    if (e.target.dataset.value != "") {
+    if (e.target.dataset.value == undefined) {
+      setTaskProjects(projects);
+    } else if (e.target.dataset.value != "") {
       updateTaskProjects(parseInt(e.target.dataset.taskProject));
     } else {
       setTaskProjects(projects);
-      console.log(taskProjects);
     }
   };
 
+  //
   const updateTaskProjects = (id: number) => {
-    let newTaskProject = projects.filter((project) => project.id == id);
-
+    let newTaskProject = projects?.filter((project) => project.id == id);
     setTaskProjects(newTaskProject);
   };
 
-  const removeRecord = (id: number) => {
-    let newRecords = timeRecords.filter((record) => record.id !== id);
-    setTimeRecords(newRecords);
-    apiTrackingDelete(id);
-  };
+  // const removeRecord = (id: number) => {
+  //   let newRecords = timeRecords.filter((record) => record.id !== id);
+  //   setTimeRecords(newRecords);
+  //   apiTrackingDelete(id);
+  // };
 
   const apiTrackingStart = async () => {
     const requestData = {
@@ -312,37 +338,37 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
       });
       data = await response.json();
 
-      let newRecord = {
-        ...timeRecords,
-        id: data.id,
-        startTime: startTime,
-        endTime: getTime(),
-        duration: time,
-        taskDesc: taskDesc,
-        project: project,
-      };
-      setTimeRecords([...timeRecords, newRecord]);
-      console.log(timeRecords);
+      // let newRecord = {
+      //   id: data.id,
+      //   startTime: startTime,
+      //   endTime: getTime(),
+      //   duration: time,
+      //   taskDesc: taskDesc,
+      //   project: project,
+      // };
+      // setTimeRecord(newRecord);
+
+      apiTrackingUpdate(data.id, requestData);
     } catch (error) {
       console.log(error);
     }
     return data;
   };
 
-  const apiTrackingDelete = async (id: number) => {
-    try {
-      const response = await fetch(`${API.TRACKING_DELETE}${id}/`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: "Bearer " + String(session.data.user.access),
-          Authorization: "Bearer " + process.env.ACCESS_TOKEN,
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const apiTrackingDelete = async (id: number) => {
+  //   try {
+  //     const response = await fetch(`${API.TRACKING_DELETE}${id}/`, {
+  //       method: "DELETE",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         // Authorization: "Bearer " + String(session.data.user.access),
+  //         Authorization: "Bearer " + process.env.ACCESS_TOKEN,
+  //       },
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div>
@@ -375,11 +401,162 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
                   </Box>
                 </TableCell>
                 <TableCell>
+                  <Autocomplete
+                    sx={{ m: 1, width: "25%", minWidth: 200 }}
+                    variant="standard"
+                    disablePortal
+                    id="combo-box-demo"
+                    autoHighlight={true}
+                    options={project.id ? projectTasks : tasks}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Task" variant="standard" />
+                    )}
+                    getOptionLabel={(task) => task.name}
+                    onChange={taskHandle}
+                    renderOption={(props, option) => (
+                      <MenuItem
+                        {...props}
+                        data-value={option.id}
+                        key={option.id}
+                        data-task-name={option.name}
+                        data-task-project={option.project}
+                      >
+                        {option.name}
+                      </MenuItem>
+                    )}
+                  />
+                </TableCell>
+                <TableCell>
+                  {/* <FormControl variant="standard" sx={{ m: 1, minWidth: 150 }}>
+                    <InputLabel id="project-select-label">Project</InputLabel>
+                    <Select
+                      labelId="project-select-label"
+                      label="Project"
+                      name="projects"
+                      id="projects"
+                      defaultValue=""
+                    >
+                      {taskProjects.length > 0 &&
+                        taskProjects.map((project) => {
+                          const { id, name } = project;
+                          return (
+                            <MenuItem
+                              value={name.toLowerCase()}
+                              key={id}
+                              data-project-id={id}
+                              onClick={projectHandle}
+                              className="project-option"
+                            >
+                              {name}
+                            </MenuItem>
+                          );
+                        })}
+                    </Select>
+                  </FormControl> */}
+                  <Autocomplete
+                    sx={{ m: 1, minWidth: 150 }}
+                    variant="standard"
+                    disablePortal
+                    id="combo-box-demo"
+                    options={taskProjects}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Project"
+                        variant="standard"
+                      />
+                    )}
+                    getOptionLabel={(project) => project.name}
+                    onChange={projectHandle}
+                    renderOption={(props, option) => (
+                      <MenuItem
+                        {...props}
+                        data-project-id={option.id}
+                        data-value={option.name}
+                      >
+                        {option.name}
+                      </MenuItem>
+                    )}
+                  />
+                </TableCell>
+                <TableCell style={{ width: "100px" }}>
+                  <Typography variant="caption" style={{ fontSize: "16px" }}>
+                    {hours}:{minutes.toString().padStart(2, "0")}:
+                    {seconds.toString().padStart(2, "0")}
+                  </Typography>
+                </TableCell>
+                <TableCell style={{ width: "80px" }}>
+                  {isRunning || time != 0 ? (
+                    <PauseCircleIcon onClick={pauseTimer} />
+                  ) : (
+                    <PlayArrowIcon onClick={startTimer} />
+                  )}
+                  {time > 0 && <StopIcon onClick={stopTimer} />}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
+
+      {timeRecord && (
+        <TableContainer component={Paper}>
+          <Table
+            sx={{ minWidth: 1200 }}
+            size="medium"
+            aria-label="a dense table"
+          >
+            <TableBody>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                data-time-record-id={timeRecord.id}
+                className="single-record"
+              >
+                <TableCell>
+                  {" "}
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    type="text"
+                    id="updateTaskDescription"
+                    defaultValue={timeRecord.taskDesc}
+                    onChange={updateRecord}
+                    data-update-type="description"
+                    inputProps={{
+                      "data-update-type": "description",
+                    }}
+                  />
+                </TableCell>
+                <TableCell>
                   <FormControl
                     variant="standard"
                     sx={{ m: 1, width: "25%", minWidth: 200 }}
                   >
-                    <InputLabel id="task-select-label">Task</InputLabel>
+                    {/* <NativeSelect
+                      defaultValue={task.id ? task.id : ""}
+                      data-update-type="project"
+                      onChange={updateRecord}
+                      id="updateTask"
+                      inputProps={{
+                        "data-update-type": "task",
+                      }}
+                    >
+                      {tasks.length > 0 &&
+                        tasks.map((task) => {
+                          const { id, name, project } = task;
+                          return (
+                            <option
+                              value={id}
+                              key={id}
+                              data-project-id={project}
+                              data-update-type="project"
+                            >
+                              {name}
+                            </option>
+                          );
+                        })}
+                    </NativeSelect> */}
+
                     <Select
                       labelId="task-select-label"
                       label="Task"
@@ -409,185 +586,79 @@ const TimeTrackerRecorder = ({ tasks }: { tasks: any }) => {
                   </FormControl>
                 </TableCell>
                 <TableCell>
-                  <FormControl variant="standard" sx={{ m: 1, minWidth: 150 }}>
-                    <InputLabel id="project-select-label">Project</InputLabel>
-                    <Select
-                      labelId="project-select-label"
-                      label="Project"
-                      name="projects"
-                      id="projects"
-                      defaultValue=""
+                  <FormControl fullWidth>
+                    <NativeSelect
+                      defaultValue={project.id}
+                      data-update-type="project"
+                      onChange={updateRecord}
+                      id="updateProjectId"
+                      inputProps={{
+                        "data-update-type": "project",
+                      }}
                     >
                       {taskProjects.length > 0 &&
                         taskProjects.map((project) => {
                           const { id, name } = project;
                           return (
-                            <MenuItem
-                              value={name.toLowerCase()}
+                            <option
+                              value={id}
                               key={id}
                               data-project-id={id}
-                              onClick={projectHandle}
-                              className="project-option"
+                              data-update-type="project"
                             >
                               {name}
-                            </MenuItem>
+                            </option>
                           );
                         })}
-                    </Select>
+                    </NativeSelect>
                   </FormControl>
                 </TableCell>
-                <TableCell style={{ width: "100px" }}>
-                  <Typography variant="caption" style={{ fontSize: "16px" }}>
-                    {hours}:{minutes.toString().padStart(2, "0")}:
-                    {seconds.toString().padStart(2, "0")}
-                  </Typography>
+                <TableCell style={{ width: 150 }}>
+                  {" "}
+                  {timeToString(startTime)[0].toString().padStart(2, "0")}:
+                  {timeToString(startTime)[1].toString().padStart(2, "0")}
+                  &nbsp;&#8211;&nbsp;
+                  {timeToString(endTime)[0].toString().padStart(2, "0")}:
+                  {timeToString(endTime)[1].toString().padStart(2, "0")}
                 </TableCell>
-                <TableCell style={{ width: "80px" }}>
-                  {isRunning || time != 0 ? (
-                    <PauseCircleIcon onClick={pauseTimer} />
-                  ) : (
-                    <PlayArrowIcon onClick={startTimer} />
-                  )}
-                  {time > 0 && <StopIcon onClick={stopTimer} />}
+                <TableCell style={{ width: 120 }}>
+                  {" "}
+                  {getDuration(timeRecord.duration)[0]
+                    .toString()
+                    .padStart(2, "0")}
+                  :
+                  {getDuration(timeRecord.duration)[1]
+                    .toString()
+                    .padStart(2, "0")}
+                  :
+                  {getDuration(timeRecord.duration)[2]
+                    .toString()
+                    .padStart(2, "0")}
+                </TableCell>
+                <TableCell style={{ width: 80 }}>
+                  {" "}
+                  <Link
+                    className="project-view-link"
+                    href={`/projects/${project.id}`}
+                  >
+                    View
+                  </Link>
+                </TableCell>
+                <TableCell style={{ width: 120 }}>
+                  {" "}
+                  <Button
+                    color="error"
+                    variant="outlined"
+                    onClick={() => removeRecord(timeRecord.id)}
+                  >
+                    <DeleteIcon></DeleteIcon>
+                  </Button>
                 </TableCell>
               </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
-      </Container>
-      {timeRecords.map((record) => {
-        const { id, startTime, endTime, duration, taskDesc, project } = record;
-        const parsedStartTime = timeToString(startTime);
-        const parsedEndTime = timeToString(endTime);
-        const totalTime = getDuration(duration);
-        return (
-          <div key={id}>
-            <TableContainer component={Paper}>
-              <Table
-                sx={{ minWidth: 1200 }}
-                size="medium"
-                aria-label="a dense table"
-              >
-                <TableBody>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    data-time-record-id={id}
-                    className="single-record"
-                  >
-                    <TableCell>
-                      {" "}
-                      <TextField
-                        fullWidth
-                        variant="standard"
-                        type="text"
-                        id="updateTaskDescription"
-                        defaultValue={taskDesc}
-                        onChange={updateRecord}
-                        data-update-type="description"
-                        inputProps={{
-                          "data-update-type": "description",
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <FormControl
-                        variant="standard"
-                        sx={{ m: 1, width: "25%", minWidth: 200 }}
-                      >
-                        <NativeSelect
-                          defaultValue={task.id ? task.id : ""}
-                          data-update-type="project"
-                          onChange={updateRecord}
-                          id="updateTask"
-                          inputProps={{
-                            "data-update-type": "task",
-                          }}
-                        >
-                          {tasks.length > 0 &&
-                            tasks.map((task) => {
-                              const { id, name, project } = task;
-                              return (
-                                <option
-                                  value={id}
-                                  key={id}
-                                  data-project-id={project}
-                                  data-update-type="project"
-                                >
-                                  {name}
-                                </option>
-                              );
-                            })}
-                        </NativeSelect>
-                      </FormControl>
-                    </TableCell>
-                    <TableCell>
-                      <FormControl fullWidth>
-                        <NativeSelect
-                          defaultValue={project.id}
-                          data-update-type="project"
-                          onChange={updateRecord}
-                          id="updateProjectId"
-                          inputProps={{
-                            "data-update-type": "project",
-                          }}
-                        >
-                          {taskProjects.length > 0 &&
-                            taskProjects.map((project) => {
-                              const { id, name } = project;
-                              return (
-                                <option
-                                  value={id}
-                                  key={id}
-                                  data-project-id={id}
-                                  data-update-type="project"
-                                >
-                                  {name}
-                                </option>
-                              );
-                            })}
-                        </NativeSelect>
-                      </FormControl>
-                    </TableCell>
-                    <TableCell style={{ width: 150 }}>
-                      {" "}
-                      {parsedStartTime[0].toString().padStart(2, "0")}:
-                      {parsedStartTime[1].toString().padStart(2, "0")}
-                      &nbsp;&#8211;&nbsp;
-                      {parsedEndTime[0].toString().padStart(2, "0")}:
-                      {parsedEndTime[1].toString().padStart(2, "0")}
-                    </TableCell>
-                    <TableCell style={{ width: 120 }}>
-                      {" "}
-                      {totalTime[0].toString().padStart(2, "0")}:
-                      {totalTime[1].toString().padStart(2, "0")}:
-                      {totalTime[2].toString().padStart(2, "0")}
-                    </TableCell>
-                    <TableCell style={{ width: 80 }}>
-                      {" "}
-                      <Link
-                        className="project-view-link"
-                        href={`/projects/${project.id}`}
-                      >
-                        View
-                      </Link>
-                    </TableCell>
-                    <TableCell style={{ width: 120 }}>
-                      {" "}
-                      <Button
-                        color="error"
-                        variant="outlined"
-                        onClick={() => removeRecord(id)}
-                      >
-                        <DeleteIcon></DeleteIcon>
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        );
-      })}
+      )}
     </div>
   );
 };

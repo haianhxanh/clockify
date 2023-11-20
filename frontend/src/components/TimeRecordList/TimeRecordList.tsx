@@ -1,5 +1,11 @@
 import { useSession } from "next-auth/react";
-import React, { EventHandler, useEffect, useState } from "react";
+import React, {
+  EventHandler,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,8 +13,16 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, Button, Popover, Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/DeleteOutlined";
+import {
+  Autocomplete,
+  Box,
+  Button,
+  MenuItem,
+  Popover,
+  TextField,
+  Typography,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
@@ -37,6 +51,8 @@ import {
   randomUpdatedDate,
 } from "@mui/x-data-grid-generator";
 import PopupState, { bindPopover, bindTrigger } from "material-ui-popup-state";
+import { DataContext } from "@/context/DataContext";
+import { dateToJson } from "@/helpers/Helpers";
 
 interface TimeRecord {
   id: number;
@@ -63,20 +79,22 @@ const TimeRecordList = ({
   apiTrackingUpdate,
   pageSize,
   tasks,
-  dataGridUpdate,
 }: Props) => {
-  const [rows, setRows] = React.useState(records);
+  const [rows, setRows] = useState<TimeRecord[]>([]);
+  const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({});
+  const [taskId, setTaskId] = useState(null);
 
-  const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>(
-    {}
-  );
+  const { projects } = useContext(DataContext);
+
+  useEffect(() => {
+    setRows(records);
+  }, [records]);
+
   const handleTrackingUpdate: EventHandler = (e: Event) => {
     apiTrackingUpdate(e.id, e);
   };
 
-  const handleTrackingDelete = (id: number) => () => {
-    console.log("test");
-  };
+  const handleTrackingDelete = (id: number) => () => {};
 
   const handleRowEditStop: GridEventListener<"rowEditStop"> = (
     params,
@@ -93,14 +111,11 @@ const TimeRecordList = ({
 
   const handleSaveClick = (id: number) => () => {
     // apiTrackingUpdate(id);
-    console.log(id);
-    
+
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
   };
 
-  const handleDeleteClick = (id: number) => () => {
-    console.log("delete");
-  };
+  const handleDeleteClick = (id: number) => () => {};
 
   const handleCancelClick = (id: number) => () => {
     setRowModesModel({
@@ -109,14 +124,26 @@ const TimeRecordList = ({
     });
 
     const editedRow = rows.find((row) => row.id === id);
+
     if (editedRow!.isNew) {
       setRows(rows.filter((row) => row.id !== id));
     }
   };
 
-  const processRowUpdate: EventHandler = (e: Event) => {
-    apiTrackingUpdate(e.id, e);
-    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+  // const processRowUpdate = (newRow, oldRow) => {
+  //   apiTrackingUpdate(newRow.id, newRow);
+  //   setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+  // };
+
+  const processRowUpdate = (newRow) => {
+    if (taskId != null) {
+      newRow.task = taskId;
+    }
+    newRow.date = dateToJson(newRow.date);
+    const updatedRow = { ...newRow, isNew: false };
+    apiTrackingUpdate(newRow.id, newRow);
+    setTaskId(null);
+    return updatedRow;
   };
 
   const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {
@@ -137,60 +164,100 @@ const TimeRecordList = ({
     }
   };
 
-  const Task = ({ id }) => {
+  const Task = ({ id, params }) => {
+    const [isEditing, setIsEditing] = useState(false);
     let task = tasks.find((task) => task.id == id);
+
     if (task == undefined) {
-      return;
+      task = {
+        name: "",
+      };
     }
-    return <>{task.name}</>;
+
+    const taskHandle = (e: EventHandler) => {
+      setIsEditing(true);
+      setTaskId(parseInt(e.target.dataset.value));
+    };
+
+    // tasks.map((task) => {
+    //   const { id, name, project } = task;
+    //   return (
+    //     <MenuItem
+    //       value={id}
+    //       key={id}
+    //       // onClick={}
+    //       data-task-name={name}
+    //       data-task-project={project}
+    //     >
+    //       {name}
+    //     </MenuItem>
+    //   );
+    // });
+
+    // const handleOpen = (e: EventHandler) => {
+    //   console.log(e);
+    // };
+
+    const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
+
+    return isInEditMode ? (
+      <Autocomplete
+        sx={{ m: 1, width: "25%", minWidth: 200, margin: 0 }}
+        ListboxProps={{ style: { maxHeight: 200, overflow: "auto" } }}
+        variant="standard"
+        disablePortal
+        autoHighlight={true}
+        options={tasks}
+        groupBy={(option) => {
+          let project = projects.find(
+            (project) => project.id == option.project
+          );
+          return project.name;
+        }}
+        onOpen={() => setIsEditing(true)}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label={isEditing ? "Task" : task.name}
+            variant="standard"
+            className="task-name"
+          />
+        )}
+        getOptionLabel={(task) => task.name}
+        onChange={taskHandle}
+        renderOption={(props, option) => (
+          <MenuItem
+            {...props}
+            data-value={option.id}
+            key={option.id}
+            data-task-name={option.name}
+            data-task-project={option.project}
+            selected={params.row.task == option.id ? "true" : "false"}
+          >
+            {option.name}
+          </MenuItem>
+        )}
+      />
+    ) : (
+      task.name ?? ""
+    );
+
+    // return <>{task.name}</>;
+  };
+
+  const handleAction = (id) => {
+    console.log(id);
   };
 
   return (
     <>
-      {/* <TableContainer component={Paper} style={{ marginBlock: "20px" }}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Start</TableCell>
-              <TableCell>End</TableCell>
-              <TableCell>Task #</TableCell>
-              <TableCell>Total time</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {records.map((record) => {
-              const {
-                id,
-                description,
-                start_time,
-                end_time,
-                task,
-                tracked_hours,
-              } = record;
-              return (
-                <>
-                  <TableRow sx={{ th: { border: 0 } }}>
-                    <TimeRecord
-                      key={id}
-                      id={id}
-                      record={record}
-                      apiTrackingDelete={apiTrackingDelete}
-                    />
-                  </TableRow>
-                </>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer> */}
-
       <div style={{ height: "auto", width: "100%" }}>
         <DataGrid
           editMode="row"
+          rowsLoadingMode="server"
+          experimentalFeatures={{
+            lazyLoading: true,
+          }}
           rows={records}
           rowModesModel={rowModesModel}
           // onRowModesModelChange={handleRowModesModelChange}
@@ -223,15 +290,33 @@ const TimeRecordList = ({
               align: "left",
               headerAlign: "left",
             },
+            // {
+            //   field: "task_name",
+            //   headerName: "Task",
+            //   type: "singleSelect",
+            //   align: "left",
+            //   headerAlign: "left",
+            //   editable: true,
+            //   width: 200,
+            //   renderCell: (params) => (
+            //     <Task id={params.row.task} params={params} />
+            //   ),
+            //   valueOptions: ({ row }) => {
+            //     const options = [];
+            //     tasks?.map((task) => options.push(task.name));
+            //     return options;
+            //   },
+            // },
             {
               field: "task_name",
+              type: "actions",
               headerName: "Task",
-              type: "string",
-              align: "left",
-              headerAlign: "left",
-              editable: true,
               width: 200,
-              renderCell: (params) => <Task id={params.row.task} />,
+              align: "left",
+              cellClassName: "actions",
+              getActions: (params) => [
+                <Task id={params.row.task} params={params} />,
+              ],
             },
             {
               field: "project",
@@ -240,6 +325,16 @@ const TimeRecordList = ({
               editable: true,
               align: "left",
               headerAlign: "left",
+            },
+            {
+              field: "date",
+              headerName: "Date",
+              type: "date",
+              align: "left",
+              headerAlign: "left",
+              width: 150,
+              editable: true,
+              valueGetter: ({ value }) => value && new Date(value),
             },
             {
               field: "start_time",
@@ -259,44 +354,10 @@ const TimeRecordList = ({
               field: "tracked_hours",
               headerName: "Duration",
               type: "number",
-              editable: true,
+              editable: false,
               align: "left",
               headerAlign: "left",
             },
-            // {
-            //   field: "delete",
-            //   headerName: "Actions",
-            //   width: 100,
-            //   cellClassName: "actions",
-            //   renderCell: (params) => (
-            //     <PopupState variant="popover" popupId="demo-popup-popover">
-            //       {(popupState) => (
-            //         <div>
-            //           <Button color="error" {...bindTrigger(popupState)}>
-            //             <DeleteIcon></DeleteIcon>
-            //           </Button>
-            //           <Popover
-            //             {...bindPopover(popupState)}
-            //             anchorOrigin={{
-            //               vertical: "bottom",
-            //               horizontal: "center",
-            //             }}
-            //             transformOrigin={{
-            //               vertical: "top",
-            //               horizontal: "center",
-            //             }}
-            //           >
-            //             <Typography sx={{ p: 2 }}>
-            //               <Button color="error" id="delete">
-            //                 Yes, delete
-            //               </Button>
-            //             </Typography>
-            //           </Popover>
-            //         </div>
-            //       )}
-            //     </PopupState>
-            //   ),
-            // },
             {
               field: "actions",
               type: "actions",
@@ -377,13 +438,6 @@ const TimeRecordList = ({
           ]}
           initialState={{
             pagination: { paginationModel: { pageSize: pageSize } },
-            filter: {
-              filterModel: {
-                items: [
-                  { field: "task_name", operator: "contains", value: "" },
-                ],
-              },
-            },
           }}
           columnVisibilityModel={{
             project: false,
@@ -397,106 +451,5 @@ const TimeRecordList = ({
     </>
   );
 };
-
-// const columns: GridColDef[] = [
-//   {
-//     field: "id",
-//     headerName: "ID",
-//     type: "number",
-//     editable: false,
-//     align: "left",
-//     headerAlign: "left",
-//   },
-//   {
-//     field: "description",
-//     headerName: "Description",
-//     type: "string",
-//     editable: true,
-//     align: "left",
-//     headerAlign: "left",
-//     width: 250,
-//   },
-//   {
-//     field: "task",
-//     headerName: "Task ID",
-//     type: "number",
-//     editable: false,
-//     align: "left",
-//     headerAlign: "left",
-//   },
-//   {
-//     field: "task_name",
-//     headerName: "Task",
-//     type: "string",
-//     editable: true,
-//     align: "left",
-//     headerAlign: "left",
-//     renderCell: (params) => <Task id={params.row.task} />,
-//   },
-//   {
-//     field: "project",
-//     headerName: "Project",
-//     type: "number",
-//     editable: true,
-//     align: "left",
-//     headerAlign: "left",
-//   },
-//   {
-//     field: "start_time",
-//     headerName: "Start",
-//     type: "time",
-//     width: 100,
-//     editable: true,
-//   },
-//   {
-//     field: "end_time",
-//     headerName: "End",
-//     type: "time",
-//     width: 100,
-//     editable: true,
-//   },
-//   {
-//     field: "tracked_hours",
-//     headerName: "Duration",
-//     type: "number",
-//     editable: true,
-//     align: "left",
-//     headerAlign: "left",
-//   },
-//   {
-//     field: "delete",
-//     headerName: "Actions",
-//     width: 100,
-//     cellClassName: "actions",
-//     renderCell: (params) => (
-//       <PopupState variant="popover" popupId="demo-popup-popover">
-//         {(popupState) => (
-//           <div>
-//             <Button color="error" {...bindTrigger(popupState)}>
-//               <DeleteIcon></DeleteIcon>
-//             </Button>
-//             <Popover
-//               {...bindPopover(popupState)}
-//               anchorOrigin={{
-//                 vertical: "bottom",
-//                 horizontal: "center",
-//               }}
-//               transformOrigin={{
-//                 vertical: "top",
-//                 horizontal: "center",
-//               }}
-//             >
-//               <Typography sx={{ p: 2 }}>
-//                 <Button color="error" id="delete">
-//                   Yes, delete
-//                 </Button>
-//               </Typography>
-//             </Popover>
-//           </div>
-//         )}
-//       </PopupState>
-//     ),
-//   },
-// ];
 
 export default TimeRecordList;

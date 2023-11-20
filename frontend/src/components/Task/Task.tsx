@@ -1,12 +1,19 @@
-import { Button, TableCell, TableRow } from "@mui/material";
+import {
+  Box,
+  Button,
+  Modal,
+  TableCell,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import React from "react";
 import * as STATUS from "@/constants/status";
 
-const Task = ({ task }: Props) => {
+const Task = ({ task, open, handleClose, params }: Props) => {
   return (
     <>
-      <TableRow className="single-task">
+      {/* <TableRow className="single-task">
         <TableCell>{task.name}</TableCell>
         <TableCell>{task.description}</TableCell>
         <TableCell style={{ width: "130px" }}>{task.due_date}</TableCell>
@@ -35,7 +42,20 @@ const Task = ({ task }: Props) => {
             <DeleteIcon></DeleteIcon>
           </Button>
         </TableCell>
-      </TableRow>
+      </TableRow> */}
+      {/* 
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box>{params.row.description}</Box>
+      </Modal> */}
+      <Typography variant="h5" color="initial">
+        Task
+      </Typography>
+      {task.description}
     </>
   );
 };

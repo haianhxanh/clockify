@@ -143,3 +143,21 @@ tr {
 .fc .fc-popover {
   z-index: 2;
 }
+
+.description-input .MuiInput-root:before {
+  border-bottom: none;
+}
+
+@keyframes notification-alert {
+  0% {
+    color: white;
+  }
+
+  100% {
+    color: red;
+  }
+}
+/* 
+svg[data-testid="NotificationsIcon"] {
+  animation: notification-alert 2.5s linear infinite;
+} */

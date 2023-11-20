@@ -23,8 +23,18 @@ class TimeRecordTestCase(TestCase):
     def tearDown(self):  # runs after every test
         pass
 
+    def test_end_time_is_datetime_object(self):
+        now = datetime.datetime.now()
+        date = now.date()
+        time_record = TimeRecord.objects.create(user=self.user, start_time=now.time(), date=date)
+
+        end_time = time_record.get_end_time()
+
+        self.assertEqual(type(end_time), datetime.time)
+
     def test_stop_time_after_midnight(self):
         start_time = strftime("%H:%M")
+        self.assertEqual(type(start_time), datetime.time)
         date = datetime.date(2022, 12, 19)
         timer = TimeRecord.objects.create(user=self.user, date=date, start_time=start_time)
 

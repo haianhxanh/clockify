@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import projects from "@/mock-data/projects";
 import Link from "next/link";
 import ProjectFilter from "@/components/ProjectFilter/ProjectFilter";
@@ -10,6 +10,7 @@ import TextField from "@mui/material/TextField";
 import { getProjects } from "../api/data/projects";
 import * as API from "@/constants/api";
 import { useRouter } from "next/router";
+import { DataContext } from "@/context/DataContext";
 
 const style = {
   position: "absolute" as "absolute",
@@ -38,24 +39,35 @@ interface Project {
 }
 
 const Projects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  // const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<number>();
   const [filteredProjects, setFilteredProjects] = useState<Props[]>([]);
   const router = useRouter();
   const [paramIds, setParamIds] = useState<number[]>([]);
+
+  const {
+    apiProjectCreate,
+    projects,
+    getProjects,
+    apiProjectDelete,
+    handleClose,
+    handleOpen,
+    open,
+    setOpen,
+  } = useContext(DataContext);
 
   useEffect(() => {
     if (router.query.id != undefined) {
       let queryArray = router.query.id.split(",");
       setParamIds(queryArray);
     } else {
-      getProjects(API.PROJECTS);
+      getProjects();
     }
   }, [router]);
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
 
   const selectedProjectsHandle = (id: number, e: Event) => {
     if (e.target.checked == true) {
@@ -89,73 +101,80 @@ const Projects = () => {
     getProjects(filterUrl);
   };
 
-  const apiProjectCreate = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const inputs = new FormData(e.target);
-    const inputsObject = {};
-    inputs.forEach((value, name) => {
-      inputsObject[name] = value;
-    });
+  // const apiProjectCreate = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const inputs = new FormData(e.target);
+  //   const inputsObject = {};
+  //   inputs.forEach((value, name) => {
+  //     inputsObject[name] = value;
+  //   });
 
-    const createProject = async () => {
-      try {
-        const response = await fetch(API.PROJECTS, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // Authorization: "Bearer " + String(session.data.user.access),
-            Authorization: "Bearer " + process.env.ACCESS_TOKEN,
-          },
-          body: JSON.stringify(inputsObject),
-        });
-        const data = await response.json();
-        setProjects([data, ...projects]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    createProject();
-    handleClose();
-  };
+  //   const createProject = async () => {
+  //     try {
+  //       const response = await fetch(API.PROJECTS, {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           // Authorization: "Bearer " + String(session.data.user.access),
+  //           Authorization: "Bearer " + process.env.ACCESS_TOKEN,
+  //         },
+  //         body: JSON.stringify(inputsObject),
+  //       });
+  //       const data = await response.json();
+  //       setProjects([data, ...projects]);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   createProject();
+  //   handleClose();
+  // };
 
-  const getProjects = async (url: string) => {
-    try {
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: "Bearer " + String(session.data.user.access),
-          Authorization: "Bearer " + process.env.ACCESS_TOKEN,
-        },
-      });
-      const data = await response.json();
-      setProjects(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getProjects = async (url: string) => {
+  //   try {
+  //     const response = await fetch(url, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         // Authorization: "Bearer " + String(session.data.user.access),
+  //         Authorization: "Bearer " + process.env.ACCESS_TOKEN,
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     setProjects(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const apiProjectDelete = async (id: number) => {
-    try {
-      const response = await fetch(`${API.PROJECTS}${id}/`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: "Bearer " + String(session.data.user.access),
-          Authorization: "Bearer " + process.env.ACCESS_TOKEN,
-        },
-      });
-      getProjects(API.PROJECTS);
-      handleClose();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const apiProjectDelete = async (id: number) => {
+  //   try {
+  //     const response = await fetch(`${API.PROJECTS}${id}/`, {
+  //       method: "DELETE",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         // Authorization: "Bearer " + String(session.data.user.access),
+  //         Authorization: "Bearer " + process.env.ACCESS_TOKEN,
+  //       },
+  //     });
+  //     getProjects(API.PROJECTS);
+  //     handleClose();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // const apiProjectUpdate = async();
 
   return (
     <div>
       <div>
-        <Button onClick={handleOpen} variant="outlined" color="success">
+        <Button
+          onClick={handleOpen}
+          variant="outlined"
+          color="success"
+          style={{ marginBottom: 20 }}
+        >
           New Project
         </Button>
         <Modal
@@ -214,13 +233,17 @@ const Projects = () => {
         </Modal>
       </div>
 
-      <ProjectFilter
+      {/* <ProjectFilter
         projects={projects}
         onSelectProject={(id, e) => selectedProjectsHandle(id, e)}
         paramIds={paramIds}
-      />
+      /> */}
 
-      <ProjectList projects={projects} apiProjectDelete={apiProjectDelete} />
+      <ProjectList
+      // projects={projects}
+      // apiProjectDelete={apiProjectDelete}
+      // apiProjectUpdate={apiProjectUpdate}
+      />
     </div>
   );
 };

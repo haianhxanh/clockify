@@ -58,3 +58,13 @@ export const getTime = () => {
   let time = new Date().getTime();
   return time;
 };
+
+export const dateToJson = (dateObj: any) => {
+  const event = new Date(dateObj);
+  const jsonDate = event.toJSON();
+  return jsonDate.split("T")[0];
+};
+
+export const capitalize = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};

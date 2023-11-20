@@ -23,14 +23,22 @@ project_user_details = views.UserProjectViewSet.as_view({
     'delete': 'destroy'
 })
 
-project_tasks_list = views.TaskViewSet.as_view({'get': 'list', 'post': 'create'})
+project_tasks_list = views.ProjectTaskViewSet.as_view({'get': 'list', 'post': 'create'})
 
-project_task_details = views.TaskViewSet.as_view({
+project_task_details = views.ProjectTaskViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
     'patch': 'partial_update',
     'delete': 'destroy'
 })
+
+task_details = views.TaskViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 
 task_users_list = views.TaskUsers.as_view({'get': 'list', 'post': 'create'})
 
@@ -65,6 +73,8 @@ time_records_list = views.TimeRecordViewSet.as_view({'get': 'list'})
 
 time_record_detail = views.TimeRecordViewSet.as_view({
     'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
     'delete': 'destroy'
 })
 
@@ -74,6 +84,13 @@ update_time_record_detail = views.UpdateTimeRecordViewSet.as_view({
     'patch': 'partial_update',
     'delete': 'destroy'
 })
+
+# stop_time_record = views.TrackingStop.as_view({
+#     'get': 'retrieve',
+#     'put': 'update',
+#     'patch': 'partial_update',
+# })
+
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -97,10 +114,11 @@ urlpatterns = [
     path("projects/<int:project_pk>/tracking/<pk>/", project_time_record_details,
          name="project-time-record-details"),
     path("tasks/", views.ListAllTasks.as_view(), name="list-tasks"),
+    path("tasks/<pk>/", task_details, name="task-details"),
     path("users/", views.ListAllUsers.as_view(), name="list-users"),
     path("tracking/", time_records_list, name="list-time-records"),
     path("tracking/<pk>/", time_record_detail, name="time-record-detail"),
-    path("tracking/<pk>/update/", update_time_record_detail, name="update-time-record-detail"),
+    path("tracking/<pk>/update", update_time_record_detail, name="update-time-record-detail"),
     path("tracking/start", views.TrackingStart.as_view(), name="tracker-start"),
     path("tracking/stop", views.TrackingStop.as_view(), name="tracker-stop"),
     path('__debug__/', include('debug_toolbar.urls')),

@@ -48,12 +48,12 @@ const pagesPrimary = [
     icon: <TaskIcon />,
     url: "/tracking",
   },
-  {
-    id: 4,
-    name: "Reports",
-    icon: <ReportIcon />,
-    url: "/reports",
-  },
+  // {
+  //   id: 4,
+  //   name: "Reports",
+  //   icon: <ReportIcon />,
+  //   url: "/reports",
+  // },
   {
     id: 5,
     name: "Team",

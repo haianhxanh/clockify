@@ -30,6 +30,22 @@ class isProjectAdminOrMember(permissions.BasePermission):
         return False
 
 
+class isTaskProjectAdminOrMember(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        task_pk = view.kwargs.get('pk', None)
+        project_id = Task.objects.get(id=task_pk).project
+        try:
+            user_role = UserProject.objects.get(project_id=project_id, user_id=request.user.id).role.name
+        except UserProject.DoesNotExist:
+            return False
+        if user_role == 'admin':
+            return request.method in ["GET", "POST", "DELETE", "PUT", "PATCH"]
+        if user_role == 'member':
+            return request.method in ["GET"]
+        return False
+
+
 class isProjectAdmin(permissions.BasePermission):
 
     def _has_user(self, user, related_manager):

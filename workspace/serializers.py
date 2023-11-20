@@ -1,4 +1,6 @@
 import itertools
+from datetime import date
+from time import strftime
 
 from django.contrib.auth.hashers import make_password
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
@@ -114,13 +116,13 @@ class TaskProjectSimpleSerializer(serializers.ModelSerializer):
 
 
 class ProjectTaskSerializer(serializers.ModelSerializer):
-    def create(self, validated_data):
-        project_id = self.context['project_id']
-        return Task.objects.create(project_id=project_id, **self.validated_data)
+    # def create(self, validated_data):
+    #     project_id = self.context['project_id']
+    #     return Task.objects.create(project_id=project_id, **self.validated_data)
 
     class Meta:
         model = Task
-        fields = "__all__"
+        fields = ["id", "name", "description", "max_allocated_hours", "tracked_hours", "status", "due_date", "project"]
 
 
 class ProjectTimeRecordSerializer(serializers.ModelSerializer):
@@ -160,13 +162,16 @@ class TimeRecordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TimeRecord
-        fields = ["id", "description", "start_time", "end_time", "tracked_hours", "date", "task", "user"]
+        fields = ["id", "description", "start_time", "end_time", "tracked_hours", "date", "task", "user", "project"]
 
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = "__all__"
+        fields = ["id", "name", "description", "max_allocated_hours", "tracked_hours", "status", "due_date", "project"]
+
+    def save(self, user_id):
+        self.model.save(user_id=user_id)
 
 
 class UpdateTimeRecordSerializer(serializers.ModelSerializer):
@@ -176,15 +181,23 @@ class UpdateTimeRecordSerializer(serializers.ModelSerializer):
 
 
 class TimeRecordStartSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = TimeRecord
-        fields = ["description", "task"]
+        fields = ["description", "task", "project"]
+
+    def create(self, validated_data, user):
+        start_time = strftime("%H:%M")
+        date_now = date.today()
+
+        time_record = TimeRecord.objects.create(**validated_data, start_time=start_time, date=date_now, user=user)
+        return time_record
 
 
-class TimeRecordStopSerializer(serializers.ModelSerializer):
+class TimeRecordsSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeRecord
-        fields = ["description", "task", "start_time", "end_time"]
+        fields = ["description", "task", "start_time", "end_time", "project"]
 
 
 class UserProjectSerializer(serializers.ModelSerializer):
@@ -236,7 +249,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ["id", "name", "project_users"]
+        fields = ["id", "name", "total_allocated_hours", "tracked_hours", "project_users", "status", "description"]
 
     def get_project_users(self, project_obj):
         return project_obj.user.username
@@ -263,7 +276,8 @@ class CreateProjectSerializers(serializers.ModelSerializer):
         project = Project(
                 name=validated_data["name"],
                 description=validated_data["description"],
-                hourly_rate=validated_data["hourly_rate"]
+                hourly_rate=validated_data["hourly_rate"],
+                status="CREATED"
                 )
         project.save()
         user_id = self.context['request'].user.id
@@ -285,7 +299,7 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
         model = Project
         fields = ["id", "name", "description", "status", "due_date", "hourly_rate", "total_allocated_hours",
                   "tracked_hours",
-                  "currency", "tasks", "project_users"]
+                  "currency", "tasks", "project_users", "hex_color"]
 
     def get_currency(self, Project):
         return Project.currency.shortcut_name

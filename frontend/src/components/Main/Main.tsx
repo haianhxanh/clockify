@@ -10,6 +10,8 @@ import {
 } from "@/context/SnackbarContext";
 import { GridApi } from "@mui/x-data-grid";
 import { DataContext } from "@/context/DataContext";
+import Notification from "../Notification/Notification";
+import { useRouter } from "next/router";
 
 interface Task {
   id: number;
@@ -21,16 +23,53 @@ interface Task {
   project?: number;
 }
 
+interface TaskOption {
+  id: number;
+  label: string;
+}
+
 export default function Main({ children, open }: { children: any; open: any }) {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [taskOptions, setTaskOptions] = useState<TaskOption[]>([]);
+  const [projectTasks, setProjectTasks] = useState<Task[]>([]);
+  const router = useRouter();
+
   // const { snackbar, setSnackbar } = useContext(SnackbarContext);
-  const { snackbar, setSnackbar } = useContext(DataContext);
+  const { snackbar, setSnackbar, getRecords, apiTrackingUpdate } =
+    useContext(DataContext);
   useEffect(() => {
     getTasks();
   }, []);
 
-  const dataGridUpdate = () => {
-    GridApi.forceUpdate();
+  useEffect(() => {
+    if (tasks == undefined) {
+      return;
+    }
+    tasks.forEach((task) => {
+      let option = {
+        id: task.id,
+        label: task.name,
+      };
+
+      setTaskOptions((taskOptions) => [...taskOptions, option]);
+    });
+  }, [tasks]);
+
+  const getProjectTasks = async (id: number) => {
+    try {
+      const response = await fetch(API.PROJECT_TASKS.replace("[id]", id), {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: "Bearer " + String(session.data.user.access),
+          Authorization: "Bearer " + process.env.ACCESS_TOKEN,
+        },
+      });
+      const data = await response.json();
+      setProjectTasks(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getTasks = async () => {
@@ -63,7 +102,16 @@ export default function Main({ children, open }: { children: any; open: any }) {
           </Alert>
         </Snackbar>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <TimeTrackerRecorder tasks={tasks} />
+          <Notification />
+          {!router.pathname.includes("notifications") && (
+            <TimeTrackerRecorder
+              tasks={tasks}
+              tasksOptions={taskOptions}
+              getProjectTasks={getProjectTasks}
+              projectTasks={projectTasks}
+              setProjectTasks={setProjectTasks}
+            />
+          )}
           {children}
         </LocalizationProvider>
       </main>

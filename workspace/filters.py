@@ -3,7 +3,7 @@ from django import forms
 from django_filters import OrderingFilter, CharFilter
 
 from workspace.enums import ProjectStatusChoices
-from workspace.models import Project, TimeRecord
+from workspace.models import Project, TimeRecord, Task
 
 
 class LimitFilter(django_filters.Filter):
@@ -59,6 +59,17 @@ class TrackingFilter(django_filters.FilterSet):
 
     class Meta:
         model = TimeRecord
+        fields = {
+            'id': ['exact'],
+            'description': ['contains']
+        }
+
+
+class TaskFilter(django_filters.FilterSet):
+    limit = LimitFilter()
+
+    class Meta:
+        model = Task
         fields = {
             'id': ['exact'],
             'description': ['contains']

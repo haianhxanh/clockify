@@ -9,6 +9,8 @@ import Main from "../Main/Main";
 import { Alert, Snackbar } from "@mui/material";
 import { SnackbarContextProvider } from "@/context/SnackbarContext";
 import { DataContextProvider } from "@/context/DataContext";
+import NotificationConnection from "@/context/NotificationsConnection";
+import { NotificationContextProvider } from "@/context/NotificationContext";
 
 interface Project {
   name: string;
@@ -83,7 +85,16 @@ const Layout = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SideMenu drawerOpen={drawerOpen} drawerClose={drawerClose} open={open} />
+      <NotificationContextProvider>
+        <SideMenu
+          drawerOpen={drawerOpen}
+          drawerClose={drawerClose}
+          open={open}
+          children={children}
+        />
+      </NotificationContextProvider>
+
+      <NotificationConnection />
       <DataContextProvider>
         <Main
           children={children}

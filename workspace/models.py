@@ -1,14 +1,13 @@
-from datetime import datetime, date, timedelta
-from gc import get_objects
-from time import strftime, localtime
+from datetime import datetime, time
 
-from django.core.validators import BaseValidator
-from django.db import models, connection
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
+from api.example import send_task_notification
+from notifications.enums import NotificationSeverityChoices
+from notifications.models import TaskNotification, create_notifications
 from workspace.enums import TaskStatusChoices, ProjectStatusChoices
 from workspace.querysets import TimeRecordQuerySet
-
 
 # Create your models here.
 DECIMAL_PLACES = 2
@@ -89,10 +88,18 @@ class Task(BaseModel):
     def __str__(self):
         return f"[{self.id}] {self.project.name} - {self.name}"
 
-    def save(self, *args, **kwargs):
+    def save(self, user_id=None, *args, **kwargs):
         if self.pk and self.max_allocated_hours < 0:
             self.max_allocated_hours = 0
         super().save(*args, **kwargs)
+
+        notification_msg = f"Task: {self.name}"
+        users = UserProject.objects.filter(project=self.project.id).exclude(project__user__id=user_id).values_list("user", flat=True)
+        # new_create_notification(TaskNotification, user=user_list, type="task_new", message=notification_msg, task_id=self.id, severity=NotificationSeverityChoices.INFO)
+
+        # create_notifications(TaskNotification, users=users, type="task_new", message=notification_msg, severity=NotificationSeverityChoices.INFO.value, task_id=self.id,)
+        # for item in user_list:
+        #     Notification.objects.create(user=item.user, type="TASK", message=notification_msg)
 
     def to_dict(self):
         tracked_hours = self.tracked_hours
@@ -126,6 +133,7 @@ class TimeRecord(BaseModel):
     date = models.DateField()
     task = models.ForeignKey(Task, on_delete=models.CASCADE, null=True, blank=True, related_name="time_records")
     user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="time_records")
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True, related_name="project_record")
 
     objects = TimeRecordQuerySet.as_manager()
 
@@ -136,9 +144,12 @@ class TimeRecord(BaseModel):
 
     def save(self, *args, **kwargs):
         # make sure updated end_time is not earlier than start_time
-        # if self.pk and self.end_time:
-        #     if self.end_time < self.start_time:
-        #         self.end_time = self.start_time
+        if self.pk and self.end_time:
+            if self.end_time < self.start_time:
+                self.end_time = self.start_time
+
+        if self.task is not None:
+            self.project = self.task.project
 
         super().save(*args, **kwargs)
         # try:
@@ -150,14 +161,21 @@ class TimeRecord(BaseModel):
         # except TimeRecord.DoesNotExist:
         #     super().save(*args, **kwargs)
 
-
     def change_start_time(self, start_time):
         self.start_time = start_time
         self.save()
 
+    def get_end_time(self) -> time:
+        return datetime.now().time().replace(microsecond=0)
+
+    def set_end_time_midnight(self, commit=True):
+        self.end_time = time(23, 59, 0)
+        if commit:
+            self.save()
+
     def stop_time(self):
         start_time = self.start_time.strftime("%H:%M")
-        end_time = strftime("%H:%M")
+        end_time = self.get_end_time()
         now = datetime.now()
         start_date = self.date  # datetime.date(2022, 12, 19)
         end_date = now.date()
@@ -168,7 +186,7 @@ class TimeRecord(BaseModel):
             self.save()
 
         elif end_date > start_date:  # if after midnight
-            self.end_time = "23:59"
+            self.set_end_time_midnight(commit=False)
             # self.date = end_date - timedelta(days=1)
             self.save()
 
@@ -225,9 +243,10 @@ class User(BaseModel, AbstractUser):
             #             pass
             # return record
             last_record = time_records.latest("id")
-            all_other_records = time_records.exclude(pk__in=list(last_record))
-            self.stop_time(all_other_records)
-            return last_record.get()
+            all_other_records = time_records.exclude(pk=last_record.pk)
+            # self.stop_time(all_other_records)
+            [time_record.stop_time for time_record in all_other_records]
+            return last_record
 
         return time_records.get()
 
@@ -246,6 +265,13 @@ class UserTask(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.task.name}"
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            # create notification
+            send_task_notification(self.user.id)
+            pass
+        super().save(*args, **kwargs)
 
 
 class UserProject(models.Model):

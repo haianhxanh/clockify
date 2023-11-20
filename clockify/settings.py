@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "daphne",
     "django.contrib.staticfiles",
     "corsheaders",
     "djoser",
@@ -45,8 +46,22 @@ INSTALLED_APPS = [
     'django_filters',
     'social_django',
     'rest_social_auth',
-    'django_extensions'
+    'django_extensions',
+    'notifications.apps.NotificationsConfig',
+    "channels"
 ]
+
+# WSGI_APPLICATION = 'clockify.routing.applicatioon'
+ASGI_APPLICATION = 'clockify.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 

@@ -27,16 +27,7 @@ import {
 import * as API from "@/constants/api";
 import { SnackbarContext } from "@/context/SnackbarContext";
 import { TimeField } from "@mui/x-date-pickers";
-
-interface TimeRecord {
-  id: number;
-  description: string | null;
-  start_time: string;
-  end_time: string | null;
-  task: number | null;
-  tracked_hours: number;
-  date: string;
-}
+import { DataContext } from "@/context/DataContext";
 
 interface Event {
   id: string;
@@ -69,13 +60,13 @@ const Calendar = () => {
   );
   const [start, setStart] = useState(dayjs("2022-04-17T15:30"));
   const [end, setEnd] = useState(dayjs("2022-04-17T17:30"));
-  const [records, setRecords] = useState<TimeRecord[]>([]);
   const [open, setOpen] = useState(false);
   const [isNewEvent, setIsNewEvent] = useState(false);
   const [newEvent, setNewEvent] = useState();
   const [description, setDescription] = useState("");
   const [id, setId] = useState(0);
-  const { snackbar, setSnackbar } = useContext(SnackbarContext);
+  const { records, setRecords, apiTrackingDelete, apiTrackingUpdate } =
+    useContext(DataContext);
   const handleOpen = (eventId: number) => {
     let record = records.find((record) => record.id == eventId);
     setStart(dayjs(`${record.date}T${record?.start_time}`));
@@ -86,6 +77,7 @@ const Calendar = () => {
     let inputDescription = recordModal?.querySelector('[name="description"]');
     let trackedHours = recordModal?.querySelector("#trackedHours");
     inputDescription.value = record?.description;
+    setDescription(inputDescription.value);
     trackedHours.innerText = record?.tracked_hours + " hours";
     let btnTrackingAction = recordModal?.querySelector("#trackingActionBtn");
     btnTrackingAction?.setAttribute("data-event-id", eventId);
@@ -93,62 +85,13 @@ const Calendar = () => {
     inputDescription.addEventListener("keyup", (e) => {
       inputDescription.value = e.target.value;
     });
-
-    // btnTrackingAction?.addEventListener("click", (e) => {
-    //   let id = parseInt(e.target.dataset.eventId);
-    //   let calendar = recordModal?.querySelector("#calendar");
-    //   console.log(calendar);
-
-    //   // let newDateYear = recordDate.$y;
-    //   // let newDateMonth = recordDate.$M + 1;
-    //   // let newDateDate = recordDate.$D;
-    //   // console.log(recordDate);
-
-    //   // console.log(newDateYear, newDateMonth, newDateDate);
-
-    //   // let newDate = `${date.$y}-${date.$M + 1}-${date.$D}`;
-    //   // apiTrackingUpdate(
-    //   //   { description: inputDescription.value, date: newDate },
-    //   //   id
-    //   // );
-    // });
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
     setIsNewEvent(false);
+    setDescription("");
   };
-
-  const apiTrackingUpdate = async (body, id: number) => {
-    try {
-      const response = await fetch(
-        API.TRACKING_UPDATE.replace("[id]", id.toString()),
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            // Authorization: "Bearer " + String(session.data.user.access),
-            Authorization: "Bearer " + process.env.ACCESS_TOKEN,
-          },
-          body: JSON.stringify(body),
-        }
-      );
-      if (response.ok) {
-        setSnackbar({
-          open: true,
-          status: SNACKBAR.SNACKBAR_STATUS.SUCCESS,
-          message: SNACKBAR.SNACKBAR_MESSAGE.UPDATED,
-        });
-      }
-      getRecords();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getRecords();
-  }, []);
 
   useEffect(() => {
     records.forEach((record) => {
@@ -159,28 +102,14 @@ const Calendar = () => {
         start: record.date + "T" + record.start_time,
         end: record.date + "T" + record.end_time,
       };
-      setCurrentEvents((currentEvents) => [...currentEvents, event]);
+      if (!currentEvents.includes(event)) {
+        setCurrentEvents((currentEvents) => [...currentEvents, event]);
+      }
     });
   }, [records]);
 
-  const getRecords = async () => {
-    try {
-      const response = await fetch(API.TRACKING, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: "Bearer " + String(session.data.user.access),
-          Authorization: "Bearer " + process.env.ACCESS_TOKEN,
-        },
-      });
-      const data = await response.json();
-      setRecords(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleDateClick = (event) => {
+    setDescription("");
     setOpen(true);
     setIsNewEvent(true);
     const title = "Record name";
@@ -195,16 +124,16 @@ const Calendar = () => {
         allDay: event.allDay,
       });
     }
-    console.log(event);
-    setNewEvent(event);
-    console.log(calendarApi);
+    // console.log(event);
+    // setNewEvent(event);
+    // console.log(calendarApi);
   };
 
   const handleEventClick = (event: React.MouseEvent<HTMLElement>) => {
     let eventId = event.event._def.publicId;
-    console.log(event);
+    // console.log(event);
     let eventDate = event.event.startStr.split("T")[0];
-    console.log(dayjs(eventDate));
+    // console.log(dayjs(eventDate));
     setRecordDate(dayjs(eventDate));
 
     if (event.event._def.title != "") {
@@ -237,7 +166,7 @@ const Calendar = () => {
         date: new_date,
       };
 
-      apiTrackingUpdate(data, id);
+      apiTrackingUpdate(id, data);
       setOpen(false);
     }
   };
@@ -262,10 +191,10 @@ const Calendar = () => {
         }}
         initialView="timeGridWeek"
         editable={true}
-        selectable={true}
+        // selectable={true}
         selectMirror={true}
         dayMaxEvents={true}
-        select={handleDateClick}
+        // select={handleDateClick}
         eventClick={handleEventClick}
         events={currentEvents}
       />
