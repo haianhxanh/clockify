@@ -166,18 +166,12 @@ SIMPLE_JWT = {
     "SIGNING_KEY": config('SECRET_KEY'),
 }
 
-# SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
-# SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
-
 AUTHENTICATION_BACKENDS = (
-    # 'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 SITE_ID = 2
-
-# ACCOUNT_SIGNUP_FORM_CLASS = 'workspace.forms.CustomSignupForm'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
