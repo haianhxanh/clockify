@@ -11,6 +11,7 @@ import { SnackbarContextProvider } from "@/context/SnackbarContext";
 import { DataContextProvider } from "@/context/DataContext";
 import NotificationConnection from "@/context/NotificationsConnection";
 import { NotificationContextProvider } from "@/context/NotificationContext";
+import { UserContextProvider } from "@/context/UserContext";
 
 interface Project {
   name: string;
@@ -86,21 +87,25 @@ const Layout = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NotificationContextProvider>
-        <SideMenu
-          drawerOpen={drawerOpen}
-          drawerClose={drawerClose}
-          open={open}
-          children={children}
-        />
+        <UserContextProvider>
+          <SideMenu
+            drawerOpen={drawerOpen}
+            drawerClose={drawerClose}
+            open={open}
+            children={children}
+          />
+        </UserContextProvider>
       </NotificationContextProvider>
 
       <NotificationConnection />
       <DataContextProvider>
-        <Main
-          children={children}
-          open={open}
-          runningTracking={runningTracking}
-        />
+        <UserContextProvider>
+          <Main
+            children={children}
+            open={open}
+            runningTracking={runningTracking}
+          />
+        </UserContextProvider>
       </DataContextProvider>
     </>
   );

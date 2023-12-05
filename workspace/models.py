@@ -220,6 +220,7 @@ class Report(models.Model):
 class User(BaseModel, AbstractUser):
     tasks = models.ManyToManyField(Task, through="UserTask")
     projects = models.ManyToManyField(Project, through="UserProject")
+    activation_token = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
         return self.email

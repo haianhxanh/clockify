@@ -204,10 +204,11 @@ class UserProjectSerializer(serializers.ModelSerializer):
     username = serializers.ReadOnlyField(source="user.username")
     role = serializers.ReadOnlyField(source="role.name")
     user_id = serializers.ReadOnlyField(source="user.id")
+    email= serializers.ReadOnlyField(source="user.email")
 
     class Meta:
         model = UserProject
-        fields = ["id", "username", "user_id", "role"]
+        fields = ["id", "username", "user_id", "role", "email"]
 
 
 class AddUserProjectSerializer(serializers.ModelSerializer):

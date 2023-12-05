@@ -10,6 +10,9 @@ export const TRACKING_UPDATE = "http://localhost:9000/tracking/[id]/update";
 export let PROJECT_TASKS = "http://localhost:9000/projects/[id]/tasks/";
 export const PROJECT_TASK =
   "http://localhost:9000/projects/[projectId]/tasks/[taskId]/";
+export const PROJECT_USERS =
+  "http://localhost:9000/projects/[projectId]/users/";
+export const USERS = "http://localhost:9000/users/";
 export const TASKS = "http://localhost:9000/tasks/";
 export const NOTIFICATIONS = "http://localhost:9000/notifications/";
 export const NOTIFICATION = "http://localhost:9000/notifications/[id]/";

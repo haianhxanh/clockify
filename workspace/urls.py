@@ -130,5 +130,6 @@ urlpatterns = [
     path('api/login/', CustomTokenObtainPairView.as_view()),
     path('api/login/refresh/', TokenRefreshView.as_view()),
     # path('api/login/', include('rest_social_auth.urls_jwt_pair')),
+    path("invitations/", include('invitations.urls', namespace='invitations')),
 ]
 

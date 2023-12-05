@@ -190,8 +190,13 @@ class ListAllUsers(ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ListUserSerializer
 
-    def get_queryset(self, request):
-        return User.objects.get(id=request.user.id)
+    def get_queryset(self):
+        admin = get_object_or_404(User, email=self.request.user.email)
+        # from users who've been invited
+        invitees = ['user29@user.com', 'user27@user.com']
+        users = User.objects.filter(email__in=invitees)
+        print(users)
+        return users
 
 
 class UserViewSet(ModelViewSet):
@@ -352,6 +357,13 @@ class ProjectViewSet(ModelViewSet):
     def filter_queryset(self, queryset):
         filtered = ProjectFilter(self.request.GET, queryset=queryset).qs
         return filtered
+    
+    def create(self, request, *args, ** kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        project = serializer.save()
+        print(project)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class ProjectTaskViewSet(ModelViewSet):

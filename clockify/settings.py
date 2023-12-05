@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'rest_social_auth',
     'django_extensions',
     'notifications.apps.NotificationsConfig',
-    "channels"
+    "channels",
+    "django.contrib.sites",
+    "invitations",
 ]
 
 # WSGI_APPLICATION = 'clockify.routing.applicatioon'
@@ -203,3 +205,10 @@ AUTHENTICATION_BACKENDS = (
 )
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+SITE_ID = 1
+ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.freesmtpservers.com"
+EMAIL_PORT = 25

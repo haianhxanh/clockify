@@ -12,6 +12,12 @@ interface Project {
   name: string;
 }
 
+interface User {
+  user_email: string;
+  user_id: number;
+  user_role: string;
+}
+
 interface ApiStatus {
   ok: boolean;
   statusText: string;
@@ -23,6 +29,8 @@ const ProjectDetail = () => {
     id: null,
     name: "",
   });
+  const [users, setUsers] = useState<User[]>([]);
+  const [collaborators, setCollaborators] = useState<User[]>([]);
   const [apiStatus, setApiStatus] = useState<ApiStatus>({
     ok: false,
     statusText: "",
@@ -31,35 +39,90 @@ const ProjectDetail = () => {
 
   useEffect(() => {
     const routerId = router.query.id;
-    const getProject = async () => {
-      if (routerId == undefined) {
-        return;
-      }
-      try {
-        const response = await fetch(API.PROJECTS + routerId, {
+    getProject(routerId);
+    getProjectUsers(routerId);
+  }, [router.query.id]);
+
+  const getProject = async (id: any) => {
+    if (id == undefined) {
+      return;
+    }
+    try {
+      const response = await fetch(API.PROJECTS + id, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: "Bearer " + String(session.data.user.access),
+          Authorization: "Bearer " + process.env.ACCESS_TOKEN,
+        },
+      });
+      const data = await response.json();
+      setProject((project) => data);
+      setApiStatus((apiStatus) => response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getProjectUsers = async (id: any) => {
+    if (id == undefined) {
+      return;
+    }
+    try {
+      const response = await fetch(
+        API.PROJECT_USERS.replace("[projectId]", id),
+        {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             // Authorization: "Bearer " + String(session.data.user.access),
             Authorization: "Bearer " + process.env.ACCESS_TOKEN,
           },
-        });
-        const data = await response.json();
-        setProject((project) => data);
-        setApiStatus((apiStatus) => response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getProject();
-  }, [router.query.id]);
+        }
+      );
+      const data = await response.json();
+      setUsers((users) => data);
+      const collaborators = data.filter((user) => user.role != "admin");
+      setCollaborators((collaborators) => collaborators);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const project = projects.find((project) => project.id == parseInt(routerId));
+  const apiAddNewProjectUser = async (projectId: any, userId: any) => {
+    let body = JSON.stringify({
+      user_id: userId,
+      role_id: 2,
+    });
+    try {
+      const response = await fetch(
+        API.PROJECT_USERS.replace("[projectId]", projectId),
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: "Bearer " + String(session.data.user.access),
+            Authorization: "Bearer " + process.env.ACCESS_TOKEN,
+          },
+          body,
+        }
+      );
+      const data = await response.json();
+      getProjectUsers(projectId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
       {apiStatus.ok == true ? (
-        <ProjectDetails key={project.id} project={project} />
+        <ProjectDetails
+          key={project.id}
+          project={project}
+          users={users}
+          apiAddNewProjectUser={apiAddNewProjectUser}
+        />
       ) : (
         <ErrorMessage message={apiStatus.statusText} />
       )}
