@@ -1,18 +1,25 @@
-from datetime import datetime, date, timedelta
-from gc import get_objects
-from time import strftime, localtime
+from datetime import datetime, time
 
-from django.core.validators import BaseValidator
-from django.db import models, connection
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
+from api.example import send_task_notification
+from notifications.enums import NotificationSeverityChoices
+from notifications.models import TaskNotification, create_notifications
 from workspace.enums import TaskStatusChoices, ProjectStatusChoices
 from workspace.querysets import TimeRecordQuerySet
-
 
 # Create your models here.
 DECIMAL_PLACES = 2
 HOUR_IN_SECONDS = 3600
+
+
+class BaseModel(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
 
 
 class Currency(models.Model):
@@ -22,7 +29,7 @@ class Currency(models.Model):
         return self.shortcut_name
 
 
-class Project(models.Model):
+class Project(BaseModel):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name="currency")
@@ -69,7 +76,7 @@ class Project(models.Model):
         return round(total, 2)
 
 
-class Task(models.Model):
+class Task(BaseModel):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -81,10 +88,18 @@ class Task(models.Model):
     def __str__(self):
         return f"[{self.id}] {self.project.name} - {self.name}"
 
-    def save(self, *args, **kwargs):
+    def save(self, user_id=None, *args, **kwargs):
         if self.pk and self.max_allocated_hours < 0:
             self.max_allocated_hours = 0
         super().save(*args, **kwargs)
+
+        notification_msg = f"Task: {self.name}"
+        users = UserProject.objects.filter(project=self.project.id).exclude(project__user__id=user_id).values_list("user", flat=True)
+        # new_create_notification(TaskNotification, user=user_list, type="task_new", message=notification_msg, task_id=self.id, severity=NotificationSeverityChoices.INFO)
+
+        # create_notifications(TaskNotification, users=users, type="task_new", message=notification_msg, severity=NotificationSeverityChoices.INFO.value, task_id=self.id,)
+        # for item in user_list:
+        #     Notification.objects.create(user=item.user, type="TASK", message=notification_msg)
 
     def to_dict(self):
         tracked_hours = self.tracked_hours
@@ -111,13 +126,14 @@ class Task(models.Model):
         return total
 
 
-class TimeRecord(models.Model):
+class TimeRecord(BaseModel):
     description = models.TextField(max_length=1024, null=True, blank=True)
     start_time = models.TimeField()  # auto add time when Object is created, make it editable
     end_time = models.TimeField(null=True, blank=True)
     date = models.DateField()
     task = models.ForeignKey(Task, on_delete=models.CASCADE, null=True, blank=True, related_name="time_records")
     user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="time_records")
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True, related_name="project_record")
 
     objects = TimeRecordQuerySet.as_manager()
 
@@ -132,6 +148,9 @@ class TimeRecord(models.Model):
             if self.end_time < self.start_time:
                 self.end_time = self.start_time
 
+        if self.task is not None:
+            self.project = self.task.project
+
         super().save(*args, **kwargs)
         # try:
         #     object_last_version = TimeRecord.objects.get(pk=self.pk)
@@ -142,14 +161,21 @@ class TimeRecord(models.Model):
         # except TimeRecord.DoesNotExist:
         #     super().save(*args, **kwargs)
 
-
     def change_start_time(self, start_time):
         self.start_time = start_time
         self.save()
 
-    def stop_time(self):
+    def get_end_time(self) -> time:
+        return datetime.now().time().replace(microsecond=0)
 
-        end_time = strftime("%H:%M")
+    def set_end_time_midnight(self, commit=True):
+        self.end_time = time(23, 59, 0)
+        if commit:
+            self.save()
+
+    def stop_time(self):
+        start_time = self.start_time.strftime("%H:%M")
+        end_time = self.get_end_time()
         now = datetime.now()
         start_date = self.date  # datetime.date(2022, 12, 19)
         end_date = now.date()
@@ -160,7 +186,7 @@ class TimeRecord(models.Model):
             self.save()
 
         elif end_date > start_date:  # if after midnight
-            self.end_time = "23:59"
+            self.set_end_time_midnight(commit=False)
             # self.date = end_date - timedelta(days=1)
             self.save()
 
@@ -191,9 +217,10 @@ class Report(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
 
-class User(AbstractUser):
+class User(BaseModel, AbstractUser):
     tasks = models.ManyToManyField(Task, through="UserTask")
     projects = models.ManyToManyField(Project, through="UserProject")
+    # activation_token = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
         return self.email
@@ -217,9 +244,10 @@ class User(AbstractUser):
             #             pass
             # return record
             last_record = time_records.latest("id")
-            all_other_records = time_records.exclude(pk__in=list(last_record))
-            self.stop_time(all_other_records)
-            return last_record.get()
+            all_other_records = time_records.exclude(pk=last_record.pk)
+            # self.stop_time(all_other_records)
+            [time_record.stop_time for time_record in all_other_records]
+            return last_record
 
         return time_records.get()
 
@@ -238,6 +266,13 @@ class UserTask(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.task.name}"
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            # create notification
+            send_task_notification(self.user.id)
+            pass
+        super().save(*args, **kwargs)
 
 
 class UserProject(models.Model):

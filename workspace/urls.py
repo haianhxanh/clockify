@@ -3,7 +3,7 @@ from . import views
 from rest_framework import permissions
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from .views import PDFHTMLView
+from .views import PDFHTMLView, CustomTokenObtainPairView
 
 project_list = views.ProjectViewSet.as_view({'get': 'list', 'post': 'create'})
 
@@ -23,14 +23,22 @@ project_user_details = views.UserProjectViewSet.as_view({
     'delete': 'destroy'
 })
 
-project_tasks_list = views.TaskViewSet.as_view({'get': 'list', 'post': 'create'})
+project_tasks_list = views.ProjectTaskViewSet.as_view({'get': 'list', 'post': 'create'})
 
-project_task_details = views.TaskViewSet.as_view({
+project_task_details = views.ProjectTaskViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
     'patch': 'partial_update',
     'delete': 'destroy'
 })
+
+task_details = views.TaskViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 
 task_users_list = views.TaskUsers.as_view({'get': 'list', 'post': 'create'})
 
@@ -65,6 +73,8 @@ time_records_list = views.TimeRecordViewSet.as_view({'get': 'list'})
 
 time_record_detail = views.TimeRecordViewSet.as_view({
     'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
     'delete': 'destroy'
 })
 
@@ -74,6 +84,13 @@ update_time_record_detail = views.UpdateTimeRecordViewSet.as_view({
     'patch': 'partial_update',
     'delete': 'destroy'
 })
+
+# stop_time_record = views.TrackingStop.as_view({
+#     'get': 'retrieve',
+#     'put': 'update',
+#     'patch': 'partial_update',
+# })
+
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -97,10 +114,12 @@ urlpatterns = [
     path("projects/<int:project_pk>/tracking/", project_time_records, name="list-project-time-records"),
     path("projects/<int:project_pk>/tracking/<pk>/", project_time_record_details,
          name="project-time-record-details"),
+    path("tasks/", views.ListAllTasks.as_view(), name="list-tasks"),
+    path("tasks/<pk>/", task_details, name="task-details"),
     path("users/", views.ListAllUsers.as_view(), name="list-users"),
     path("tracking/", time_records_list, name="list-time-records"),
     path("tracking/<pk>/", time_record_detail, name="time-record-detail"),
-    path("tracking/<pk>/update/", update_time_record_detail, name="update-time-record-detail"),
+    path("tracking/<pk>/update", update_time_record_detail, name="update-time-record-detail"),
     path("tracking/start", views.TrackingStart.as_view(), name="tracker-start"),
     path("tracking/stop", views.TrackingStop.as_view(), name="tracker-stop"),
     path('__debug__/', include('debug_toolbar.urls')),
@@ -109,13 +128,14 @@ urlpatterns = [
     path('pdf/detailed/', views.DetailedPDFView.as_view(), name="pdf-detailed"),
     path('pdf_download/', views.DownloadPDFView.as_view(), name="pdf_download"),
     path('test/', PDFHTMLView.as_view(), name="pdf_html"),
-    # path('api/login/', TokenObtainPairView.as_view()),
-    # path('api/login/refresh', TokenRefreshView.as_view()),
+    path('api/login/', TokenObtainPairView.as_view()),
+    path('api/login/refresh', TokenRefreshView.as_view()),
     path("api/register/", views.RestRegister.as_view(), name="rest-register"),
-    path("api/login/", views.RestLogin.as_view(), name="rest-login"),
-    path("api/logout/", views.Logout.as_view(), name="logout"),
+    # path("api/login/", views.RestLogin.as_view(), name="rest-login"),
+    # path("api/logout/", views.Logout.as_view(), name="logout"),
     path("user/", views.UserAPIView.as_view(), name="user"),
     path('accounts/', include('allauth.urls')),
     # path('api/login/', include('rest_social_auth.urls_jwt_pair')),
+    path("invitations/", include('invitations.urls', namespace='invitations')),
 ]
 

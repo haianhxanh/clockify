@@ -1,6 +1,7 @@
 import datetime
 
 from django.conf import settings
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.sites.shortcuts import get_current_site
 
 try:
@@ -25,7 +26,9 @@ class Invitation(AbstractBaseInvitation):
         verbose_name=_("e-mail address"),
         max_length=app_settings.EMAIL_MAX_LENGTH,
     )
+    projects_ids = ArrayField(models.IntegerField)
     created = models.DateTimeField(verbose_name=_("created"), default=timezone.now)
+    accepted = models.BooleanField(default=False)
 
     @classmethod
     def create(cls, email, inviter=None, **kwargs):

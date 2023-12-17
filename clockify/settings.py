@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "daphne",
     "django.contrib.staticfiles",
     'django.contrib.sites',
     "workspace.apps.WorkspaceConfig",
@@ -58,6 +59,18 @@ INSTALLED_APPS = [
     'corsheaders'
 ]
 
+# WSGI_APPLICATION = 'clockify.routing.applicatioon'
+ASGI_APPLICATION = 'clockify.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
+
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
@@ -70,7 +83,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "corsheaders.middleware.CorsMiddleware",
-
 ]
 
 ROOT_URLCONF = "clockify.urls"
@@ -202,7 +214,11 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 2
+CORS_ALLOW_ALL_ORIGINS = True
+
+SITE_ID = 1
+ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
+# SITE_ID = 2
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -237,7 +253,7 @@ SOCIALACCOUNT_PROVIDERS = {
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.freesmtpservers.com"
 EMAIL_PORT = 25
-SITE_ID = 2
+# SITE_ID = 2
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

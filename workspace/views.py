@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
-from django.http import Http404, HttpResponseForbidden
+from django.http import Http404, HttpResponseForbidden, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import TemplateView
@@ -51,14 +51,14 @@ from workspace.serializers import (
     UserSerializer, ProjectTaskSerializer, ListProjectsSerializer, UserTaskSerializer,
     AddUserTaskSerializer, ProjectTimeRecordSerializer, TaskTimeRecordSerializer, UpdateTimeRecordSerializer,
     FilterSerializer, RegisterSerializer, UserRestRegisterSerializer,
-    # CustomTokenObtainPairSerializer,
+    CustomTokenObtainPairSerializer,
 )
 from .enums import RoleEnum
-from .filters import ProjectFilter
+from .filters import ProjectFilter, TrackingFilter, TaskFilter
 from .forms import RegistrationForm
 from .models import Project, Task, TimeRecord, User, UserProject, UserTask
 from .permissions import isProjectAdmin, IsProjectMember, IsGuest, isProjectAdminOrMember, isAuthenticated
-# from .permissions import isTaskProjectAdminOrMember
+from .permissions import isTaskProjectAdminOrMember
 from .permissions import isProjectAdmin, IsProjectMember, IsGuest, isProjectAdminOrMember
 
 
@@ -233,18 +233,34 @@ class TrackingStart(APIView):
 
     # start new
     def post(self, request):
-        serializer = TimeRecordStartSerializer(data=request.POST)
+        serializer = TimeRecordStartSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        time_record = serializer.create(serializer.validated_data, user=request.user)
+        # record_data = {
+        #     "start_time": strftime("%H:%M"), # start_time=strftime()
+        #     "date": date.today(),
+        #     "user": request.user
+        # }
+        # # start_time = strftime("%H:%M")
+        # # date_now = date.today()
+        # self.find_and_kill_all_running(request.user)
+        #
+        # # QA: how to rewrite this and make request.data optional
+        # # if 'description' in request.data:
+        # #     time_record = serializer.save(start_time=start_time, date=date_now, user=request.user,
+        # #                                   description=request.data['description'])
+        # # else:
+        # #     time_record = serializer.save(start_time=start_time, date=date_now, user=request.user)
+        #
+        # if "description" in request.data:
+        #     record_data["description"] = request.data["description"]
+        #
+        # time_record = serializer.save(**record_data)
 
-        start_time = strftime("%H:%M")
-        date_now = date.today()
-        self.find_and_kill_all_running(request.user)
-        time_record = serializer.save(start_time=start_time, date=date_now, user=request.user)
+        # print(serializer.validated_data)
+        # time_record = serializer.save(**{'start_time': start_time, "date": date_now, "user":request.user})
         response_serializer = TimeRecordSerializer(time_record)
-        # TimeRecord.objects.create(**serializer.validated_data, start_time=start_time, date=date_now,
-        # user=request.user)
         return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -265,6 +281,15 @@ class StopAll(APIView):
 class TrackingStop(APIView):
     permission_classes = [IsAuthenticated]
 
+    # def update(self, request, *args, **kwargs):
+    #     partial = kwargs.pop('partial', False)
+    #     instance = self.get_object()
+    #     serializer = self.get_serializer(instance, data=request.data, partial=partial)
+    #     serializer.is_valid(raise_exception=True)
+    #     self.perform_update(serializer)
+    #     return Response(serializer.data)
+
+
     def post(self, request):
         user: User = request.user
         try:
@@ -281,8 +306,13 @@ class ListAllUsers(ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ListUserSerializer
 
-    def get_queryset(self, request):
-        return User.objects.get(id=request.user.id)
+    def get_queryset(self):
+        admin = get_object_or_404(User, email=self.request.user.email)
+        # from users who've been invited
+        invitees = ['user29@user.com', 'user27@user.com']
+        users = User.objects.filter(email__in=invitees)
+        print(users)
+        return users
 
 
 class UserViewSet(ModelViewSet):
@@ -322,7 +352,11 @@ class TimeRecordViewSet(ModelViewSet):
     permission_classes = [isProjectAdmin | IsProjectMember]
 
     def get_queryset(self):
-        return TimeRecord.objects.filter(user=self.request.user)
+        return TimeRecord.objects.filter(user=self.request.user).order_by("-updated")
+
+    def filter_queryset(self, queryset):
+        filtered = TrackingFilter(self.request.GET, queryset=queryset).qs
+        return filtered
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -340,6 +374,14 @@ class TimeRecordViewSet(ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class ListAllTasks(ListAPIView):
+    serializer_class = TaskSerializer
+    permission_classes = [isProjectAdmin | IsProjectMember]
+
+    def get_queryset(self):
+        return Task.objects.filter(user=self.request.user).order_by("-updated")
+
+
 class UpdateTimeRecordViewSet(ModelViewSet):
     serializer_class = UpdateTimeRecordSerializer
     permission_classes = [isProjectAdmin | IsProjectMember]
@@ -350,25 +392,29 @@ class UpdateTimeRecordViewSet(ModelViewSet):
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
-        updated_task = get_object_or_404(Task, pk=request.data['task'])
-        updated_task_project = Task.objects.filter(id=request.data['task']).get().project
+        # updated_task = get_object_or_404(Task, pk=request.data['task'])
+        # updated_task_project = Task.objects.filter(id=request.data['task']).get().project
 
         # check if user is part of project the task belongs to
-        is_project_user = UserProject.objects.filter(user=request.user, project=updated_task_project)
+        # is_project_user = UserProject.objects.filter(user=request.user, project=updated_task_project)
 
-        if is_project_user.exists():
-            # check if user is admin or assigned to the task
-            user_role = is_project_user.get().role.name
-            updated_task_id = updated_task.id
-            task_has_user = UserTask.objects.filter(user=request.user, task=updated_task_id)
-            if user_role == RoleEnum.ADMIN.value or task_has_user.exists():
-                serializer = self.get_serializer(instance, data=request.data, partial=partial)
-                serializer.is_valid(raise_exception=True)
-                self.perform_update(serializer)
-            else:
-                raise ValidationError(f"You are not assigned to this task")
-        else:
-            raise ValidationError(f"Task doesn't exist")
+        # if is_project_user.exists():
+        #     # check if user is admin or assigned to the task
+        #     user_role = is_project_user.get().role.name
+        #     updated_task_id = updated_task.id
+        #     task_has_user = UserTask.objects.filter(user=request.user, task=updated_task_id)
+        #     if user_role == RoleEnum.ADMIN.value or task_has_user.exists():
+        #         serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        #         serializer.is_valid(raise_exception=True)
+        #         self.perform_update(serializer)
+        #     else:
+        #         raise ValidationError(f"You are not assigned to this task")
+        # else:
+        #     raise ValidationError(f"Task doesn't exist")
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
         return Response(serializer.data)
 
 
@@ -420,14 +466,23 @@ class ProjectViewSet(UserView):
         return ProjectSerializer
 
     def get_queryset(self):
-        # return Project.objects.filter(project_users__user_id=self.request.user.id,
-        #                               project_users__role__isnull=False).order_by("-updated")
-        # user = self.get_user()
-        return Project.objects.filter(project_users__user_id=self.request.user.id, project_users__role__isnull=False)
+        return Project.objects.filter(project_users__user_id=self.request.user.id,
+                                      project_users__role__isnull=False).order_by("-updated")
         # .filter(Q(project_users__role__name="member") | Q(project_users__role__name="admin"))
 
+    def filter_queryset(self, queryset):
+        filtered = ProjectFilter(self.request.GET, queryset=queryset).qs
+        return filtered
+    
+    def create(self, request, *args, ** kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        project = serializer.save()
+        print(project)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-class TaskViewSet(ModelViewSet):
+
+class ProjectTaskViewSet(ModelViewSet):
     permission_classes = [isProjectAdminOrMember]
 
     def get_serializer_class(self):
@@ -439,10 +494,51 @@ class TaskViewSet(ModelViewSet):
         return {"project_id": self.kwargs["project_pk"]}
 
     def get_queryset(self):
-        return Task.objects.filter(project_id=self.kwargs["project_pk"]).select_related("project")
+        return Task.objects.filter(project_id=self.kwargs["project_pk"]).select_related("project").order_by("-updated")
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        task = serializer.save()
+        user = self.request.user
+        project_users = (
+            UserProject.objects
+            .filter(project=serializer.data['project'])
+            .values_list('user', flat=True)
+            .exclude(user=user)
+        )
+        users = User.objects.filter(id__in=project_users)
+        create_notifications(Notification, users=users, type=NotificationTypeEnum.TASK.value,
+                             severity=NotificationSeverityChoices.INFO.value, created_by=user.email,
+                             action=NotificationActionEnum.CREATED.value, target_id=task.id, target_name=task.name)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class TaskViewSet(ModelViewSet):
+    permission_classes = [isTaskProjectAdminOrMember]
+
+    def get_serializer_class(self):
+        if self.request.method in ["POST", "PATCH", "GET"]:
+            return ProjectTaskSerializer
+        return TaskSerializer
+
+
+    def get_queryset(self):
+        return Task.objects.filter(user=self.request.user).order_by("-updated")
+
+    def filter_queryset(self, queryset):
+        filtered = TaskFilter(self.request.GET, queryset=queryset).qs
+        return filtered
+
+    def retrieve(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, id=self.kwargs["pk"])
+        serializer = TaskSerializer(task)
+        return JsonResponse(data=serializer.data, status=status.HTTP_200_OK)
+
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        # request.user
         serializer.is_valid(raise_exception=True)
         task = serializer.save()
         request.user.tasks.add(task)
@@ -481,8 +577,13 @@ class FilterAPIView(APIView):
 
 class RenderPDFView(View):
 
+    def get(self, request, *args, **kwargs):
+        print(self)
+        return HttpResponse("Hello, World!")
+
     def filter_projects(self, request):
-        # projects = Project.objects.all()
+        ps = Project.objects.all()
+        print(self.request)
 
         projects = Project.objects.filter(
             project_users__user_id=self.request.user.id,
@@ -514,7 +615,6 @@ class RenderPDFView(View):
 # Opens up page as PDF
 class StandardPDFView(RenderPDFView):
     def get(self, request, *args, **kwargs):
-        # projects = self.filter_projects(request)
         projects = self.filter_projects(request)
         data = {
             "projects": [project.to_dict() for project in projects]
@@ -560,3 +660,8 @@ class DownloadPDFView(RenderPDFView):
 def index(request):
     context = {}
     return render(request, 'index.html', context)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+    token_obtain_pair = TokenObtainPairView.as_view()
