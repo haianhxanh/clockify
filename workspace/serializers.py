@@ -3,10 +3,15 @@ from datetime import date
 from time import strftime
 
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.password_validation import MinimumLengthValidator, NumericPasswordValidator
+from django.core.validators import EmailValidator, MinLengthValidator
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 from rest_framework import serializers
 from drf_writable_nested.serializers import WritableNestedModelSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+# from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework.exceptions import ValidationError
+# from rest_framework_simplejwt.tokens import RefreshToken
 
 from workspace.enums import ProjectStatusChoices, ProjectStatusEnum
 from workspace.models import Currency, Project, Task, User, TimeRecord, UserProject, UserTask, Role
@@ -23,6 +28,47 @@ class UserCreateSerializer(BaseUserCreateSerializer):
             "first_name",
             "last_name",
         )
+
+
+# todo test serializer
+class RegisterSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=256, min_length=4)
+    email = serializers.EmailField()
+    password_1 = serializers.CharField(max_length=256)
+    password_2 = serializers.CharField(max_length=256)
+
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise ValidationError("User with this email already exists")
+
+        return value
+
+    def validate_password_1(self, value):
+        validators = [MinimumLengthValidator, NumericPasswordValidator]
+
+        for validator in validators:
+            v = validator()
+            v.validate(value)
+        return value
+
+    def validate_password_2(self, value):
+        return self.validate_password_1(value)
+
+    def validate_username(self, value):
+        if User.objects.filter(username=value).exists():
+            raise ValidationError("User with this username already exists")
+
+        return value
+
+    def validate(self, attrs):
+        validated_data = super().validate(attrs)
+
+        if validated_data["password_1"] != validated_data["password_2"]:
+            raise ValidationError("Passwords doesn't match")
+        else:
+            validated_data["password"] = validated_data["password_1"]
+
+        return validated_data
 
 
 class CurrencySerializer(serializers.ModelSerializer):
@@ -45,6 +91,32 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "username", "first_name", "last_name", "email"]
+
+
+class UserRestRegisterSerializer(serializers.ModelSerializer):
+    # token = serializers.SerializerMethodField()
+
+    def validate_password(self, value: str) -> str:
+        return make_password(value)
+
+    class Meta:
+        model = User
+        fields = ["id", "username", "first_name", "last_name", "email"]
+
+    # def get_token(self, user):
+    #     refresh = RefreshToken.for_user(user)
+    #
+    #     return {
+    #         'refresh': str(refresh),
+    #         'access': str(refresh.access_token),
+    #     }
+
+
+class UserRestLoginSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField()
+    username = serializers.CharField(min_length=4, max_length=256, read_only=True)
+    password = serializers.CharField(max_length=256)
+    token = serializers.CharField(max_length=256, read_only=True)
 
 
 class TaskSimpleSerializer(serializers.ModelSerializer):
@@ -300,7 +372,7 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
         model = Project
         fields = ["id", "name", "description", "status", "due_date", "hourly_rate", "total_allocated_hours",
                   "tracked_hours",
-                  "currency", "tasks", "project_users", "hex_color"]
+                  "currency", "tasks", "project_users"]
 
     def get_currency(self, Project):
         return Project.currency.shortcut_name

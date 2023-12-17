@@ -2,6 +2,7 @@ from datetime import date
 from time import strftime
 
 from django.contrib import messages
+from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
 from django.http import Http404, HttpResponseForbidden, JsonResponse
@@ -10,10 +11,11 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 from rest_framework import status
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, AuthenticationFailed
 from rest_framework.generics import ListAPIView, get_object_or_404
-from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
+from rest_framework.permissions import IsAuthenticated, SAFE_METHODS, AllowAny
 from rest_framework.response import Response
+from rest_framework.authentication import TokenAuthentication
 # from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -23,11 +25,18 @@ from io import BytesIO
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.views import View
+from rest_framework_simplejwt.authentication import JWTAuthentication, JWTTokenUserAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 from xhtml2pdf import pisa
+import jwt
+from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
+from rest_framework_simplejwt.serializers import TokenRefreshSerializer
+from rest_framework_simplejwt.exceptions import InvalidToken
 
 from notifications.enums import NotificationSeverityChoices, NotificationTypeEnum, NotificationActionEnum
 from notifications.models import create_notifications, TaskNotification, Notification
+from clockify import settings
 from workspace.serializers import (
     AddUserProjectSerializer,
     CreateProjectSerializers,
@@ -41,14 +50,16 @@ from workspace.serializers import (
     UserProjectSerializer,
     UserSerializer, ProjectTaskSerializer, ListProjectsSerializer, UserTaskSerializer,
     AddUserTaskSerializer, ProjectTimeRecordSerializer, TaskTimeRecordSerializer, UpdateTimeRecordSerializer,
-    FilterSerializer, CustomTokenObtainPairSerializer,
+    FilterSerializer, RegisterSerializer, UserRestRegisterSerializer,
+    CustomTokenObtainPairSerializer,
 )
 from .enums import RoleEnum
 from .filters import ProjectFilter, TrackingFilter, TaskFilter
 from .forms import RegistrationForm
 from .models import Project, Task, TimeRecord, User, UserProject, UserTask
-from .permissions import isProjectAdmin, IsProjectMember, IsGuest, isProjectAdminOrMember, isAuthenticated, \
-    isTaskProjectAdminOrMember
+from .permissions import isProjectAdmin, IsProjectMember, IsGuest, isProjectAdminOrMember, isAuthenticated
+from .permissions import isTaskProjectAdminOrMember
+from .permissions import isProjectAdmin, IsProjectMember, IsGuest, isProjectAdminOrMember
 
 
 # from workspace.permissions import isProjectAdmin
@@ -62,6 +73,18 @@ class SSORedirectView(View):
     def get(self, request, **kwargs):
         # ...
         return redirect("frontend url", data={"token": "token"})
+    
+class UserView(ModelViewSet):
+    def get_user(self):
+        user_token = self.request.COOKIES['access_token']
+        if user_token:
+            payload = jwt.decode(user_token, settings.SECRET_KEY, algorithms=['HS256'])
+            user_id = payload['user_id']
+            user = User.objects.get(id=user_id)
+            return user
+        else:
+            user = self.request.user
+            return user
 
 
 class RegistrationView(CreateView):
@@ -104,6 +127,99 @@ class Register(APIView):
         username = form.cleaned_data.get("username")
         messages.success(request, f"Hi {username}, your account was successfully created")
         return redirect("home")
+
+
+class RestRegister(APIView):
+
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        user = User()
+        user.set_password(serializer.validated_data["password"])
+        user.email = serializer.validated_data.get("email")
+        user.username = serializer.validated_data["username"]
+        user.save()
+
+        refresh = RefreshToken.for_user(user)
+        token = {
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        }
+
+        data = UserRestRegisterSerializer(instance=user).data
+        data['access_token'] = token['access']
+        response = Response(data, status=status.HTTP_201_CREATED)
+        response.set_cookie(key='access_token', value=token['access'],
+                            expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+                            httponly=True)
+        # return Response(UserRestRegisterSerializer(instance=user).data, status=status.HTTP_201_CREATED)
+        return response
+
+
+class RestLogin(APIView):
+
+    def post(self, request):
+        response = Response()
+        username = request.data.get('username', None)
+        password = request.data.get('password', None)
+        user = authenticate(username=username, password=password)
+
+        if not user:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        if user.is_active:
+            refresh = RefreshToken.for_user(user)
+            token = {
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+            }
+            response.set_cookie(key='access_token', value=token['access'],
+                                expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+                                httponly=True)
+            response.data = {"access_token": token['access']}
+            response.headers['Authorization'] = f"JWT {token['access']}"
+            print(response.headers)
+            return response
+
+
+class Logout(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        user_token = request.COOKIES.get('access_token', None)
+        if user_token:
+            response = Response()
+            response.delete_cookie('access_token')
+            response.data = {
+                'message': 'Logged out successfully.'
+            }
+            return response
+        response = Response()
+        response.data = {
+            'message': 'User is already logged out.'
+        }
+        return response
+
+
+class UserAPIView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        user_token = request.COOKIES.get('access_token')
+
+        if not user_token:
+            raise AuthenticationFailed('Unauthenticated user.')
+
+        payload = jwt.decode(user_token, settings.SECRET_KEY, algorithms=['HS256'])
+        # print(payload)
+        user = User.objects.filter(id=payload['user_id']).first()
+        # print(user)
+        return Response(UserRestRegisterSerializer(user).data)
+
+
 
 
 class TrackingStart(APIView):
@@ -331,9 +447,9 @@ class ProjectTimeRecordViewSet(ModelViewSet):
         return TimeRecord.objects.filter(task__project_id=self.kwargs["project_pk"])
 
 
-class ProjectViewSet(ModelViewSet):
+class ProjectViewSet(UserView):
     permission_classes = [isProjectAdmin | IsProjectMember]
-
+    # authentication_classes = [TokenAuthentication]
     def get_serializer_class(self):
         if self.action == "list":
             return ProjectSerializer
