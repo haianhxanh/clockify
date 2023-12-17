@@ -79,6 +79,7 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("auth/", include("djoser.urls")),
     path("auth/", include("djoser.urls.jwt")),
+    path("auth/sso/callback", views.SSORedirectView.as_view(), name="sso-auth"),
     # path("user/socials/register", views.SocialRegister.as_view(), name="social-register"),
     path("register/", views.Register.as_view(), name="register"),
     path("projects/", project_list, name="list-projects"),

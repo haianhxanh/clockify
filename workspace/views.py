@@ -34,6 +34,8 @@ from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from rest_framework_simplejwt.exceptions import InvalidToken
 
+from notifications.enums import NotificationSeverityChoices, NotificationTypeEnum, NotificationActionEnum
+from notifications.models import create_notifications, TaskNotification, Notification
 from clockify import settings
 from workspace.serializers import (
     AddUserProjectSerializer,
@@ -49,11 +51,14 @@ from workspace.serializers import (
     UserSerializer, ProjectTaskSerializer, ListProjectsSerializer, UserTaskSerializer,
     AddUserTaskSerializer, ProjectTimeRecordSerializer, TaskTimeRecordSerializer, UpdateTimeRecordSerializer,
     FilterSerializer, RegisterSerializer, UserRestRegisterSerializer,
+    # CustomTokenObtainPairSerializer,
 )
 from .enums import RoleEnum
 from .filters import ProjectFilter
 from .forms import RegistrationForm
 from .models import Project, Task, TimeRecord, User, UserProject, UserTask
+from .permissions import isProjectAdmin, IsProjectMember, IsGuest, isProjectAdminOrMember, isAuthenticated
+# from .permissions import isTaskProjectAdminOrMember
 from .permissions import isProjectAdmin, IsProjectMember, IsGuest, isProjectAdminOrMember
 
 
@@ -64,6 +69,11 @@ def home(request):
     return render(request, "workspace/home.html")
 
 
+class SSORedirectView(View):
+    def get(self, request, **kwargs):
+        # ...
+        return redirect("frontend url", data={"token": "token"})
+    
 class UserView(ModelViewSet):
     def get_user(self):
         user_token = self.request.COOKIES['access_token']
@@ -410,6 +420,8 @@ class ProjectViewSet(UserView):
         return ProjectSerializer
 
     def get_queryset(self):
+        # return Project.objects.filter(project_users__user_id=self.request.user.id,
+        #                               project_users__role__isnull=False).order_by("-updated")
         # user = self.get_user()
         return Project.objects.filter(project_users__user_id=self.request.user.id, project_users__role__isnull=False)
         # .filter(Q(project_users__role__name="member") | Q(project_users__role__name="admin"))

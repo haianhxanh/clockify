@@ -6,8 +6,9 @@ from django.core.validators import EmailValidator, MinLengthValidator
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 from rest_framework import serializers
 from drf_writable_nested.serializers import WritableNestedModelSerializer
+# from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.exceptions import ValidationError
-from rest_framework_simplejwt.tokens import RefreshToken
+# from rest_framework_simplejwt.tokens import RefreshToken
 
 from workspace.enums import ProjectStatusChoices, ProjectStatusEnum
 from workspace.models import Currency, Project, Task, User, TimeRecord, UserProject, UserTask, Role

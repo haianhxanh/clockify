@@ -1844,6 +1844,30 @@
         "documentation": {}
     },
     {
+        "label": "create_notifications",
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "isExtraImport": true,
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "TaskNotification",
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "isExtraImport": true,
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "Notification",
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "isExtraImport": true,
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -1942,6 +1966,30 @@
     },
     {
         "label": "NotificationActionChoices",
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "isExtraImport": true,
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationSeverityChoices",
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "isExtraImport": true,
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationTypeEnum",
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "isExtraImport": true,
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationActionEnum",
         "importPath": "notifications.enums",
         "description": "notifications.enums",
         "isExtraImport": true,
@@ -2531,22 +2579,6 @@
         "documentation": {}
     },
     {
-        "label": "RefreshToken",
-        "importPath": "rest_framework_simplejwt.tokens",
-        "description": "rest_framework_simplejwt.tokens",
-        "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.tokens",
-        "documentation": {}
-    },
-    {
-        "label": "RefreshToken",
-        "importPath": "rest_framework_simplejwt.tokens",
-        "description": "rest_framework_simplejwt.tokens",
-        "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.tokens",
-        "documentation": {}
-    },
-    {
         "label": "TokenObtainPairView",
         "importPath": "rest_framework_simplejwt.views",
         "description": "rest_framework_simplejwt.views",
@@ -2672,6 +2704,14 @@
         "description": "rest_framework_simplejwt.authentication",
         "isExtraImport": true,
         "detail": "rest_framework_simplejwt.authentication",
+        "documentation": {}
+    },
+    {
+        "label": "RefreshToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
         "documentation": {}
     },
     {
@@ -2877,6 +2917,14 @@
     },
     {
         "label": "UserRestRegisterSerializer",
+        "importPath": "workspace.serializers",
+        "description": "workspace.serializers",
+        "isExtraImport": true,
+        "detail": "workspace.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "# CustomTokenObtainPairSerializer",
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
         "isExtraImport": true,
@@ -3131,7 +3179,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "AUTH_USER_MODEL = \"workspace.User\"\nLOGIN_REDIRECT_URL = \"home\"\nLOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),",
+        "peekOfCode": "AUTH_USER_MODEL = \"workspace.User\"\nLOGIN_REDIRECT_URL = \"home\"\nLOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('Bearer',),",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -3140,7 +3188,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "LOGIN_REDIRECT_URL = \"home\"\nLOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=90),",
+        "peekOfCode": "LOGIN_REDIRECT_URL = \"home\"\nLOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('Bearer',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=1),",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -3149,7 +3197,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "LOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=90),\n    \"REFRESH_TOKEN_LIFETIME\": timedelta(days=100),",
+        "peekOfCode": "LOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('Bearer',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=1),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=90),",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -3158,7 +3206,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=90),\n    \"REFRESH_TOKEN_LIFETIME\": timedelta(days=100),\n    \"SIGNING_KEY\": config('SECRET_KEY'),",
+        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('Bearer',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=1),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=90),\n    'ROTATE_REFRESH_TOKENS': True,",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -3167,7 +3215,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "SIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=90),\n    \"REFRESH_TOKEN_LIFETIME\": timedelta(days=100),\n    \"SIGNING_KEY\": config('SECRET_KEY'),\n}\nAUTHENTICATION_BACKENDS = (\n    'django.contrib.auth.backends.ModelBackend',\n    'allauth.account.auth_backends.AuthenticationBackend',\n)",
+        "peekOfCode": "SIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('Bearer',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=1),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=90),\n    'ROTATE_REFRESH_TOKENS': True,\n    'BLACKLIST_AFTER_ROTATION': True,\n    'UPDATE_LAST_LOGIN': False,\n    'ALGORITHM': 'HS256',\n    'VERIFYING_KEY': None,\n    'AUDIENCE': None,",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -3177,6 +3225,51 @@
         "importPath": "clockify.settings",
         "description": "clockify.settings",
         "peekOfCode": "AUTHENTICATION_BACKENDS = (\n    'django.contrib.auth.backends.ModelBackend',\n    'allauth.account.auth_backends.AuthenticationBackend',\n)\nSITE_ID = 2\nSOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SITE_ID",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "SITE_ID = 2\nSOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',\n        ],\n        'AUTH_PARAMS': {\n            'access_type': 'online',\n        },",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SOCIALACCOUNT_PROVIDERS",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "SOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',\n        ],\n        'AUTH_PARAMS': {\n            'access_type': 'online',\n        },\n        'OAUTH_PKCE_ENABLED': True,",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_BACKEND",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "EMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_HOST = \"smtp.freesmtpservers.com\"\nEMAIL_PORT = 25\nSITE_ID = 2\nSOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',\n        ],",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "EMAIL_HOST = \"smtp.freesmtpservers.com\"\nEMAIL_PORT = 25\nSITE_ID = 2\nSOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',\n        ],\n        'AUTH_PARAMS': {",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_PORT",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "EMAIL_PORT = 25\nSITE_ID = 2\nSOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',\n        ],\n        'AUTH_PARAMS': {\n            'access_type': 'online',",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -5084,8 +5177,17 @@
         "kind": 5,
         "importPath": "workspace.urls",
         "description": "workspace.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.home, name=\"home\"),\n    path(\"auth/\", include(\"djoser.urls\")),\n    path(\"auth/\", include(\"djoser.urls.jwt\")),\n    # path(\"user/socials/register\", views.SocialRegister.as_view(), name=\"social-register\"),\n    path(\"register/\", views.Register.as_view(), name=\"register\"),\n    path(\"projects/\", project_list, name=\"list-projects\"),\n    path(\"projects/<int:pk>/\", project_details, name=\"project-details\"),\n    path(\"projects/<int:project_pk>/users/\", project_users_list, name=\"list-project-users\"),\n    path(\"projects/<int:project_pk>/users/<pk>/\", project_user_details, name=\"project-user-detail\"),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.home, name=\"home\"),\n    path(\"auth/\", include(\"djoser.urls\")),\n    path(\"auth/\", include(\"djoser.urls.jwt\")),\n    path(\"auth/sso/callback\", views.SSORedirectView.as_view(), name=\"sso-auth\"),\n    # path(\"user/socials/register\", views.SocialRegister.as_view(), name=\"social-register\"),\n    path(\"register/\", views.Register.as_view(), name=\"register\"),\n    path(\"projects/\", project_list, name=\"list-projects\"),\n    path(\"projects/<int:pk>/\", project_details, name=\"project-details\"),\n    path(\"projects/<int:project_pk>/users/\", project_users_list, name=\"list-project-users\"),",
         "detail": "workspace.urls",
+        "documentation": {}
+    },
+    {
+        "label": "SSORedirectView",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class SSORedirectView(View):\n    def get(self, request, **kwargs):\n        # ...\n        return redirect(\"frontend url\", data={\"token\": \"token\"})\nclass UserView(ModelViewSet):\n    def get_user(self):\n        user_token = self.request.COOKIES['access_token']\n        if user_token:\n            payload = jwt.decode(user_token, settings.SECRET_KEY, algorithms=['HS256'])\n            user_id = payload['user_id']",
+        "detail": "workspace.views",
         "documentation": {}
     },
     {
@@ -5345,7 +5447,7 @@
         "kind": 2,
         "importPath": "workspace.views",
         "description": "workspace.views",
-        "peekOfCode": "def home(request):\n    return render(request, \"workspace/home.html\")\nclass UserView(ModelViewSet):\n    def get_user(self):\n        user_token = self.request.COOKIES['access_token']\n        if user_token:\n            payload = jwt.decode(user_token, settings.SECRET_KEY, algorithms=['HS256'])\n            user_id = payload['user_id']\n            user = User.objects.get(id=user_id)\n            return user",
+        "peekOfCode": "def home(request):\n    return render(request, \"workspace/home.html\")\nclass SSORedirectView(View):\n    def get(self, request, **kwargs):\n        # ...\n        return redirect(\"frontend url\", data={\"token\": \"token\"})\nclass UserView(ModelViewSet):\n    def get_user(self):\n        user_token = self.request.COOKIES['access_token']\n        if user_token:",
         "detail": "workspace.views",
         "documentation": {}
     },
