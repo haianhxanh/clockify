@@ -8,6 +8,22 @@
         "documentation": {}
     },
     {
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
         "label": "permissions",
         "importPath": "rest_framework",
         "description": "rest_framework",
@@ -56,6 +72,54 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "workspace.models",
+        "description": "workspace.models",
+        "isExtraImport": true,
+        "detail": "workspace.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeRecord",
+        "importPath": "workspace.models",
+        "description": "workspace.models",
+        "isExtraImport": true,
+        "detail": "workspace.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "workspace.models",
+        "description": "workspace.models",
+        "isExtraImport": true,
+        "detail": "workspace.models",
+        "documentation": {}
+    },
+    {
+        "label": "Project",
+        "importPath": "workspace.models",
+        "description": "workspace.models",
+        "isExtraImport": true,
+        "detail": "workspace.models",
+        "documentation": {}
+    },
+    {
+        "label": "Task",
+        "importPath": "workspace.models",
+        "description": "workspace.models",
+        "isExtraImport": true,
+        "detail": "workspace.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeRecord",
+        "importPath": "workspace.models",
+        "description": "workspace.models",
+        "isExtraImport": true,
+        "detail": "workspace.models",
+        "documentation": {}
+    },
+    {
         "label": "TimeRecord",
         "importPath": "workspace.models",
         "description": "workspace.models",
@@ -81,6 +145,22 @@
     },
     {
         "label": "User",
+        "importPath": "workspace.models",
+        "description": "workspace.models",
+        "isExtraImport": true,
+        "detail": "workspace.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "workspace.models",
+        "description": "workspace.models",
+        "isExtraImport": true,
+        "detail": "workspace.models",
+        "documentation": {}
+    },
+    {
+        "label": "Project",
         "importPath": "workspace.models",
         "description": "workspace.models",
         "isExtraImport": true,
@@ -232,7 +312,47 @@
         "documentation": {}
     },
     {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "re_path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -280,6 +400,14 @@
         "documentation": {}
     },
     {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
         "label": "api_view",
         "importPath": "rest_framework.decorators",
         "description": "rest_framework.decorators",
@@ -305,11 +433,51 @@
         "documentation": {}
     },
     {
+        "label": "ProtocolTypeRouter",
+        "importPath": "channels.routing",
+        "description": "channels.routing",
+        "isExtraImport": true,
+        "detail": "channels.routing",
+        "documentation": {}
+    },
+    {
+        "label": "URLRouter",
+        "importPath": "channels.routing",
+        "description": "channels.routing",
+        "isExtraImport": true,
+        "detail": "channels.routing",
+        "documentation": {}
+    },
+    {
+        "label": "AllowedHostsOriginValidator",
+        "importPath": "channels.security.websocket",
+        "description": "channels.security.websocket",
+        "isExtraImport": true,
+        "detail": "channels.security.websocket",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationConsumer",
+        "importPath": "notifications.consumers",
+        "description": "notifications.consumers",
+        "isExtraImport": true,
+        "detail": "notifications.consumers",
+        "documentation": {}
+    },
+    {
         "label": "datetime",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "datetime",
         "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
         "detail": "datetime",
         "documentation": {}
     },
@@ -362,6 +530,158 @@
         "documentation": {}
     },
     {
+        "label": "config",
+        "importPath": "decouple",
+        "description": "decouple",
+        "isExtraImport": true,
+        "detail": "decouple",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -394,77 +714,372 @@
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "django.contrib.auth.models",
+        "label": "json",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "detail": "django.contrib.auth.models",
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
-        "label": "Group",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
+        "label": "stringify",
+        "importPath": "flatted",
+        "description": "flatted",
         "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
+        "detail": "flatted",
         "documentation": {}
     },
     {
-        "label": "AbstractUser",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
+        "label": "parse",
+        "importPath": "flatted",
+        "description": "flatted",
         "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
+        "detail": "flatted",
         "documentation": {}
     },
     {
-        "label": "django.contrib.auth.validators",
-        "kind": 6,
+        "label": "EmailMessage",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
         "isExtraImport": true,
-        "importPath": "django.contrib.auth.validators",
-        "description": "django.contrib.auth.validators",
-        "detail": "django.contrib.auth.validators",
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
+        "label": "EmailMultiAlternatives",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
+        "label": "TemplateDoesNotExist",
+        "importPath": "django.template",
+        "description": "django.template",
+        "isExtraImport": true,
+        "detail": "django.template",
+        "documentation": {}
+    },
+    {
+        "label": "render_to_string",
+        "importPath": "django.template.loader",
+        "description": "django.template.loader",
+        "isExtraImport": true,
+        "detail": "django.template.loader",
+        "documentation": {}
+    },
+    {
+        "label": "get_template",
+        "importPath": "django.template.loader",
+        "description": "django.template.loader",
+        "isExtraImport": true,
+        "detail": "django.template.loader",
+        "documentation": {}
+    },
+    {
+        "label": "force_str",
+        "importPath": "django.utils.encoding",
+        "description": "django.utils.encoding",
+        "isExtraImport": true,
+        "detail": "django.utils.encoding",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "apps",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -772,6 +1387,414 @@
         "documentation": {}
     },
     {
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "Q",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "IntegerChoices",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "Q",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "QuerySet",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "Q",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_site",
+        "importPath": "django.contrib.sites.shortcuts",
+        "description": "django.contrib.sites.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.contrib.sites.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_random_string",
+        "importPath": "django.utils.crypto",
+        "description": "django.utils.crypto",
+        "isExtraImport": true,
+        "detail": "django.utils.crypto",
+        "documentation": {}
+    },
+    {
+        "label": "get_random_string",
+        "importPath": "django.utils.crypto",
+        "description": "django.utils.crypto",
+        "isExtraImport": true,
+        "detail": "django.utils.crypto",
+        "documentation": {}
+    },
+    {
+        "label": "Signal",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
+        "label": "receiver",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
+        "label": "ImproperlyConfigured",
+        "importPath": "django.core.exceptions",
+        "description": "django.core.exceptions",
+        "isExtraImport": true,
+        "detail": "django.core.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ValidationError",
+        "importPath": "django.core.exceptions",
+        "description": "django.core.exceptions",
+        "isExtraImport": true,
+        "detail": "django.core.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ValidationError",
+        "importPath": "django.core.exceptions",
+        "description": "django.core.exceptions",
+        "isExtraImport": true,
+        "detail": "django.core.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "PermissionDenied",
+        "importPath": "django.core.exceptions",
+        "description": "django.core.exceptions",
+        "isExtraImport": true,
+        "detail": "django.core.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "PermissionDenied",
+        "importPath": "django.core.exceptions",
+        "description": "django.core.exceptions",
+        "isExtraImport": true,
+        "detail": "django.core.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "validate_email",
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "isExtraImport": true,
+        "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
+        "label": "BaseValidator",
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "isExtraImport": true,
+        "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
+        "label": "EmailValidator",
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "isExtraImport": true,
+        "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
+        "label": "MinLengthValidator",
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "isExtraImport": true,
+        "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
+        "label": "Http404",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "Http404",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponseForbidden",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "Http404",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponseForbidden",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "method_decorator",
+        "importPath": "django.utils.decorators",
+        "description": "django.utils.decorators",
+        "isExtraImport": true,
+        "detail": "django.utils.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "FormView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "View",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "TemplateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "SingleObjectMixin",
+        "importPath": "django.views.generic.detail",
+        "description": "django.views.generic.detail",
+        "isExtraImport": true,
+        "detail": "django.views.generic.detail",
+        "documentation": {}
+    },
+    {
         "label": "django.db.models.deletion",
         "kind": 6,
         "isExtraImport": true,
@@ -781,12 +1804,271 @@
         "documentation": {}
     },
     {
+        "label": "Notification",
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "isExtraImport": true,
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "TaskNotification",
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "isExtraImport": true,
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "Notification",
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "isExtraImport": true,
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "TaskNotification",
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "isExtraImport": true,
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "Notification",
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "isExtraImport": true,
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncWebsocketConsumer",
+        "importPath": "channels.generic.websocket",
+        "description": "channels.generic.websocket",
+        "isExtraImport": true,
+        "detail": "channels.generic.websocket",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncConsumer",
+        "importPath": "channels.consumer",
+        "description": "channels.consumer",
+        "isExtraImport": true,
+        "detail": "channels.consumer",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "Type",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "async_to_sync",
+        "importPath": "asgiref.sync",
+        "description": "asgiref.sync",
+        "isExtraImport": true,
+        "detail": "asgiref.sync",
+        "documentation": {}
+    },
+    {
+        "label": "get_channel_layer",
+        "importPath": "channels.layers",
+        "description": "channels.layers",
+        "isExtraImport": true,
+        "detail": "channels.layers",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationTypeChoices",
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "isExtraImport": true,
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationSeverityChoices",
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "isExtraImport": true,
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationActionChoices",
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "isExtraImport": true,
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "ModelViewSet",
+        "importPath": "rest_framework.viewsets",
+        "description": "rest_framework.viewsets",
+        "isExtraImport": true,
+        "detail": "rest_framework.viewsets",
+        "documentation": {}
+    },
+    {
+        "label": "ModelViewSet",
+        "importPath": "rest_framework.viewsets",
+        "description": "rest_framework.viewsets",
+        "isExtraImport": true,
+        "detail": "rest_framework.viewsets",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationSerializer",
+        "importPath": "notifications.serializers",
+        "description": "notifications.serializers",
+        "isExtraImport": true,
+        "detail": "notifications.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationsBulkUpdateSerializer",
+        "importPath": "notifications.serializers",
+        "description": "notifications.serializers",
+        "isExtraImport": true,
+        "detail": "notifications.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "MarkAllNotificationRead",
+        "importPath": "notifications.serializers",
+        "description": "notifications.serializers",
+        "isExtraImport": true,
+        "detail": "notifications.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.models",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "AbstractUser",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.validators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.validators",
+        "description": "django.contrib.auth.validators",
+        "detail": "django.contrib.auth.validators",
+        "documentation": {}
+    },
+    {
         "label": "django.utils.timezone",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "django.utils.timezone",
         "description": "django.utils.timezone",
         "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "unittest",
+        "description": "unittest",
+        "isExtraImport": true,
+        "detail": "unittest",
         "documentation": {}
     },
     {
@@ -831,22 +2113,6 @@
         "documentation": {}
     },
     {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
         "label": "patch",
         "importPath": "unittest.mock",
         "description": "unittest.mock",
@@ -876,14 +2142,6 @@
         "description": "unittest.mock",
         "isExtraImport": true,
         "detail": "unittest.mock",
-        "documentation": {}
-    },
-    {
-        "label": "pprint",
-        "importPath": "pprint",
-        "description": "pprint",
-        "isExtraImport": true,
-        "detail": "pprint",
         "documentation": {}
     },
     {
@@ -1031,30 +2289,6 @@
         "documentation": {}
     },
     {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
         "label": "TimeRecordQuerySet",
         "importPath": "workspace.querysets",
         "description": "workspace.querysets",
@@ -1079,91 +2313,76 @@
         "documentation": {}
     },
     {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
+        "label": "DefaultAccountAdapter",
+        "importPath": "allauth.account.adapter",
+        "description": "allauth.account.adapter",
         "isExtraImport": true,
-        "detail": "django.apps",
+        "detail": "allauth.account.adapter",
         "documentation": {}
     },
     {
-        "label": "Enum",
-        "importPath": "enum",
-        "description": "enum",
+        "label": "DefaultSocialAccountAdapter",
+        "importPath": "allauth.socialaccount.adapter",
+        "description": "allauth.socialaccount.adapter",
         "isExtraImport": true,
-        "detail": "enum",
+        "detail": "allauth.socialaccount.adapter",
         "documentation": {}
     },
     {
-        "label": "forms",
-        "importPath": "django",
-        "description": "django",
+        "label": "ImmediateHttpResponse",
+        "importPath": "allauth.exceptions",
+        "description": "allauth.exceptions",
         "isExtraImport": true,
-        "detail": "django",
+        "detail": "allauth.exceptions",
         "documentation": {}
     },
     {
-        "label": "ReadOnlyPasswordHashField",
-        "importPath": "django.contrib.auth.forms",
-        "description": "django.contrib.auth.forms",
+        "label": "pre_social_login",
+        "importPath": "allauth.socialaccount.signals",
+        "description": "allauth.socialaccount.signals",
         "isExtraImport": true,
-        "detail": "django.contrib.auth.forms",
+        "detail": "allauth.socialaccount.signals",
         "documentation": {}
     },
     {
-        "label": "UserCreationForm",
-        "importPath": "django.contrib.auth.forms",
-        "description": "django.contrib.auth.forms",
+        "label": "perform_login",
+        "importPath": "allauth.account.utils",
+        "description": "allauth.account.utils",
         "isExtraImport": true,
-        "detail": "django.contrib.auth.forms",
+        "detail": "allauth.account.utils",
         "documentation": {}
     },
     {
-        "label": "get_objects",
-        "importPath": "gc",
-        "description": "gc",
+        "label": "get_user_model",
+        "importPath": "allauth.utils",
+        "description": "allauth.utils",
         "isExtraImport": true,
-        "detail": "gc",
+        "detail": "allauth.utils",
         "documentation": {}
     },
     {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
+        "label": "django_filters",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "typing",
+        "importPath": "django_filters",
+        "description": "django_filters",
+        "detail": "django_filters",
         "documentation": {}
     },
     {
-        "label": "get_object_or_404",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
+        "label": "OrderingFilter",
+        "importPath": "django_filters",
+        "description": "django_filters",
         "isExtraImport": true,
-        "detail": "django.shortcuts",
+        "detail": "django_filters",
         "documentation": {}
     },
     {
-        "label": "get_object_or_404",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
+        "label": "ProjectStatusChoices",
+        "importPath": "workspace.enums",
+        "description": "workspace.enums",
         "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "redirect",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
+        "detail": "workspace.enums",
         "documentation": {}
     },
     {
@@ -1183,59 +2402,27 @@
         "documentation": {}
     },
     {
-        "label": "Q",
-        "importPath": "django.db.models",
-        "description": "django.db.models",
+        "label": "ProjectStatusChoices",
+        "importPath": "workspace.enums",
+        "description": "workspace.enums",
         "isExtraImport": true,
-        "detail": "django.db.models",
+        "detail": "workspace.enums",
         "documentation": {}
     },
     {
-        "label": "QuerySet",
-        "importPath": "django.db.models",
-        "description": "django.db.models",
+        "label": "ProjectStatusEnum",
+        "importPath": "workspace.enums",
+        "description": "workspace.enums",
         "isExtraImport": true,
-        "detail": "django.db.models",
+        "detail": "workspace.enums",
         "documentation": {}
     },
     {
-        "label": "Q",
-        "importPath": "django.db.models",
-        "description": "django.db.models",
+        "label": "get_objects",
+        "importPath": "gc",
+        "description": "gc",
         "isExtraImport": true,
-        "detail": "django.db.models",
-        "documentation": {}
-    },
-    {
-        "label": "Http404",
-        "importPath": "django.http",
-        "description": "django.http",
-        "isExtraImport": true,
-        "detail": "django.http",
-        "documentation": {}
-    },
-    {
-        "label": "HttpResponseForbidden",
-        "importPath": "django.http",
-        "description": "django.http",
-        "isExtraImport": true,
-        "detail": "django.http",
-        "documentation": {}
-    },
-    {
-        "label": "Http404",
-        "importPath": "django.http",
-        "description": "django.http",
-        "isExtraImport": true,
-        "detail": "django.http",
-        "documentation": {}
-    },
-    {
-        "label": "HttpResponseForbidden",
-        "importPath": "django.http",
-        "description": "django.http",
-        "isExtraImport": true,
-        "detail": "django.http",
+        "detail": "gc",
         "documentation": {}
     },
     {
@@ -1263,19 +2450,20 @@
         "documentation": {}
     },
     {
-        "label": "PermissionDenied",
-        "importPath": "django.core.exceptions",
-        "description": "django.core.exceptions",
+        "label": "AllowAny",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
         "isExtraImport": true,
-        "detail": "django.core.exceptions",
+        "detail": "rest_framework.permissions",
         "documentation": {}
     },
     {
-        "label": "PermissionDenied",
-        "importPath": "django.core.exceptions",
-        "description": "django.core.exceptions",
+        "label": "itertools",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "django.core.exceptions",
+        "importPath": "itertools",
+        "description": "itertools",
+        "detail": "itertools",
         "documentation": {}
     },
     {
@@ -1284,6 +2472,22 @@
         "description": "django.contrib.auth.hashers",
         "isExtraImport": true,
         "detail": "django.contrib.auth.hashers",
+        "documentation": {}
+    },
+    {
+        "label": "MinimumLengthValidator",
+        "importPath": "django.contrib.auth.password_validation",
+        "description": "django.contrib.auth.password_validation",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.password_validation",
+        "documentation": {}
+    },
+    {
+        "label": "NumericPasswordValidator",
+        "importPath": "django.contrib.auth.password_validation",
+        "description": "django.contrib.auth.password_validation",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.password_validation",
         "documentation": {}
     },
     {
@@ -1303,6 +2507,94 @@
         "documentation": {}
     },
     {
+        "label": "ValidationError",
+        "importPath": "rest_framework.exceptions",
+        "description": "rest_framework.exceptions",
+        "isExtraImport": true,
+        "detail": "rest_framework.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ValidationError",
+        "importPath": "rest_framework.exceptions",
+        "description": "rest_framework.exceptions",
+        "isExtraImport": true,
+        "detail": "rest_framework.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "AuthenticationFailed",
+        "importPath": "rest_framework.exceptions",
+        "description": "rest_framework.exceptions",
+        "isExtraImport": true,
+        "detail": "rest_framework.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "RefreshToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "RefreshToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "TokenObtainPairView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenRefreshView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenObtainPairView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenRefreshView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenObtainPairView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "UserCreationForm",
+        "importPath": "django.contrib.auth.forms",
+        "description": "django.contrib.auth.forms",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
         "label": "CreateView",
         "importPath": "django.views.generic.edit",
         "description": "django.views.generic.edit",
@@ -1316,14 +2608,6 @@
         "description": "django.views.generic.edit",
         "isExtraImport": true,
         "detail": "django.views.generic.edit",
-        "documentation": {}
-    },
-    {
-        "label": "ValidationError",
-        "importPath": "rest_framework.exceptions",
-        "description": "rest_framework.exceptions",
-        "isExtraImport": true,
-        "detail": "rest_framework.exceptions",
         "documentation": {}
     },
     {
@@ -1343,6 +2627,14 @@
         "documentation": {}
     },
     {
+        "label": "TokenAuthentication",
+        "importPath": "rest_framework.authentication",
+        "description": "rest_framework.authentication",
+        "isExtraImport": true,
+        "detail": "rest_framework.authentication",
+        "documentation": {}
+    },
+    {
         "label": "APIView",
         "importPath": "rest_framework.views",
         "description": "rest_framework.views",
@@ -1351,11 +2643,76 @@
         "documentation": {}
     },
     {
-        "label": "ModelViewSet",
-        "importPath": "rest_framework.viewsets",
-        "description": "rest_framework.viewsets",
+        "label": "BytesIO",
+        "importPath": "io",
+        "description": "io",
         "isExtraImport": true,
-        "detail": "rest_framework.viewsets",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "View",
+        "importPath": "django.views",
+        "description": "django.views",
+        "isExtraImport": true,
+        "detail": "django.views",
+        "documentation": {}
+    },
+    {
+        "label": "JWTAuthentication",
+        "importPath": "rest_framework_simplejwt.authentication",
+        "description": "rest_framework_simplejwt.authentication",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.authentication",
+        "documentation": {}
+    },
+    {
+        "label": "JWTTokenUserAuthentication",
+        "importPath": "rest_framework_simplejwt.authentication",
+        "description": "rest_framework_simplejwt.authentication",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.authentication",
+        "documentation": {}
+    },
+    {
+        "label": "pisa",
+        "importPath": "xhtml2pdf",
+        "description": "xhtml2pdf",
+        "isExtraImport": true,
+        "detail": "xhtml2pdf",
+        "documentation": {}
+    },
+    {
+        "label": "jwt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "jwt",
+        "description": "jwt",
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "TokenRefreshSerializer",
+        "importPath": "rest_framework_simplejwt.serializers",
+        "description": "rest_framework_simplejwt.serializers",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "InvalidToken",
+        "importPath": "rest_framework_simplejwt.exceptions",
+        "description": "rest_framework_simplejwt.exceptions",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "clockify",
+        "description": "clockify",
+        "isExtraImport": true,
+        "detail": "clockify",
         "documentation": {}
     },
     {
@@ -1503,12 +2860,36 @@
         "documentation": {}
     },
     {
-        "label": "sys",
-        "kind": 6,
+        "label": "FilterSerializer",
+        "importPath": "workspace.serializers",
+        "description": "workspace.serializers",
         "isExtraImport": true,
-        "importPath": "sys",
-        "description": "sys",
-        "detail": "sys",
+        "detail": "workspace.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "RegisterSerializer",
+        "importPath": "workspace.serializers",
+        "description": "workspace.serializers",
+        "isExtraImport": true,
+        "detail": "workspace.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "UserRestRegisterSerializer",
+        "importPath": "workspace.serializers",
+        "description": "workspace.serializers",
+        "isExtraImport": true,
+        "detail": "workspace.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "send_task_notification",
+        "kind": 2,
+        "importPath": "api.example",
+        "description": "api.example",
+        "peekOfCode": "def send_task_notification(user_id: int):\n    from workspace.models import User\n    try:\n        user = User.objects.get(id=user_id)\n    except User.DoesNotExist:\n        pass\n    print(f\"this is user : {user.email}\")",
+        "detail": "api.example",
         "documentation": {}
     },
     {
@@ -1557,11 +2938,20 @@
         "documentation": {}
     },
     {
+        "label": "routing",
+        "kind": 5,
+        "importPath": "clockify.routing",
+        "description": "clockify.routing",
+        "peekOfCode": "routing = ProtocolTypeRouter({\n    'websocket': AllowedHostsOriginValidator(\n        URLRouter([\n            path('', NotificationConsumer)\n        ])\n    )\n})",
+        "detail": "clockify.routing",
+        "documentation": {}
+    },
+    {
         "label": "BASE_DIR",
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = \"django-insecure-wa_q^(3-j2lt5n&rw$6y^(&km)d&y(#j&hu)m!=j6z0p8d$t7+\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = config('SECRET_KEY')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['localhost', '127.0.0.1']\n# Application definition\nINSTALLED_APPS = [",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1570,7 +2960,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "SECRET_KEY = \"django-insecure-wa_q^(3-j2lt5n&rw$6y^(&km)d&y(#j&hu)m!=j6z0p8d$t7+\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
+        "peekOfCode": "SECRET_KEY = config('SECRET_KEY')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['localhost', '127.0.0.1']\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1579,7 +2969,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = ['localhost', '127.0.0.1']\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1588,7 +2978,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"djoser\",",
+        "peekOfCode": "ALLOWED_HOSTS = ['localhost', '127.0.0.1']\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    'django.contrib.sites',",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1597,7 +2987,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"djoser\",\n    'debug_toolbar',\n    \"rest_framework\",",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    'django.contrib.sites',\n    \"workspace.apps.WorkspaceConfig\",\n    \"djoser\",",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1615,7 +3005,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "MIDDLEWARE = [\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n    \"debug_toolbar.middleware.DebugToolbarMiddleware\",\n]",
+        "peekOfCode": "MIDDLEWARE = [\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n    \"debug_toolbar.middleware.DebugToolbarMiddleware\",\n    \"corsheaders.middleware.CorsMiddleware\",",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1669,7 +3059,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_ROOT = BASE_DIR / \"static\"\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = (\n   BASE_DIR / \"workspace\" / \"static\",",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1678,7 +3068,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nAUTH_USER_MODEL = \"workspace.User\"",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_ROOT = BASE_DIR / \"static\"\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = (\n   BASE_DIR / \"workspace\" / \"static\",\n)",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1687,7 +3077,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nAUTH_USER_MODEL = \"workspace.User\"\nLOGIN_REDIRECT_URL = \"home\"",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_ROOT = BASE_DIR / \"static\"\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = (\n   BASE_DIR / \"workspace\" / \"static\",\n)\n# Default primary key field type",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1696,7 +3086,16 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nAUTH_USER_MODEL = \"workspace.User\"\nLOGIN_REDIRECT_URL = \"home\"\nLOGOUT_REDIRECT_URL = \"home\"",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_ROOT = BASE_DIR / \"static\"\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = (\n   BASE_DIR / \"workspace\" / \"static\",\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_ROOT",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "STATIC_ROOT = BASE_DIR / \"static\"\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = (\n   BASE_DIR / \"workspace\" / \"static\",\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nAUTH_USER_MODEL = \"workspace.User\"\nLOGIN_REDIRECT_URL = \"home\"",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1705,7 +3104,16 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "STATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nAUTH_USER_MODEL = \"workspace.User\"\nLOGIN_REDIRECT_URL = \"home\"\nLOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',",
+        "peekOfCode": "STATIC_URL = \"static/\"\nSTATICFILES_DIRS = (\n   BASE_DIR / \"workspace\" / \"static\",\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nAUTH_USER_MODEL = \"workspace.User\"\nLOGIN_REDIRECT_URL = \"home\"\nLOGOUT_REDIRECT_URL = \"home\"",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_DIRS",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "STATICFILES_DIRS = (\n   BASE_DIR / \"workspace\" / \"static\",\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nAUTH_USER_MODEL = \"workspace.User\"\nLOGIN_REDIRECT_URL = \"home\"\nLOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1732,7 +3140,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "LOGIN_REDIRECT_URL = \"home\"\nLOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=100),",
+        "peekOfCode": "LOGIN_REDIRECT_URL = \"home\"\nLOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=90),",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1741,7 +3149,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "LOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=100),\n}",
+        "peekOfCode": "LOGOUT_REDIRECT_URL = \"home\"\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=90),\n    \"REFRESH_TOKEN_LIFETIME\": timedelta(days=100),",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1750,7 +3158,7 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=100),\n}\n# DJOSER = {",
+        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=90),\n    \"REFRESH_TOKEN_LIFETIME\": timedelta(days=100),\n    \"SIGNING_KEY\": config('SECRET_KEY'),",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1759,7 +3167,124 @@
         "kind": 5,
         "importPath": "clockify.settings",
         "description": "clockify.settings",
-        "peekOfCode": "SIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=100),\n}\n# DJOSER = {\n#     \"SERIALIZERS\": {\n#         \"current_user\": \"workspace.serializers.UserSerializer\",\n#     },\n# }",
+        "peekOfCode": "SIMPLE_JWT = {\n    'AUTH_HEADER_TYPES': ('JWT',),\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(days=90),\n    \"REFRESH_TOKEN_LIFETIME\": timedelta(days=100),\n    \"SIGNING_KEY\": config('SECRET_KEY'),\n}\nAUTHENTICATION_BACKENDS = (\n    'django.contrib.auth.backends.ModelBackend',\n    'allauth.account.auth_backends.AuthenticationBackend',\n)",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTHENTICATION_BACKENDS",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "AUTHENTICATION_BACKENDS = (\n    'django.contrib.auth.backends.ModelBackend',\n    'allauth.account.auth_backends.AuthenticationBackend',\n)\nSITE_ID = 2\nSOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SITE_ID",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "SITE_ID = 2\nSOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',\n        ],\n        'AUTH_PARAMS': {\n            'access_type': 'online',\n        },",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SOCIALACCOUNT_PROVIDERS",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "SOCIALACCOUNT_PROVIDERS = {\n    'google': {\n        'SCOPE': [\n            'profile',\n            'email',\n        ],\n        'AUTH_PARAMS': {\n            'access_type': 'online',\n        },\n        'OAUTH_PKCE_ENABLED': True,",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ALLOWED_ALL_ORIGINS",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "CORS_ALLOWED_ALL_ORIGINS = True\nACCOUNT_AUTHENTICATION_METHOD = \"email\" # Defaults to username_email\nACCOUNT_USERNAME_REQUIRED = False       # Defaults to True\nACCOUNT_EMAIL_REQUIRED = True           # Defaults to False\nSOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED\nSOCIALACCOUNT_AUTO_SIGNUP = True\nSOCIALACCOUNT_EMAIL_REQUIRED = False\nACCOUNT_ADAPTER = \"workspace.adapters.CustomAccountAdapter\"\nLOGIN_URL = \"/\"\nLOGIN_REDIRECT_URL = \"/\"",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ACCOUNT_AUTHENTICATION_METHOD",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "ACCOUNT_AUTHENTICATION_METHOD = \"email\" # Defaults to username_email\nACCOUNT_USERNAME_REQUIRED = False       # Defaults to True\nACCOUNT_EMAIL_REQUIRED = True           # Defaults to False\nSOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED\nSOCIALACCOUNT_AUTO_SIGNUP = True\nSOCIALACCOUNT_EMAIL_REQUIRED = False\nACCOUNT_ADAPTER = \"workspace.adapters.CustomAccountAdapter\"\nLOGIN_URL = \"/\"\nLOGIN_REDIRECT_URL = \"/\"",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ACCOUNT_USERNAME_REQUIRED",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "ACCOUNT_USERNAME_REQUIRED = False       # Defaults to True\nACCOUNT_EMAIL_REQUIRED = True           # Defaults to False\nSOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED\nSOCIALACCOUNT_AUTO_SIGNUP = True\nSOCIALACCOUNT_EMAIL_REQUIRED = False\nACCOUNT_ADAPTER = \"workspace.adapters.CustomAccountAdapter\"\nLOGIN_URL = \"/\"\nLOGIN_REDIRECT_URL = \"/\"",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ACCOUNT_EMAIL_REQUIRED",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "ACCOUNT_EMAIL_REQUIRED = True           # Defaults to False\nSOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED\nSOCIALACCOUNT_AUTO_SIGNUP = True\nSOCIALACCOUNT_EMAIL_REQUIRED = False\nACCOUNT_ADAPTER = \"workspace.adapters.CustomAccountAdapter\"\nLOGIN_URL = \"/\"\nLOGIN_REDIRECT_URL = \"/\"",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SOCIALACCOUNT_QUERY_EMAIL",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "SOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED\nSOCIALACCOUNT_AUTO_SIGNUP = True\nSOCIALACCOUNT_EMAIL_REQUIRED = False\nACCOUNT_ADAPTER = \"workspace.adapters.CustomAccountAdapter\"\nLOGIN_URL = \"/\"\nLOGIN_REDIRECT_URL = \"/\"",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SOCIALACCOUNT_AUTO_SIGNUP",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "SOCIALACCOUNT_AUTO_SIGNUP = True\nSOCIALACCOUNT_EMAIL_REQUIRED = False\nACCOUNT_ADAPTER = \"workspace.adapters.CustomAccountAdapter\"\nLOGIN_URL = \"/\"\nLOGIN_REDIRECT_URL = \"/\"",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SOCIALACCOUNT_EMAIL_REQUIRED",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "SOCIALACCOUNT_EMAIL_REQUIRED = False\nACCOUNT_ADAPTER = \"workspace.adapters.CustomAccountAdapter\"\nLOGIN_URL = \"/\"\nLOGIN_REDIRECT_URL = \"/\"",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ACCOUNT_ADAPTER",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "ACCOUNT_ADAPTER = \"workspace.adapters.CustomAccountAdapter\"\nLOGIN_URL = \"/\"\nLOGIN_REDIRECT_URL = \"/\"",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_URL",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "LOGIN_URL = \"/\"\nLOGIN_REDIRECT_URL = \"/\"",
+        "detail": "clockify.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_REDIRECT_URL",
+        "kind": 5,
+        "importPath": "clockify.settings",
+        "description": "clockify.settings",
+        "peekOfCode": "LOGIN_REDIRECT_URL = \"/\"",
         "detail": "clockify.settings",
         "documentation": {}
     },
@@ -1779,6 +3304,834 @@
         "description": "clockify.wsgi",
         "peekOfCode": "application = get_wsgi_application()",
         "detail": "clockify.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "_Known",
+        "kind": 6,
+        "importPath": "frontend.node_modules.flatted.python.flatted",
+        "description": "frontend.node_modules.flatted.python.flatted",
+        "peekOfCode": "class _Known:\n    def __init__(self):\n        self.key = []\n        self.value = []\nclass _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    keys = []\n    i = 0",
+        "detail": "frontend.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "_String",
+        "kind": 6,
+        "importPath": "frontend.node_modules.flatted.python.flatted",
+        "description": "frontend.node_modules.flatted.python.flatted",
+        "peekOfCode": "class _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    keys = []\n    i = 0\n    for _ in value:\n        keys.append(i)\n        i += 1\n    return keys",
+        "detail": "frontend.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "parse",
+        "kind": 2,
+        "importPath": "frontend.node_modules.flatted.python.flatted",
+        "description": "frontend.node_modules.flatted.python.flatted",
+        "peekOfCode": "def parse(value, *args, **kwargs):\n    json = _json.loads(value, *args, **kwargs)\n    wrapped = []\n    for value in json:\n        wrapped.append(_wrap(value))\n    input = []\n    for value in wrapped:\n        if isinstance(value, _String):\n            input.append(value.value)\n        else:",
+        "detail": "frontend.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "stringify",
+        "kind": 2,
+        "importPath": "frontend.node_modules.flatted.python.flatted",
+        "description": "frontend.node_modules.flatted.python.flatted",
+        "peekOfCode": "def stringify(value, *args, **kwargs):\n    known = _Known()\n    input = []\n    output = []\n    i = int(_index(known, input, value))\n    while i < len(input):\n        output.append(_transform(known, input, input[i]))\n        i += 1\n    return _json.dumps(output, *args, **kwargs)",
+        "detail": "frontend.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "stringify",
+        "kind": 2,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "def stringify(value):\n    return _stringify(value, separators=(',', ':'))\nassert stringify([None, None]) == '[[null,null]]'\na = []\no = {}\nassert stringify(a) == '[[]]'\nassert stringify(o) == '[{}]'\na.append(a)\no['o'] = o\nassert stringify(a) == '[[\"0\"]]'",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "a",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "a = []\no = {}\nassert stringify(a) == '[[]]'\nassert stringify(o) == '[{}]'\na.append(a)\no['o'] = o\nassert stringify(a) == '[[\"0\"]]'\nassert stringify(o) == '[{\"o\":\"0\"}]'\nb = parse(stringify(a))\nassert isinstance(b, list) and b[0] == b",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "o",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "o = {}\nassert stringify(a) == '[[]]'\nassert stringify(o) == '[{}]'\na.append(a)\no['o'] = o\nassert stringify(a) == '[[\"0\"]]'\nassert stringify(o) == '[{\"o\":\"0\"}]'\nb = parse(stringify(a))\nassert isinstance(b, list) and b[0] == b\na.append(1)",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "o['o']",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "o['o'] = o\nassert stringify(a) == '[[\"0\"]]'\nassert stringify(o) == '[{\"o\":\"0\"}]'\nb = parse(stringify(a))\nassert isinstance(b, list) and b[0] == b\na.append(1)\na.append('two')\na.append(True)\no['one'] = 1\no['two'] = 'two'",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "b",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "b = parse(stringify(a))\nassert isinstance(b, list) and b[0] == b\na.append(1)\na.append('two')\na.append(True)\no['one'] = 1\no['two'] = 'two'\no['three'] = True\nassert stringify(a) == '[[\"0\",1,\"1\",true],\"two\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true},\"two\"]'",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "o['one']",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "o['one'] = 1\no['two'] = 'two'\no['three'] = True\nassert stringify(a) == '[[\"0\",1,\"1\",true],\"two\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true},\"two\"]'\na.append(o)\no['a'] = a\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\"}]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\"},\"two\",[\"2\",1,\"1\",true,\"0\"]]'\na.append({'test': 'OK'})",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "o['two']",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "o['two'] = 'two'\no['three'] = True\nassert stringify(a) == '[[\"0\",1,\"1\",true],\"two\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true},\"two\"]'\na.append(o)\no['a'] = a\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\"}]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\"},\"two\",[\"2\",1,\"1\",true,\"0\"]]'\na.append({'test': 'OK'})\na.append([1, 2, 3])",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "o['three']",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "o['three'] = True\nassert stringify(a) == '[[\"0\",1,\"1\",true],\"two\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true},\"two\"]'\na.append(o)\no['a'] = a\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\"}]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\"},\"two\",[\"2\",1,\"1\",true,\"0\"]]'\na.append({'test': 'OK'})\na.append([1, 2, 3])\no['test'] = {'test': 'OK'}",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "o['a']",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "o['a'] = a\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\"}]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\"},\"two\",[\"2\",1,\"1\",true,\"0\"]]'\na.append({'test': 'OK'})\na.append([1, 2, 3])\no['test'] = {'test': 'OK'}\no['array'] = [1, 2, 3]\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\",\"3\",\"4\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\",\"test\":\"3\",\"array\":\"4\"},{\"test\":\"5\"},[1,2,3],\"OK\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\",\"test\":\"3\",\"array\":\"4\"},\"two\",[\"2\",1,\"1\",true,\"0\",\"3\",\"4\"],{\"test\":\"5\"},[1,2,3],\"OK\"]'\na2 = parse(stringify(a));",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "o['test']",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "o['test'] = {'test': 'OK'}\no['array'] = [1, 2, 3]\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\",\"3\",\"4\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\",\"test\":\"3\",\"array\":\"4\"},{\"test\":\"5\"},[1,2,3],\"OK\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\",\"test\":\"3\",\"array\":\"4\"},\"two\",[\"2\",1,\"1\",true,\"0\",\"3\",\"4\"],{\"test\":\"5\"},[1,2,3],\"OK\"]'\na2 = parse(stringify(a));\no2 = parse(stringify(o));\nassert a2[0] == a2\nassert o2['o'] == o2\nassert a2[1] == 1 and a2[2] == 'two' and a2[3] == True and isinstance(a2[4], dict)\nassert a2[4] == a2[4]['o'] and a2 == a2[4]['o']['a']",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "o['array']",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "o['array'] = [1, 2, 3]\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\",\"3\",\"4\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\",\"test\":\"3\",\"array\":\"4\"},{\"test\":\"5\"},[1,2,3],\"OK\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\",\"test\":\"3\",\"array\":\"4\"},\"two\",[\"2\",1,\"1\",true,\"0\",\"3\",\"4\"],{\"test\":\"5\"},[1,2,3],\"OK\"]'\na2 = parse(stringify(a));\no2 = parse(stringify(o));\nassert a2[0] == a2\nassert o2['o'] == o2\nassert a2[1] == 1 and a2[2] == 'two' and a2[3] == True and isinstance(a2[4], dict)\nassert a2[4] == a2[4]['o'] and a2 == a2[4]['o']['a']\nstr = parse('[{\"prop\":\"1\",\"a\":\"2\",\"b\":\"3\"},{\"value\":123},[\"4\",\"5\"],{\"e\":\"6\",\"t\":\"7\",\"p\":4},{},{\"b\":\"8\"},\"f\",{\"a\":\"9\"},[\"10\"],\"sup\",{\"a\":1,\"d\":2,\"c\":\"7\",\"z\":\"11\",\"h\":1},{\"g\":2,\"a\":\"7\",\"b\":\"12\",\"f\":6},{\"r\":4,\"u\":\"7\",\"c\":5}]')",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "a2",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "a2 = parse(stringify(a));\no2 = parse(stringify(o));\nassert a2[0] == a2\nassert o2['o'] == o2\nassert a2[1] == 1 and a2[2] == 'two' and a2[3] == True and isinstance(a2[4], dict)\nassert a2[4] == a2[4]['o'] and a2 == a2[4]['o']['a']\nstr = parse('[{\"prop\":\"1\",\"a\":\"2\",\"b\":\"3\"},{\"value\":123},[\"4\",\"5\"],{\"e\":\"6\",\"t\":\"7\",\"p\":4},{},{\"b\":\"8\"},\"f\",{\"a\":\"9\"},[\"10\"],\"sup\",{\"a\":1,\"d\":2,\"c\":\"7\",\"z\":\"11\",\"h\":1},{\"g\":2,\"a\":\"7\",\"b\":\"12\",\"f\":6},{\"r\":4,\"u\":\"7\",\"c\":5}]')\nassert str['b']['t']['a'] == 'sup' and str['a'][1]['b'][0]['c'] == str['b']['t']\noo = parse('[{\"a\":\"1\",\"b\":\"0\",\"c\":\"2\"},{\"aa\":\"3\"},{\"ca\":\"4\",\"cb\":\"5\",\"cc\":\"6\",\"cd\":\"7\",\"ce\":\"8\",\"cf\":\"9\"},{\"aaa\":\"10\"},{\"caa\":\"4\"},{\"cba\":\"5\"},{\"cca\":\"2\"},{\"cda\":\"4\"},\"value2\",\"value3\",\"value1\"]');\nassert oo['a']['aa']['aaa'] == 'value1' and oo == oo['b'] and oo['c']['ca']['caa'] == oo['c']['ca']",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "o2",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "o2 = parse(stringify(o));\nassert a2[0] == a2\nassert o2['o'] == o2\nassert a2[1] == 1 and a2[2] == 'two' and a2[3] == True and isinstance(a2[4], dict)\nassert a2[4] == a2[4]['o'] and a2 == a2[4]['o']['a']\nstr = parse('[{\"prop\":\"1\",\"a\":\"2\",\"b\":\"3\"},{\"value\":123},[\"4\",\"5\"],{\"e\":\"6\",\"t\":\"7\",\"p\":4},{},{\"b\":\"8\"},\"f\",{\"a\":\"9\"},[\"10\"],\"sup\",{\"a\":1,\"d\":2,\"c\":\"7\",\"z\":\"11\",\"h\":1},{\"g\":2,\"a\":\"7\",\"b\":\"12\",\"f\":6},{\"r\":4,\"u\":\"7\",\"c\":5}]')\nassert str['b']['t']['a'] == 'sup' and str['a'][1]['b'][0]['c'] == str['b']['t']\noo = parse('[{\"a\":\"1\",\"b\":\"0\",\"c\":\"2\"},{\"aa\":\"3\"},{\"ca\":\"4\",\"cb\":\"5\",\"cc\":\"6\",\"cd\":\"7\",\"ce\":\"8\",\"cf\":\"9\"},{\"aaa\":\"10\"},{\"caa\":\"4\"},{\"cba\":\"5\"},{\"cca\":\"2\"},{\"cda\":\"4\"},\"value2\",\"value3\",\"value1\"]');\nassert oo['a']['aa']['aaa'] == 'value1' and oo == oo['b'] and oo['c']['ca']['caa'] == oo['c']['ca']\nprint('OK')",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "str",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "str = parse('[{\"prop\":\"1\",\"a\":\"2\",\"b\":\"3\"},{\"value\":123},[\"4\",\"5\"],{\"e\":\"6\",\"t\":\"7\",\"p\":4},{},{\"b\":\"8\"},\"f\",{\"a\":\"9\"},[\"10\"],\"sup\",{\"a\":1,\"d\":2,\"c\":\"7\",\"z\":\"11\",\"h\":1},{\"g\":2,\"a\":\"7\",\"b\":\"12\",\"f\":6},{\"r\":4,\"u\":\"7\",\"c\":5}]')\nassert str['b']['t']['a'] == 'sup' and str['a'][1]['b'][0]['c'] == str['b']['t']\noo = parse('[{\"a\":\"1\",\"b\":\"0\",\"c\":\"2\"},{\"aa\":\"3\"},{\"ca\":\"4\",\"cb\":\"5\",\"cc\":\"6\",\"cd\":\"7\",\"ce\":\"8\",\"cf\":\"9\"},{\"aaa\":\"10\"},{\"caa\":\"4\"},{\"cba\":\"5\"},{\"cca\":\"2\"},{\"cda\":\"4\"},\"value2\",\"value3\",\"value1\"]');\nassert oo['a']['aa']['aaa'] == 'value1' and oo == oo['b'] and oo['c']['ca']['caa'] == oo['c']['ca']\nprint('OK')",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "oo",
+        "kind": 5,
+        "importPath": "frontend.node_modules.flatted.python.test",
+        "description": "frontend.node_modules.flatted.python.test",
+        "peekOfCode": "oo = parse('[{\"a\":\"1\",\"b\":\"0\",\"c\":\"2\"},{\"aa\":\"3\"},{\"ca\":\"4\",\"cb\":\"5\",\"cc\":\"6\",\"cd\":\"7\",\"ce\":\"8\",\"cf\":\"9\"},{\"aaa\":\"10\"},{\"caa\":\"4\"},{\"cba\":\"5\"},{\"cca\":\"2\"},{\"cda\":\"4\"},\"value2\",\"value3\",\"value1\"]');\nassert oo['a']['aa']['aaa'] == 'value1' and oo == oo['b'] and oo['c']['ca']['caa'] == oo['c']['ca']\nprint('OK')",
+        "detail": "frontend.node_modules.flatted.python.test",
+        "documentation": {}
+    },
+    {
+        "label": "BaseInvitationsAdapter",
+        "kind": 6,
+        "importPath": "invitations.adapters",
+        "description": "invitations.adapters",
+        "peekOfCode": "class BaseInvitationsAdapter:\n    def stash_verified_email(self, request, email):\n        request.session[\"account_verified_email\"] = email\n    def unstash_verified_email(self, request):\n        ret = request.session.get(\"account_verified_email\")\n        request.session[\"account_verified_email\"] = None\n        return ret\n    def format_email_subject(self, subject, context):\n        prefix = app_settings.EMAIL_SUBJECT_PREFIX\n        if prefix is None:",
+        "detail": "invitations.adapters",
+        "documentation": {}
+    },
+    {
+        "label": "get_invitations_adapter",
+        "kind": 2,
+        "importPath": "invitations.adapters",
+        "description": "invitations.adapters",
+        "peekOfCode": "def get_invitations_adapter():\n    # Compatibility with legacy allauth only version.\n    LEGACY_ALLAUTH = (\n        hasattr(settings, \"ACCOUNT_ADAPTER\")\n        and settings.ACCOUNT_ADAPTER == \"invitations.models.InvitationsAdapter\"\n    )\n    if LEGACY_ALLAUTH:\n        # defer to allauth\n        from allauth.account.adapter import get_adapter\n        return get_adapter()",
+        "detail": "invitations.adapters",
+        "documentation": {}
+    },
+    {
+        "label": "InvitationAdmin",
+        "kind": 6,
+        "importPath": "invitations.admin",
+        "description": "invitations.admin",
+        "peekOfCode": "class InvitationAdmin(admin.ModelAdmin):\n    list_display = (\"email\", \"sent\", \"accepted\")\n    raw_id_fields = (\"inviter\",)\n    def get_form(self, request, obj=None, **kwargs):\n        if obj:\n            kwargs[\"form\"] = InvitationAdminChangeForm\n        else:\n            kwargs[\"form\"] = InvitationAdminAddForm\n            kwargs[\"form\"].user = request.user\n            kwargs[\"form\"].request = request",
+        "detail": "invitations.admin",
+        "documentation": {}
+    },
+    {
+        "label": "Invitation",
+        "kind": 5,
+        "importPath": "invitations.admin",
+        "description": "invitations.admin",
+        "peekOfCode": "Invitation = get_invitation_model()\nInvitationAdminAddForm = get_invitation_admin_add_form()\nInvitationAdminChangeForm = get_invitation_admin_change_form()\n@admin.register(Invitation)\nclass InvitationAdmin(admin.ModelAdmin):\n    list_display = (\"email\", \"sent\", \"accepted\")\n    raw_id_fields = (\"inviter\",)\n    def get_form(self, request, obj=None, **kwargs):\n        if obj:\n            kwargs[\"form\"] = InvitationAdminChangeForm",
+        "detail": "invitations.admin",
+        "documentation": {}
+    },
+    {
+        "label": "InvitationAdminAddForm",
+        "kind": 5,
+        "importPath": "invitations.admin",
+        "description": "invitations.admin",
+        "peekOfCode": "InvitationAdminAddForm = get_invitation_admin_add_form()\nInvitationAdminChangeForm = get_invitation_admin_change_form()\n@admin.register(Invitation)\nclass InvitationAdmin(admin.ModelAdmin):\n    list_display = (\"email\", \"sent\", \"accepted\")\n    raw_id_fields = (\"inviter\",)\n    def get_form(self, request, obj=None, **kwargs):\n        if obj:\n            kwargs[\"form\"] = InvitationAdminChangeForm\n        else:",
+        "detail": "invitations.admin",
+        "documentation": {}
+    },
+    {
+        "label": "InvitationAdminChangeForm",
+        "kind": 5,
+        "importPath": "invitations.admin",
+        "description": "invitations.admin",
+        "peekOfCode": "InvitationAdminChangeForm = get_invitation_admin_change_form()\n@admin.register(Invitation)\nclass InvitationAdmin(admin.ModelAdmin):\n    list_display = (\"email\", \"sent\", \"accepted\")\n    raw_id_fields = (\"inviter\",)\n    def get_form(self, request, obj=None, **kwargs):\n        if obj:\n            kwargs[\"form\"] = InvitationAdminChangeForm\n        else:\n            kwargs[\"form\"] = InvitationAdminAddForm",
+        "detail": "invitations.admin",
+        "documentation": {}
+    },
+    {
+        "label": "AppSettings",
+        "kind": 6,
+        "importPath": "invitations.app_settings",
+        "description": "invitations.app_settings",
+        "peekOfCode": "class AppSettings:\n    def __init__(self, prefix):\n        self.prefix = prefix\n    def _setting(self, name, dflt):\n        return getattr(settings, self.prefix + name, dflt)\n    @property\n    def INVITATION_EXPIRY(self):\n        \"\"\"How long before the invitation expires\"\"\"\n        return self._setting(\"INVITATION_EXPIRY\", 10)\n    @property",
+        "detail": "invitations.app_settings",
+        "documentation": {}
+    },
+    {
+        "label": "app_settings",
+        "kind": 5,
+        "importPath": "invitations.app_settings",
+        "description": "invitations.app_settings",
+        "peekOfCode": "app_settings = AppSettings(\"INVITATIONS_\")",
+        "detail": "invitations.app_settings",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 6,
+        "importPath": "invitations.apps",
+        "description": "invitations.apps",
+        "peekOfCode": "class Config(AppConfig):\n    \"\"\"Config.\"\"\"\n    default_auto_field = \"django.db.models.BigAutoField\"\n    name = \"invitations\"\n    label = \"invitations\"",
+        "detail": "invitations.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AbstractBaseInvitation",
+        "kind": 6,
+        "importPath": "invitations.base_invitation",
+        "description": "invitations.base_invitation",
+        "peekOfCode": "class AbstractBaseInvitation(models.Model):\n    accepted = models.BooleanField(verbose_name=_(\"accepted\"), default=False)\n    key = models.CharField(verbose_name=_(\"key\"), max_length=64, unique=True)\n    sent = models.DateTimeField(verbose_name=_(\"sent\"), null=True)\n    inviter = models.ForeignKey(\n        settings.AUTH_USER_MODEL,\n        verbose_name=_(\"inviter\"),\n        null=True,\n        blank=True,\n        on_delete=models.CASCADE,",
+        "detail": "invitations.base_invitation",
+        "documentation": {}
+    },
+    {
+        "label": "AlreadyInvited",
+        "kind": 6,
+        "importPath": "invitations.exceptions",
+        "description": "invitations.exceptions",
+        "peekOfCode": "class AlreadyInvited(Exception):\n    \"\"\"User has a valid, pending invitation\"\"\"\n    pass\nclass AlreadyAccepted(Exception):\n    \"\"\"User has already accepted an invitation\"\"\"\n    pass\nclass UserRegisteredEmail(Exception):\n    \"\"\"This email is already registered by a site user\"\"\"\n    pass",
+        "detail": "invitations.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "AlreadyAccepted",
+        "kind": 6,
+        "importPath": "invitations.exceptions",
+        "description": "invitations.exceptions",
+        "peekOfCode": "class AlreadyAccepted(Exception):\n    \"\"\"User has already accepted an invitation\"\"\"\n    pass\nclass UserRegisteredEmail(Exception):\n    \"\"\"This email is already registered by a site user\"\"\"\n    pass",
+        "detail": "invitations.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "UserRegisteredEmail",
+        "kind": 6,
+        "importPath": "invitations.exceptions",
+        "description": "invitations.exceptions",
+        "peekOfCode": "class UserRegisteredEmail(Exception):\n    \"\"\"This email is already registered by a site user\"\"\"\n    pass",
+        "detail": "invitations.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "CleanEmailMixin",
+        "kind": 6,
+        "importPath": "invitations.forms",
+        "description": "invitations.forms",
+        "peekOfCode": "class CleanEmailMixin:\n    def validate_invitation(self, email):\n        if Invitation.objects.all_valid().filter(email__iexact=email, accepted=False):\n            raise AlreadyInvited\n        elif Invitation.objects.filter(email__iexact=email, accepted=True):\n            raise AlreadyAccepted\n        elif get_user_model().objects.filter(email__iexact=email):\n            raise UserRegisteredEmail\n        else:\n            return True",
+        "detail": "invitations.forms",
+        "documentation": {}
+    },
+    {
+        "label": "InviteForm",
+        "kind": 6,
+        "importPath": "invitations.forms",
+        "description": "invitations.forms",
+        "peekOfCode": "class InviteForm(forms.Form, CleanEmailMixin):\n    email = forms.EmailField(\n        label=_(\"E-mail\"),\n        required=True,\n        widget=forms.TextInput(attrs={\"type\": \"email\", \"size\": \"30\"}),\n        initial=\"\",\n    )\n    def save(self, email):\n        return Invitation.create(email=email)\nclass InvitationAdminAddForm(forms.ModelForm, CleanEmailMixin):",
+        "detail": "invitations.forms",
+        "documentation": {}
+    },
+    {
+        "label": "InvitationAdminAddForm",
+        "kind": 6,
+        "importPath": "invitations.forms",
+        "description": "invitations.forms",
+        "peekOfCode": "class InvitationAdminAddForm(forms.ModelForm, CleanEmailMixin):\n    email = forms.EmailField(\n        label=_(\"E-mail\"),\n        required=True,\n        widget=forms.TextInput(attrs={\"type\": \"email\", \"size\": \"30\"}),\n    )\n    def save(self, *args, **kwargs):\n        cleaned_data = super().clean()\n        email = cleaned_data.get(\"email\")\n        params = {\"email\": email}",
+        "detail": "invitations.forms",
+        "documentation": {}
+    },
+    {
+        "label": "InvitationAdminChangeForm",
+        "kind": 6,
+        "importPath": "invitations.forms",
+        "description": "invitations.forms",
+        "peekOfCode": "class InvitationAdminChangeForm(forms.ModelForm):\n    class Meta:\n        model = Invitation\n        fields = \"__all__\"",
+        "detail": "invitations.forms",
+        "documentation": {}
+    },
+    {
+        "label": "Invitation",
+        "kind": 5,
+        "importPath": "invitations.forms",
+        "description": "invitations.forms",
+        "peekOfCode": "Invitation = get_invitation_model()\nclass CleanEmailMixin:\n    def validate_invitation(self, email):\n        if Invitation.objects.all_valid().filter(email__iexact=email, accepted=False):\n            raise AlreadyInvited\n        elif Invitation.objects.filter(email__iexact=email, accepted=True):\n            raise AlreadyAccepted\n        elif get_user_model().objects.filter(email__iexact=email):\n            raise UserRegisteredEmail\n        else:",
+        "detail": "invitations.forms",
+        "documentation": {}
+    },
+    {
+        "label": "BaseInvitationManager",
+        "kind": 6,
+        "importPath": "invitations.managers",
+        "description": "invitations.managers",
+        "peekOfCode": "class BaseInvitationManager(models.Manager):\n    def all_expired(self):\n        return self.filter(self.expired_q())\n    def all_valid(self):\n        return self.exclude(self.expired_q())\n    def expired_q(self):\n        sent_threshold = timezone.now() - timedelta(days=app_settings.INVITATION_EXPIRY)\n        q = Q(accepted=True) | Q(sent__lt=sent_threshold)\n        return q\n    def delete_expired_confirmations(self):",
+        "detail": "invitations.managers",
+        "documentation": {}
+    },
+    {
+        "label": "Invitation",
+        "kind": 6,
+        "importPath": "invitations.model",
+        "description": "invitations.model",
+        "peekOfCode": "class Invitation(AbstractBaseInvitation):\n    email = models.EmailField(\n        unique=True,\n        verbose_name=_(\"e-mail address\"),\n        max_length=app_settings.EMAIL_MAX_LENGTH,\n    )\n    created = models.DateTimeField(verbose_name=_(\"created\"), default=timezone.now)\n    @classmethod\n    def create(cls, email, inviter=None, **kwargs):\n        key = get_random_string(64).lower()",
+        "detail": "invitations.model",
+        "documentation": {}
+    },
+    {
+        "label": "invite_url_sent",
+        "kind": 2,
+        "importPath": "invitations.signals",
+        "description": "invitations.signals",
+        "peekOfCode": "def invite_url_sent(sender, instance, invite_url_sent, inviter, **kwargs):\n    pass\n@receiver(invite_accepted, sender=Invitation)\ndef handle_invite_accepted(sender, email, **kwargs):\n    pass\n\"\"\"",
+        "detail": "invitations.signals",
+        "documentation": {}
+    },
+    {
+        "label": "handle_invite_accepted",
+        "kind": 2,
+        "importPath": "invitations.signals",
+        "description": "invitations.signals",
+        "peekOfCode": "def handle_invite_accepted(sender, email, **kwargs):\n    pass\n\"\"\"",
+        "detail": "invitations.signals",
+        "documentation": {}
+    },
+    {
+        "label": "invite_url_sent",
+        "kind": 5,
+        "importPath": "invitations.signals",
+        "description": "invitations.signals",
+        "peekOfCode": "invite_url_sent = Signal()\ninvite_accepted = Signal()\n\"\"\"\n@receiver(invite_url_sent, sender=Invitation)\ndef invite_url_sent(sender, instance, invite_url_sent, inviter, **kwargs):\n    pass\n@receiver(invite_accepted, sender=Invitation)\ndef handle_invite_accepted(sender, email, **kwargs):\n    pass\n\"\"\"",
+        "detail": "invitations.signals",
+        "documentation": {}
+    },
+    {
+        "label": "invite_accepted",
+        "kind": 5,
+        "importPath": "invitations.signals",
+        "description": "invitations.signals",
+        "peekOfCode": "invite_accepted = Signal()\n\"\"\"\n@receiver(invite_url_sent, sender=Invitation)\ndef invite_url_sent(sender, instance, invite_url_sent, inviter, **kwargs):\n    pass\n@receiver(invite_accepted, sender=Invitation)\ndef handle_invite_accepted(sender, email, **kwargs):\n    pass\n\"\"\"",
+        "detail": "invitations.signals",
+        "documentation": {}
+    },
+    {
+        "label": "app_name",
+        "kind": 5,
+        "importPath": "invitations.urls",
+        "description": "invitations.urls",
+        "peekOfCode": "app_name = \"invitations\"\nurlpatterns = [\n    path(\"send-invite/\", views.SendInvite.as_view(), name=\"send-invite\"),\n    path(\n        \"send-json-invite/\",\n        views.SendJSONInvite.as_view(),\n        name=\"send-json-invite\",\n    ),\n    re_path(\n        r\"^accept-invite/(?P<key>\\w+)/?$\",",
+        "detail": "invitations.urls",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "invitations.urls",
+        "description": "invitations.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"send-invite/\", views.SendInvite.as_view(), name=\"send-invite\"),\n    path(\n        \"send-json-invite/\",\n        views.SendJSONInvite.as_view(),\n        name=\"send-json-invite\",\n    ),\n    re_path(\n        r\"^accept-invite/(?P<key>\\w+)/?$\",\n        views.AcceptInvite.as_view(),",
+        "detail": "invitations.urls",
+        "documentation": {}
+    },
+    {
+        "label": "import_attribute",
+        "kind": 2,
+        "importPath": "invitations.utils",
+        "description": "invitations.utils",
+        "peekOfCode": "def import_attribute(path):\n    assert isinstance(path, str)\n    pkg, attr = path.rsplit(\".\", 1)\n    ret = getattr(importlib.import_module(pkg), attr)\n    return ret\ndef get_invite_form():\n    \"\"\"\n    Returns the form for sending an invite.\n    \"\"\"\n    return import_attribute(app_settings.INVITE_FORM)",
+        "detail": "invitations.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_invite_form",
+        "kind": 2,
+        "importPath": "invitations.utils",
+        "description": "invitations.utils",
+        "peekOfCode": "def get_invite_form():\n    \"\"\"\n    Returns the form for sending an invite.\n    \"\"\"\n    return import_attribute(app_settings.INVITE_FORM)\ndef get_invitation_admin_add_form():\n    \"\"\"\n    Returns the form for creating a new invitation in admin.\n    \"\"\"\n    return import_attribute(app_settings.ADMIN_ADD_FORM)",
+        "detail": "invitations.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_invitation_admin_add_form",
+        "kind": 2,
+        "importPath": "invitations.utils",
+        "description": "invitations.utils",
+        "peekOfCode": "def get_invitation_admin_add_form():\n    \"\"\"\n    Returns the form for creating a new invitation in admin.\n    \"\"\"\n    return import_attribute(app_settings.ADMIN_ADD_FORM)\ndef get_invitation_admin_change_form():\n    \"\"\"\n    Returns the form for changing invitations in admin.\n    \"\"\"\n    return import_attribute(app_settings.ADMIN_CHANGE_FORM)",
+        "detail": "invitations.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_invitation_admin_change_form",
+        "kind": 2,
+        "importPath": "invitations.utils",
+        "description": "invitations.utils",
+        "peekOfCode": "def get_invitation_admin_change_form():\n    \"\"\"\n    Returns the form for changing invitations in admin.\n    \"\"\"\n    return import_attribute(app_settings.ADMIN_CHANGE_FORM)\ndef get_invitation_model():\n    \"\"\"\n    Returns the Invitation model that is active in this project.\n    \"\"\"\n    path = app_settings.INVITATION_MODEL",
+        "detail": "invitations.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_invitation_model",
+        "kind": 2,
+        "importPath": "invitations.utils",
+        "description": "invitations.utils",
+        "peekOfCode": "def get_invitation_model():\n    \"\"\"\n    Returns the Invitation model that is active in this project.\n    \"\"\"\n    path = app_settings.INVITATION_MODEL\n    try:\n        return django_apps.get_model(path)\n    except ValueError:\n        raise ImproperlyConfigured(\"path must be of the form 'app_label.model_name'\")\n    except LookupError:",
+        "detail": "invitations.utils",
+        "documentation": {}
+    },
+    {
+        "label": "SendInvite",
+        "kind": 6,
+        "importPath": "invitations.views",
+        "description": "invitations.views",
+        "peekOfCode": "class SendInvite(FormView):\n    template_name = \"invitations/forms/_invite.html\"\n    form_class = InviteForm\n    @method_decorator(login_required)\n    def dispatch(self, request, *args, **kwargs):\n        return super().dispatch(request, *args, **kwargs)\n    def form_valid(self, form):\n        email = form.cleaned_data[\"email\"]\n        try:\n            invite = form.save(email)",
+        "detail": "invitations.views",
+        "documentation": {}
+    },
+    {
+        "label": "SendJSONInvite",
+        "kind": 6,
+        "importPath": "invitations.views",
+        "description": "invitations.views",
+        "peekOfCode": "class SendJSONInvite(View):\n    http_method_names = [\"post\"]\n    @method_decorator(login_required)\n    def dispatch(self, request, *args, **kwargs):\n        if app_settings.ALLOW_JSON_INVITES:\n            return super().dispatch(request, *args, **kwargs)\n        else:\n            raise Http404\n    def post(self, request, *args, **kwargs):\n        status_code = 400",
+        "detail": "invitations.views",
+        "documentation": {}
+    },
+    {
+        "label": "AcceptInvite",
+        "kind": 6,
+        "importPath": "invitations.views",
+        "description": "invitations.views",
+        "peekOfCode": "class AcceptInvite(SingleObjectMixin, View):\n    form_class = InviteForm\n    def get_signup_redirect(self):\n        return app_settings.SIGNUP_REDIRECT\n    def get(self, *args, **kwargs):\n        if app_settings.CONFIRM_INVITE_ON_GET:\n            return self.post(*args, **kwargs)\n        else:\n            raise Http404()\n    def post(self, *args, **kwargs):",
+        "detail": "invitations.views",
+        "documentation": {}
+    },
+    {
+        "label": "accept_invitation",
+        "kind": 2,
+        "importPath": "invitations.views",
+        "description": "invitations.views",
+        "peekOfCode": "def accept_invitation(invitation, request, signal_sender):\n    invitation.accepted = True\n    invitation.save()\n    invite_accepted.send(\n        sender=signal_sender,\n        email=invitation.email,\n        request=request,\n        invitation=invitation,\n    )\n    get_invitations_adapter().add_message(",
+        "detail": "invitations.views",
+        "documentation": {}
+    },
+    {
+        "label": "accept_invite_after_signup",
+        "kind": 2,
+        "importPath": "invitations.views",
+        "description": "invitations.views",
+        "peekOfCode": "def accept_invite_after_signup(sender, request, user, **kwargs):\n    invitation = Invitation.objects.filter(email__iexact=user.email).first()\n    if invitation:\n        accept_invitation(\n            invitation=invitation,\n            request=request,\n            signal_sender=Invitation,\n        )\nif app_settings.ACCEPT_INVITE_AFTER_SIGNUP:\n    signed_up_signal = get_invitations_adapter().get_user_signed_up_signal()",
+        "detail": "invitations.views",
+        "documentation": {}
+    },
+    {
+        "label": "Invitation",
+        "kind": 5,
+        "importPath": "invitations.views",
+        "description": "invitations.views",
+        "peekOfCode": "Invitation = get_invitation_model()\nInviteForm = get_invite_form()\nclass SendInvite(FormView):\n    template_name = \"invitations/forms/_invite.html\"\n    form_class = InviteForm\n    @method_decorator(login_required)\n    def dispatch(self, request, *args, **kwargs):\n        return super().dispatch(request, *args, **kwargs)\n    def form_valid(self, form):\n        email = form.cleaned_data[\"email\"]",
+        "detail": "invitations.views",
+        "documentation": {}
+    },
+    {
+        "label": "InviteForm",
+        "kind": 5,
+        "importPath": "invitations.views",
+        "description": "invitations.views",
+        "peekOfCode": "InviteForm = get_invite_form()\nclass SendInvite(FormView):\n    template_name = \"invitations/forms/_invite.html\"\n    form_class = InviteForm\n    @method_decorator(login_required)\n    def dispatch(self, request, *args, **kwargs):\n        return super().dispatch(request, *args, **kwargs)\n    def form_valid(self, form):\n        email = form.cleaned_data[\"email\"]\n        try:",
+        "detail": "invitations.views",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0001_initial",
+        "description": "notifications.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Notification',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "notifications.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0002_alter_notification_type_alter_notification_user",
+        "description": "notifications.migrations.0002_alter_notification_type_alter_notification_user",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('notifications', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='notification',\n            name='type',\n            field=models.CharField(choices=[('PROJECT', 'project'), ('TASK', 'task')], max_length=36),",
+        "detail": "notifications.migrations.0002_alter_notification_type_alter_notification_user",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0003_notification_message",
+        "description": "notifications.migrations.0003_notification_message",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('notifications', '0002_alter_notification_type_alter_notification_user'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='notification',\n            name='message',\n            field=models.TextField(null=True),\n        ),",
+        "detail": "notifications.migrations.0003_notification_message",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0004_notification_read",
+        "description": "notifications.migrations.0004_notification_read",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('notifications', '0003_notification_message'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='notification',\n            name='read',\n            field=models.BooleanField(null=True),\n        ),",
+        "detail": "notifications.migrations.0004_notification_read",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0005_notification_created_notification_updated",
+        "description": "notifications.migrations.0005_notification_created_notification_updated",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('notifications', '0004_notification_read'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='notification',\n            name='created',\n            field=models.DateTimeField(auto_now_add=True, null=True),\n        ),",
+        "detail": "notifications.migrations.0005_notification_created_notification_updated",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0006_notification_task_id",
+        "description": "notifications.migrations.0006_notification_task_id",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('notifications', '0005_notification_created_notification_updated'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='notification',\n            name='task_id',\n            field=models.IntegerField(null=True),\n        ),",
+        "detail": "notifications.migrations.0006_notification_task_id",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0007_systemnotification_remove_notification_task_id_and_more",
+        "description": "notifications.migrations.0007_systemnotification_remove_notification_task_id_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('notifications', '0006_notification_task_id'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='SystemNotification',\n            fields=[\n                ('notification_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='notifications.notification')),\n            ],",
+        "detail": "notifications.migrations.0007_systemnotification_remove_notification_task_id_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0008_notification_action_notification_created_by_and_more",
+        "description": "notifications.migrations.0008_notification_action_notification_created_by_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('notifications', '0007_systemnotification_remove_notification_task_id_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='notification',\n            name='action',\n            field=models.CharField(choices=[('CREATED', 'CREATED'), ('DELETED', 'DELETED'), ('UPDATE', 'UPDATED')], max_length=36, null=True),\n        ),",
+        "detail": "notifications.migrations.0008_notification_action_notification_created_by_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0009_remove_notification_message_and_more",
+        "description": "notifications.migrations.0009_remove_notification_message_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('notifications', '0008_notification_action_notification_created_by_and_more'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='notification',\n            name='message',\n        ),\n        migrations.AddField(",
+        "detail": "notifications.migrations.0009_remove_notification_message_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0010_notification_target_id_notification_target_title",
+        "description": "notifications.migrations.0010_notification_target_id_notification_target_title",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('notifications', '0009_remove_notification_message_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='notification',\n            name='target_id',\n            field=models.IntegerField(null=True),\n        ),",
+        "detail": "notifications.migrations.0010_notification_target_id_notification_target_title",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "notifications.migrations.0011_rename_target_title_notification_target_name",
+        "description": "notifications.migrations.0011_rename_target_title_notification_target_name",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('notifications', '0010_notification_target_id_notification_target_title'),\n    ]\n    operations = [\n        migrations.RenameField(\n            model_name='notification',\n            old_name='target_title',\n            new_name='target_name',\n        ),",
+        "detail": "notifications.migrations.0011_rename_target_title_notification_target_name",
+        "documentation": {}
+    },
+    {
+        "label": "myModels",
+        "kind": 5,
+        "importPath": "notifications.admin",
+        "description": "notifications.admin",
+        "peekOfCode": "myModels = [Notification, TaskNotification]\nadmin.site.register(myModels)",
+        "detail": "notifications.admin",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationsConfig",
+        "kind": 6,
+        "importPath": "notifications.apps",
+        "description": "notifications.apps",
+        "peekOfCode": "class NotificationsConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'notifications'",
+        "detail": "notifications.apps",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationConsumer",
+        "kind": 6,
+        "importPath": "notifications.consumers",
+        "description": "notifications.consumers",
+        "peekOfCode": "class NotificationConsumer(AsyncWebsocketConsumer):\n    groups = [\"notification\"]\n    async def connect(self):\n        await self.accept()\n    async def receive(self, text_data=None, bytes_data=None):\n        # todo\n        await self.send(text_data=\"Hello world!\")\n    async def disconnect(self, close_code):\n        print('close')\n    async def task(self, event):",
+        "detail": "notifications.consumers",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationTypeEnum",
+        "kind": 6,
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "peekOfCode": "class NotificationTypeEnum(Enum):\n    PROJECT = \"project\"\n    TASK = \"task\"\nclass NotificationActionEnum(Enum):\n    CREATED = \"created\"\n    DELETED = \"deleted\"\n    UPDATE = \"updated\"\nclass NotificationSeverityChoices(IntegerChoices):\n    HIGH = 3\n    MEDIUM = 2",
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationActionEnum",
+        "kind": 6,
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "peekOfCode": "class NotificationActionEnum(Enum):\n    CREATED = \"created\"\n    DELETED = \"deleted\"\n    UPDATE = \"updated\"\nclass NotificationSeverityChoices(IntegerChoices):\n    HIGH = 3\n    MEDIUM = 2\n    LOW = 1\n    INFO = 0\nNotificationTypeChoices = [(type.name, type.value) for type in NotificationTypeEnum]",
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationSeverityChoices",
+        "kind": 6,
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "peekOfCode": "class NotificationSeverityChoices(IntegerChoices):\n    HIGH = 3\n    MEDIUM = 2\n    LOW = 1\n    INFO = 0\nNotificationTypeChoices = [(type.name, type.value) for type in NotificationTypeEnum]\nNotificationActionChoices = [(type.name, type.value) for type in NotificationActionEnum]",
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationTypeChoices",
+        "kind": 5,
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "peekOfCode": "NotificationTypeChoices = [(type.name, type.value) for type in NotificationTypeEnum]\nNotificationActionChoices = [(type.name, type.value) for type in NotificationActionEnum]",
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationActionChoices",
+        "kind": 5,
+        "importPath": "notifications.enums",
+        "description": "notifications.enums",
+        "peekOfCode": "NotificationActionChoices = [(type.name, type.value) for type in NotificationActionEnum]",
+        "detail": "notifications.enums",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "kind": 6,
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "peekOfCode": "class BaseModel(models.Model):\n    created = models.DateTimeField(auto_now_add=True, null=True)\n    updated = models.DateTimeField(auto_now=True, null=True)\n    class Meta:\n        abstract = True\n# class NotificationActionChoices:\n#     pass\nclass Notification(BaseModel):\n    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)\n    type = models.CharField(max_length=36, choices=NotificationTypeChoices)",
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "Notification",
+        "kind": 6,
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "peekOfCode": "class Notification(BaseModel):\n    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)\n    type = models.CharField(max_length=36, choices=NotificationTypeChoices)\n    read = models.BooleanField(null=True)\n    severity = models.IntegerField(choices=NotificationSeverityChoices.choices, default=0)\n    action = models.CharField(max_length=36, choices=NotificationActionChoices, null=True)\n    created_by = models.TextField(max_length=36, null=True)\n    target_id = models.IntegerField(null=True)\n    target_name = models.TextField(max_length=255, null=True)\n    # @staticmethod",
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "SystemNotification",
+        "kind": 6,
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "peekOfCode": "class SystemNotification(Notification):\n    pass\nclass TaskNotification(Notification):\n    task_id = models.IntegerField(null=True)\n    task_name = models.TextField(max_length=256, null=True)",
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "TaskNotification",
+        "kind": 6,
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "peekOfCode": "class TaskNotification(Notification):\n    task_id = models.IntegerField(null=True)\n    task_name = models.TextField(max_length=256, null=True)",
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "new_create_notification",
+        "kind": 2,
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "peekOfCode": "def new_create_notification(model: Type[Notification], user: User, type, action, severity, created_by, target_id,\n                            target_name, *args, **kwargs) -> None:\n    notification = model.objects.create(user=user, type=type, action=action, read=False, severity=severity,\n                                        created_by=created_by,\n                                        target_id=target_id, target_name=target_name, **kwargs)\n    channel_layer = get_channel_layer()\n    group = \"notification\"\n    async_to_sync(channel_layer.group_send)(\n        group,\n        {",
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "create_notifications",
+        "kind": 2,
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "peekOfCode": "def create_notifications(model: Type[Notification], users: List[User], type, action, severity, created_by, target_id,\n                         target_name, *args, **kwargs):\n    for user in users:\n        new_create_notification(model, user, type, action, severity, created_by, target_id,\n                                target_name, *args, **kwargs)\n# def create_task_notifications(model: Type[TaskNotification], users: List[User], type, action, severity, created_by, *args, **kwargs):\n#     for user in users:\n#         new_create_notification(model, user, type, action, severity, created_by, *args, **kwargs)\nclass SystemNotification(Notification):\n    pass",
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 5,
+        "importPath": "notifications.models",
+        "description": "notifications.models",
+        "peekOfCode": "User = settings.AUTH_USER_MODEL\nclass BaseModel(models.Model):\n    created = models.DateTimeField(auto_now_add=True, null=True)\n    updated = models.DateTimeField(auto_now=True, null=True)\n    class Meta:\n        abstract = True\n# class NotificationActionChoices:\n#     pass\nclass Notification(BaseModel):\n    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)",
+        "detail": "notifications.models",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationSerializer",
+        "kind": 6,
+        "importPath": "notifications.serializers",
+        "description": "notifications.serializers",
+        "peekOfCode": "class NotificationSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Notification\n        fields = '__all__'\nclass NotificationsBulkUpdateSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Notification\n        fields = ('id', 'read')\nclass MarkAllNotificationRead(serializers.Serializer):\n    read_all = serializers.BooleanField(required=True)",
+        "detail": "notifications.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationsBulkUpdateSerializer",
+        "kind": 6,
+        "importPath": "notifications.serializers",
+        "description": "notifications.serializers",
+        "peekOfCode": "class NotificationsBulkUpdateSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Notification\n        fields = ('id', 'read')\nclass MarkAllNotificationRead(serializers.Serializer):\n    read_all = serializers.BooleanField(required=True)",
+        "detail": "notifications.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "MarkAllNotificationRead",
+        "kind": 6,
+        "importPath": "notifications.serializers",
+        "description": "notifications.serializers",
+        "peekOfCode": "class MarkAllNotificationRead(serializers.Serializer):\n    read_all = serializers.BooleanField(required=True)",
+        "detail": "notifications.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "notification_list",
+        "kind": 5,
+        "importPath": "notifications.urls",
+        "description": "notifications.urls",
+        "peekOfCode": "notification_list = views.NotificationViewSet.as_view({'get': 'list', 'put': 'update',\n                                                       'patch': 'partial_update'})\nnotification_details = views.NotificationViewSet.as_view({'get': 'retrieve',\n                                                          'put': 'update',\n                                                          'patch': 'partial_update',\n                                                          'delete': 'destroy'})\nnotifications_bulk_update = views.NotificationsBulkUpdateViewSet.as_view({'get': 'list', 'patch': 'partial_update'})\nurlpatterns = [\n    path(\"notifications/\", notification_list),\n    path(\"notifications/<int:pk>/\", notification_details, name=\"notification-details\"),",
+        "detail": "notifications.urls",
+        "documentation": {}
+    },
+    {
+        "label": "notification_details",
+        "kind": 5,
+        "importPath": "notifications.urls",
+        "description": "notifications.urls",
+        "peekOfCode": "notification_details = views.NotificationViewSet.as_view({'get': 'retrieve',\n                                                          'put': 'update',\n                                                          'patch': 'partial_update',\n                                                          'delete': 'destroy'})\nnotifications_bulk_update = views.NotificationsBulkUpdateViewSet.as_view({'get': 'list', 'patch': 'partial_update'})\nurlpatterns = [\n    path(\"notifications/\", notification_list),\n    path(\"notifications/<int:pk>/\", notification_details, name=\"notification-details\"),\n    path(\"notifications/bulk-update/\", notifications_bulk_update, name=\"notifications-bulk-update\")\n]",
+        "detail": "notifications.urls",
+        "documentation": {}
+    },
+    {
+        "label": "notifications_bulk_update",
+        "kind": 5,
+        "importPath": "notifications.urls",
+        "description": "notifications.urls",
+        "peekOfCode": "notifications_bulk_update = views.NotificationsBulkUpdateViewSet.as_view({'get': 'list', 'patch': 'partial_update'})\nurlpatterns = [\n    path(\"notifications/\", notification_list),\n    path(\"notifications/<int:pk>/\", notification_details, name=\"notification-details\"),\n    path(\"notifications/bulk-update/\", notifications_bulk_update, name=\"notifications-bulk-update\")\n]",
+        "detail": "notifications.urls",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "notifications.urls",
+        "description": "notifications.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"notifications/\", notification_list),\n    path(\"notifications/<int:pk>/\", notification_details, name=\"notification-details\"),\n    path(\"notifications/bulk-update/\", notifications_bulk_update, name=\"notifications-bulk-update\")\n]",
+        "detail": "notifications.urls",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationViewSet",
+        "kind": 6,
+        "importPath": "notifications.views",
+        "description": "notifications.views",
+        "peekOfCode": "class NotificationViewSet(ModelViewSet):\n    def get_serializer_class(self):\n        if self.action == \"list\":\n            return NotificationSerializer\n        return NotificationSerializer\n    def get_queryset(self):\n        return Notification.objects.filter(user=self.request.user).order_by(\"-updated\")\nclass NotificationsBulkUpdateViewSet(ModelViewSet):\n    serializer_class = NotificationsBulkUpdateSerializer\n    def get_queryset(self):",
+        "detail": "notifications.views",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationsBulkUpdateViewSet",
+        "kind": 6,
+        "importPath": "notifications.views",
+        "description": "notifications.views",
+        "peekOfCode": "class NotificationsBulkUpdateViewSet(ModelViewSet):\n    serializer_class = NotificationsBulkUpdateSerializer\n    def get_queryset(self):\n        return Notification.objects.filter(user=self.request.user).order_by(\"-updated\")\n    def partial_update(self, request, *args, **kwargs):\n        # data = request.data\n        # if isinstance(data, list):\n        #     serializer = self.get_serializer(data=request.data, many=True)\n        # else:\n        #     serializer = self.get_serializer(data=request.data)",
+        "detail": "notifications.views",
         "documentation": {}
     },
     {
@@ -1962,6 +4315,87 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "workspace.migrations.0019_project_due_date",
+        "description": "workspace.migrations.0019_project_due_date",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('workspace', '0018_alter_task_max_allocated_hours'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='project',\n            name='due_date',\n            field=models.DateField(blank=True, null=True),\n        ),",
+        "detail": "workspace.migrations.0019_project_due_date",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "workspace.migrations.0020_task_due_date",
+        "description": "workspace.migrations.0020_task_due_date",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('workspace', '0019_project_due_date'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='task',\n            name='due_date',\n            field=models.DateField(blank=True, null=True),\n        ),",
+        "detail": "workspace.migrations.0020_task_due_date",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "workspace.migrations.0021_alter_user_options_project_created_project_updated_and_more",
+        "description": "workspace.migrations.0021_alter_user_options_project_created_project_updated_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('workspace', '0020_task_due_date'),\n    ]\n    operations = [\n        migrations.AlterModelOptions(\n            name='user',\n            options={},\n        ),\n        migrations.AddField(",
+        "detail": "workspace.migrations.0021_alter_user_options_project_created_project_updated_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "workspace.migrations.0022_timerecord_project",
+        "description": "workspace.migrations.0022_timerecord_project",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('workspace', '0021_alter_user_options_project_created_project_updated_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='timerecord',\n            name='project',\n            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='project_record', to='workspace.project'),\n        ),",
+        "detail": "workspace.migrations.0022_timerecord_project",
+        "documentation": {}
+    },
+    {
+        "label": "UserRegistrationTestCase",
+        "kind": 6,
+        "importPath": "workspace.tests.test_accounts",
+        "description": "workspace.tests.test_accounts",
+        "peekOfCode": "class UserRegistrationTestCase(TestCase):\n    def setUp(self):\n        self.user = User.objects.create(username=\"unittest\", email=\"unittest@testcase.com\", password='somepwd123')\n        return self.user\n    def tearDown(self):\n        pass\n    def create_form(self, email, username, pwd1, pwd2):\n        form = {\n            'email': email,\n            'username': username,",
+        "detail": "workspace.tests.test_accounts",
+        "documentation": {}
+    },
+    {
+        "label": "UserLoginTestCase",
+        "kind": 6,
+        "importPath": "workspace.tests.test_accounts",
+        "description": "workspace.tests.test_accounts",
+        "peekOfCode": "class UserLoginTestCase(TestCase):\n    def setUp(self):\n        pass\n    def tearDown(self):\n        pass\n    def test_user_ok(self):\n        user = User.objects.create(username=\"unittest\", email=\"unittest@testcase.com\")\n        user.set_password('Pwd123456')\n        user.save()\n        client = Client()",
+        "detail": "workspace.tests.test_accounts",
+        "documentation": {}
+    },
+    {
+        "label": "API_SIGNUP_URL",
+        "kind": 5,
+        "importPath": "workspace.tests.test_accounts",
+        "description": "workspace.tests.test_accounts",
+        "peekOfCode": "API_SIGNUP_URL = '/api/register/'\nAPI_LOGIN_URL = '/api/login/'\nclass UserRegistrationTestCase(TestCase):\n    def setUp(self):\n        self.user = User.objects.create(username=\"unittest\", email=\"unittest@testcase.com\", password='somepwd123')\n        return self.user\n    def tearDown(self):\n        pass\n    def create_form(self, email, username, pwd1, pwd2):\n        form = {",
+        "detail": "workspace.tests.test_accounts",
+        "documentation": {}
+    },
+    {
+        "label": "API_LOGIN_URL",
+        "kind": 5,
+        "importPath": "workspace.tests.test_accounts",
+        "description": "workspace.tests.test_accounts",
+        "peekOfCode": "API_LOGIN_URL = '/api/login/'\nclass UserRegistrationTestCase(TestCase):\n    def setUp(self):\n        self.user = User.objects.create(username=\"unittest\", email=\"unittest@testcase.com\", password='somepwd123')\n        return self.user\n    def tearDown(self):\n        pass\n    def create_form(self, email, username, pwd1, pwd2):\n        form = {\n            'email': email,",
+        "detail": "workspace.tests.test_accounts",
+        "documentation": {}
+    },
+    {
+        "label": "ProjectTestCase",
+        "kind": 6,
+        "importPath": "workspace.tests.test_project",
+        "description": "workspace.tests.test_project",
+        "peekOfCode": "class ProjectTestCase(TestCase):\n    def create_user(self):\n        self.user = User.objects.create(username=get_random_string(length=4))\n        return self.user\n    def create_data(self, name='test_project', status='IN_PROGRESS'):\n        user = self.create_user()\n        project = Project.objects.create(name=name, status=status, user=user)\n        task_01 = Task.objects.create(name='task_01', project=project)\n        task_02 = Task.objects.create(name='task_02', project=project)\n        return {'project': project, 'tasks': [task_01, task_02], 'user': user}",
+        "detail": "workspace.tests.test_project",
+        "documentation": {}
+    },
+    {
         "label": "TimeRecordQuerySetTestCase",
         "kind": 6,
         "importPath": "workspace.tests.test_queryset",
@@ -1977,6 +4411,24 @@
         "description": "workspace.tests.test_time_record",
         "peekOfCode": "class TimeRecordTestCase(TestCase):\n    def setUp(self):  # runs before every test\n        self.user = User.objects.create(username=\"test\")\n    def tearDown(self):  # runs after every test\n        pass\n    def test_stop_time_after_midnight(self):\n        start_time = strftime(\"%H:%M\")\n        date = datetime.date(2022, 12, 19)\n        timer = TimeRecord.objects.create(user=self.user, date=date, start_time=start_time)\n        with patch(\"workspace.models.datetime\") as datetime_mock:",
         "detail": "workspace.tests.test_time_record",
+        "documentation": {}
+    },
+    {
+        "label": "CustomAccountAdapter",
+        "kind": 6,
+        "importPath": "workspace.adapters",
+        "description": "workspace.adapters",
+        "peekOfCode": "class CustomAccountAdapter(DefaultAccountAdapter):\n    def get_login_redirect_url(self, request):\n        \"\"\"\n        \"\"\"\n        if request.user.is_authenticated:\n            return settings.LOGIN_REDIRECT_URL.format(\n                id=request.user.id)\n        else:\n            return \"/\"\n@receiver(pre_social_login)",
+        "detail": "workspace.adapters",
+        "documentation": {}
+    },
+    {
+        "label": "link_to_local_user",
+        "kind": 2,
+        "importPath": "workspace.adapters",
+        "description": "workspace.adapters",
+        "peekOfCode": "def link_to_local_user(sender, request, sociallogin, **kwargs):\n    ''' Login and redirect\n    This is done in order to tackle the situation where user's email retrieved\n    from one provider is different from already existing email in the database\n    (e.g facebook and google both use same email-id). Specifically, this is done to\n    tackle following issues:\n    * https://github.com/pennersr/django-allauth/issues/215\n    '''\n    email_address = sociallogin.account.extra_data['email']\n    users = User.objects.filter(email=email_address)",
+        "detail": "workspace.adapters",
         "documentation": {}
     },
     {
@@ -2029,7 +4481,7 @@
         "kind": 6,
         "importPath": "workspace.enums",
         "description": "workspace.enums",
-        "peekOfCode": "class TaskStatusEnum(Enum):\n    DONE = 'done'\n    IN_PROGRESS = 'in progress'\n    CANCELLED = 'cancelled'\n    TO_DO = \"to do\"\nTaskStatusChoices = [(status.name, status.value) for status in TaskStatusEnum]",
+        "peekOfCode": "class TaskStatusEnum(Enum):\n    DONE = 'done'\n    IN_PROGRESS = 'in progress'\n    CANCELLED = 'cancelled'\n    TO_DO = \"to do\"\n    @staticmethod\n    def from_value(value: str):\n        for member in TaskStatusEnum:\n            if member.value == value:\n                return member",
         "detail": "workspace.enums",
         "documentation": {}
     },
@@ -2038,7 +4490,7 @@
         "kind": 5,
         "importPath": "workspace.enums",
         "description": "workspace.enums",
-        "peekOfCode": "ProjectStatusChoices = [(status.name, status.value) for status in ProjectStatusEnum]\nclass TaskStatusEnum(Enum):\n    DONE = 'done'\n    IN_PROGRESS = 'in progress'\n    CANCELLED = 'cancelled'\n    TO_DO = \"to do\"\nTaskStatusChoices = [(status.name, status.value) for status in TaskStatusEnum]",
+        "peekOfCode": "ProjectStatusChoices = [(status.name, status.value) for status in ProjectStatusEnum]\nclass TaskStatusEnum(Enum):\n    DONE = 'done'\n    IN_PROGRESS = 'in progress'\n    CANCELLED = 'cancelled'\n    TO_DO = \"to do\"\n    @staticmethod\n    def from_value(value: str):\n        for member in TaskStatusEnum:\n            if member.value == value:",
         "detail": "workspace.enums",
         "documentation": {}
     },
@@ -2049,6 +4501,15 @@
         "description": "workspace.enums",
         "peekOfCode": "TaskStatusChoices = [(status.name, status.value) for status in TaskStatusEnum]",
         "detail": "workspace.enums",
+        "documentation": {}
+    },
+    {
+        "label": "ProjectFilter",
+        "kind": 6,
+        "importPath": "workspace.filters",
+        "description": "workspace.filters",
+        "peekOfCode": "class ProjectFilter(django_filters.FilterSet):\n    name = django_filters.CharFilter(field_name=\"name\", lookup_expr=\"icontains\")\n    task_name = django_filters.CharFilter(field_name=\"tasks__name\", lookup_expr=\"icontains\")\n    rate = django_filters.RangeFilter(field_name='hourly_rate', lookup_expr='range')\n    date = django_filters.DateFromToRangeFilter(field_name=\"due_date\")\n    status = django_filters.ChoiceFilter(choices=ProjectStatusChoices)\n    o = OrderingFilter(fields=('hourly_rate', 'rate'))\n    class Meta:\n        model = Project\n        fields = {",
+        "detail": "workspace.filters",
         "documentation": {}
     },
     {
@@ -2074,7 +4535,7 @@
         "kind": 6,
         "importPath": "workspace.models",
         "description": "workspace.models",
-        "peekOfCode": "class Currency(models.Model):\n    shortcut_name = models.CharField(max_length=3)\n    def __str__(self):\n        return self.shortcut_name\nclass Project(models.Model):\n    name = models.CharField(max_length=255)\n    description = models.TextField(null=True, blank=True)\n    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name=\"currency\")\n    hex_color = models.CharField(max_length=7, null=True, blank=True)  # predefined colors + color picker\n    hourly_rate = models.FloatField(null=True)",
+        "peekOfCode": "class Currency(models.Model):\n    shortcut_name = models.CharField(max_length=3)\n    def __str__(self):\n        return self.shortcut_name\nclass Project(models.Model):\n    name = models.CharField(max_length=255)\n    description = models.TextField(null=True, blank=True)\n    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name=\"currency\")\n    hex_color = models.CharField(max_length=7, null=True, blank=True)  # predefined colors + color picker\n    # change model to have default 0",
         "detail": "workspace.models",
         "documentation": {}
     },
@@ -2083,7 +4544,7 @@
         "kind": 6,
         "importPath": "workspace.models",
         "description": "workspace.models",
-        "peekOfCode": "class Project(models.Model):\n    name = models.CharField(max_length=255)\n    description = models.TextField(null=True, blank=True)\n    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name=\"currency\")\n    hex_color = models.CharField(max_length=7, null=True, blank=True)  # predefined colors + color picker\n    hourly_rate = models.FloatField(null=True)\n    status = models.CharField(max_length=36, choices=ProjectStatusChoices)\n    def __str__(self):\n        return self.name\n    def get_tracked_hours(self):",
+        "peekOfCode": "class Project(models.Model):\n    name = models.CharField(max_length=255)\n    description = models.TextField(null=True, blank=True)\n    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name=\"currency\")\n    hex_color = models.CharField(max_length=7, null=True, blank=True)  # predefined colors + color picker\n    # change model to have default 0\n    hourly_rate = models.FloatField(null=True)\n    status = models.CharField(max_length=36, choices=ProjectStatusChoices)\n    due_date = models.DateField(null=True, blank=True)\n    def __str__(self):",
         "detail": "workspace.models",
         "documentation": {}
     },
@@ -2092,7 +4553,7 @@
         "kind": 6,
         "importPath": "workspace.models",
         "description": "workspace.models",
-        "peekOfCode": "class Task(models.Model):\n    id = models.AutoField(primary_key=True)\n    name = models.CharField(max_length=255)\n    description = models.TextField()\n    max_allocated_hours = models.FloatField(null=True, blank=True, default=0.0)\n    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name=\"tasks\")\n    status = models.CharField(max_length=36, choices=TaskStatusChoices)\n    def __str__(self):\n        return f\"[{self.id}] {self.project.name} - {self.name}\"\n    def get_tracked_hours(self):",
+        "peekOfCode": "class Task(models.Model):\n    id = models.AutoField(primary_key=True)\n    name = models.CharField(max_length=255)\n    description = models.TextField()\n    max_allocated_hours = models.FloatField(null=True, blank=True, default=0.0)\n    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name=\"tasks\")\n    status = models.CharField(max_length=36, choices=TaskStatusChoices)\n    due_date = models.DateField(null=True, blank=True)\n    def __str__(self):\n        return f\"[{self.id}] {self.project.name} - {self.name}\"",
         "detail": "workspace.models",
         "documentation": {}
     },
@@ -2147,6 +4608,24 @@
         "importPath": "workspace.models",
         "description": "workspace.models",
         "peekOfCode": "class UserProject(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name=\"user_projects\")\n    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name=\"project_users\")\n    role = models.ForeignKey(Role, on_delete=models.CASCADE, related_name=\"role\")\n    def __str__(self):\n        return f\"{self.user} - {self.project.name}\"",
+        "detail": "workspace.models",
+        "documentation": {}
+    },
+    {
+        "label": "DECIMAL_PLACES",
+        "kind": 5,
+        "importPath": "workspace.models",
+        "description": "workspace.models",
+        "peekOfCode": "DECIMAL_PLACES = 2\nHOUR_IN_SECONDS = 3600\nclass Currency(models.Model):\n    shortcut_name = models.CharField(max_length=3)\n    def __str__(self):\n        return self.shortcut_name\nclass Project(models.Model):\n    name = models.CharField(max_length=255)\n    description = models.TextField(null=True, blank=True)\n    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name=\"currency\")",
+        "detail": "workspace.models",
+        "documentation": {}
+    },
+    {
+        "label": "HOUR_IN_SECONDS",
+        "kind": 5,
+        "importPath": "workspace.models",
+        "description": "workspace.models",
+        "peekOfCode": "HOUR_IN_SECONDS = 3600\nclass Currency(models.Model):\n    shortcut_name = models.CharField(max_length=3)\n    def __str__(self):\n        return self.shortcut_name\nclass Project(models.Model):\n    name = models.CharField(max_length=255)\n    description = models.TextField(null=True, blank=True)\n    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True, related_name=\"currency\")\n    hex_color = models.CharField(max_length=7, null=True, blank=True)  # predefined colors + color picker",
         "detail": "workspace.models",
         "documentation": {}
     },
@@ -2214,6 +4693,15 @@
         "documentation": {}
     },
     {
+        "label": "RegisterSerializer",
+        "kind": 6,
+        "importPath": "workspace.serializers",
+        "description": "workspace.serializers",
+        "peekOfCode": "class RegisterSerializer(serializers.Serializer):\n    username = serializers.CharField(max_length=256, min_length=4)\n    email = serializers.EmailField()\n    password_1 = serializers.CharField(max_length=256)\n    password_2 = serializers.CharField(max_length=256)\n    def validate_email(self, value):\n        if User.objects.filter(email=value).exists():\n            raise ValidationError(\"User with this email already exists\")\n        return value\n    def validate_password_1(self, value):",
+        "detail": "workspace.serializers",
+        "documentation": {}
+    },
+    {
         "label": "CurrencySerializer",
         "kind": 6,
         "importPath": "workspace.serializers",
@@ -2236,7 +4724,25 @@
         "kind": 6,
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
-        "peekOfCode": "class UserSerializer(serializers.ModelSerializer):\n    def validate_password(self, value: str) -> str:\n        return make_password(value)\n    class Meta:\n        model = User\n        fields = [\"id\", \"username\", \"first_name\", \"last_name\", \"email\"]\nclass TaskSimpleSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Task\n        fields = [\"id\", \"name\"]",
+        "peekOfCode": "class UserSerializer(serializers.ModelSerializer):\n    def validate_password(self, value: str) -> str:\n        return make_password(value)\n    class Meta:\n        model = User\n        fields = [\"id\", \"username\", \"first_name\", \"last_name\", \"email\"]\nclass UserRestRegisterSerializer(serializers.ModelSerializer):\n    # token = serializers.SerializerMethodField()\n    def validate_password(self, value: str) -> str:\n        return make_password(value)",
+        "detail": "workspace.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "UserRestRegisterSerializer",
+        "kind": 6,
+        "importPath": "workspace.serializers",
+        "description": "workspace.serializers",
+        "peekOfCode": "class UserRestRegisterSerializer(serializers.ModelSerializer):\n    # token = serializers.SerializerMethodField()\n    def validate_password(self, value: str) -> str:\n        return make_password(value)\n    class Meta:\n        model = User\n        fields = [\"id\", \"username\", \"first_name\", \"last_name\", \"email\"]\n    # def get_token(self, user):\n    #     refresh = RefreshToken.for_user(user)\n    #",
+        "detail": "workspace.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "UserRestLoginSerializer",
+        "kind": 6,
+        "importPath": "workspace.serializers",
+        "description": "workspace.serializers",
+        "peekOfCode": "class UserRestLoginSerializer(serializers.ModelSerializer):\n    email = serializers.EmailField()\n    username = serializers.CharField(min_length=4, max_length=256, read_only=True)\n    password = serializers.CharField(max_length=256)\n    token = serializers.CharField(max_length=256, read_only=True)\nclass TaskSimpleSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Task\n        fields = [\"id\", \"name\", \"status\"]\nclass UserTaskSerializer(serializers.ModelSerializer):",
         "detail": "workspace.serializers",
         "documentation": {}
     },
@@ -2245,7 +4751,7 @@
         "kind": 6,
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
-        "peekOfCode": "class TaskSimpleSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Task\n        fields = [\"id\", \"name\"]\nclass UserTaskSerializer(serializers.ModelSerializer):\n    username = serializers.ReadOnlyField(source=\"user.username\")\n    user_id = serializers.ReadOnlyField(source=\"user.id\")\n    class Meta:\n        model = UserTask\n        fields = [\"id\", \"username\", \"user_id\"]",
+        "peekOfCode": "class TaskSimpleSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Task\n        fields = [\"id\", \"name\", \"status\"]\nclass UserTaskSerializer(serializers.ModelSerializer):\n    username = serializers.ReadOnlyField(source=\"user.username\")\n    user_id = serializers.ReadOnlyField(source=\"user.id\")\n    class Meta:\n        model = UserTask\n        fields = [\"id\", \"username\", \"user_id\"]",
         "detail": "workspace.serializers",
         "documentation": {}
     },
@@ -2272,7 +4778,7 @@
         "kind": 6,
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
-        "peekOfCode": "class TaskSerializer(serializers.ModelSerializer):\n    task_users = UserTaskSerializer(many=True)\n    def create(self, validated_data):\n        project_id = self.context['request'].project.id\n        task = Task(name=validated_data[\"name\"], project_id=project_id)\n        task.save()\n        return task\n    class Meta:\n        model = Task\n        fields = [\"id\", \"name\", \"max_allocated_hours\", \"tracked_hours\", \"task_users\", \"project_id\", \"time_records\"]",
+        "peekOfCode": "class TaskSerializer(serializers.ModelSerializer):\n    task_users = UserTaskSerializer(many=True)\n    def create(self, validated_data):\n        project_id = self.context['request'].project.id\n        task = Task(name=validated_data[\"name\"], project_id=project_id)\n        task.save()\n        return task\n    class Meta:\n        model = Task\n        fields = [\"id\", \"name\", \"max_allocated_hours\", \"tracked_hours\", \"status\", \"task_users\", \"project_id\",",
         "detail": "workspace.serializers",
         "documentation": {}
     },
@@ -2398,7 +4904,7 @@
         "kind": 6,
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
-        "peekOfCode": "class ProjectSerializer(serializers.ModelSerializer):\n    project_users = UserProjectSerializer(many=True)\n    class Meta:\n        model = Project\n        fields = [\"id\", \"name\", \"project_users\"]\n    def get_project_users(self, project_obj):\n        return project_obj.user.username\nclass UpdateProjectSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Project",
+        "peekOfCode": "class ProjectSerializer(serializers.ModelSerializer):\n    project_users = UserProjectSerializer(many=True)\n    class Meta:\n        model = Project\n        fields = [\"id\", \"name\", \"project_users\"]\n    def get_project_users(self, project_obj):\n        return project_obj.user.username\nclass UpdateProjectSerializer(serializers.ModelSerializer):\n    def get_status_value(self, data):\n        status_dict = dict(ProjectStatusChoices)",
         "detail": "workspace.serializers",
         "documentation": {}
     },
@@ -2407,7 +4913,7 @@
         "kind": 6,
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
-        "peekOfCode": "class UpdateProjectSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Project\n        fields = \"__all__\"\nclass CreateProjectSerializers(serializers.ModelSerializer):\n    def create(self, validated_data):\n        project = Project(name=validated_data[\"name\"])\n        project.save()\n        user_id = self.context['request'].user.id\n        role = Role.objects.get(name=\"admin\")",
+        "peekOfCode": "class UpdateProjectSerializer(serializers.ModelSerializer):\n    def get_status_value(self, data):\n        status_dict = dict(ProjectStatusChoices)\n        key_list = list(status_dict.keys())\n        val_list = list(status_dict.values())\n        status_name = val_list.index('in progress')\n        status_value = key_list[status_name]\n        return status_value\n    class Meta:\n        model = Project",
         "detail": "workspace.serializers",
         "documentation": {}
     },
@@ -2425,7 +4931,16 @@
         "kind": 6,
         "importPath": "workspace.serializers",
         "description": "workspace.serializers",
-        "peekOfCode": "class ProjectDetailSerializer(serializers.ModelSerializer):\n    tasks = TaskSimpleSerializer(many=True)\n    project_users = UserProjectSerializer(many=True)\n    currency = CurrencySerializer()\n    class Meta:\n        model = Project\n        fields = [\"id\", \"name\", \"description\", \"hourly_rate\", \"total_allocated_hours\", \"tracked_hours\", \"currency\", \"tasks\", \"project_users\"]\n    def get_currency(self, Project):\n        return Project.currency.shortcut_name",
+        "peekOfCode": "class ProjectDetailSerializer(serializers.ModelSerializer):\n    tasks = TaskSimpleSerializer(many=True)\n    project_users = UserProjectSerializer(many=True)\n    currency = CurrencySerializer()\n    class Meta:\n        model = Project\n        fields = [\"id\", \"name\", \"description\", \"status\", \"due_date\", \"hourly_rate\", \"total_allocated_hours\",\n                  \"tracked_hours\",\n                  \"currency\", \"tasks\", \"project_users\"]\n    def get_currency(self, Project):",
+        "detail": "workspace.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "FilterSerializer",
+        "kind": 6,
+        "importPath": "workspace.serializers",
+        "description": "workspace.serializers",
+        "peekOfCode": "class FilterSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Project\n        fields = \"__all__\"",
         "detail": "workspace.serializers",
         "documentation": {}
     },
@@ -2569,8 +5084,17 @@
         "kind": 5,
         "importPath": "workspace.urls",
         "description": "workspace.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.home, name=\"home\"),\n    path(\"auth/\", include(\"djoser.urls\")),\n    path(\"auth/\", include(\"djoser.urls.jwt\")),\n    path(\"register/\", views.Register.as_view(), name=\"register\"),\n    path(\"projects/\", project_list, name=\"list-projects\"),\n    path(\"projects/<int:pk>/\", project_details, name=\"project-details\"),\n    path(\"projects/<int:project_pk>/users/\", project_users_list, name=\"list-project-users\"),\n    path(\"projects/<int:project_pk>/users/<pk>/\", project_user_details, name=\"project-user-detail\"),\n    path(\"projects/<int:project_pk>/tasks/\", project_tasks_list, name=\"list-project-tasks\"),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.home, name=\"home\"),\n    path(\"auth/\", include(\"djoser.urls\")),\n    path(\"auth/\", include(\"djoser.urls.jwt\")),\n    # path(\"user/socials/register\", views.SocialRegister.as_view(), name=\"social-register\"),\n    path(\"register/\", views.Register.as_view(), name=\"register\"),\n    path(\"projects/\", project_list, name=\"list-projects\"),\n    path(\"projects/<int:pk>/\", project_details, name=\"project-details\"),\n    path(\"projects/<int:project_pk>/users/\", project_users_list, name=\"list-project-users\"),\n    path(\"projects/<int:project_pk>/users/<pk>/\", project_user_details, name=\"project-user-detail\"),",
         "detail": "workspace.urls",
+        "documentation": {}
+    },
+    {
+        "label": "UserView",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class UserView(ModelViewSet):\n    def get_user(self):\n        user_token = self.request.COOKIES['access_token']\n        if user_token:\n            payload = jwt.decode(user_token, settings.SECRET_KEY, algorithms=['HS256'])\n            user_id = payload['user_id']\n            user = User.objects.get(id=user_id)\n            return user\n        else:\n            user = self.request.user",
+        "detail": "workspace.views",
         "documentation": {}
     },
     {
@@ -2596,7 +5120,43 @@
         "kind": 6,
         "importPath": "workspace.views",
         "description": "workspace.views",
-        "peekOfCode": "class Register(APIView):\n    def post(self, request):\n        form = UserCreationForm(request.POST)\n        form.is_valid()\n        form.save()\n        username = form.cleaned_data.get(\"username\")\n        messages.success(request, f\"Hi {username}, your account was successfully created\")\n        return redirect(\"home\")\nclass TrackingStart(APIView):\n    permission_classes = [IsAuthenticated]",
+        "peekOfCode": "class Register(APIView):\n    def post(self, request):\n        form = UserCreationForm(request.POST)\n        form.is_valid()\n        form.save()\n        username = form.cleaned_data.get(\"username\")\n        messages.success(request, f\"Hi {username}, your account was successfully created\")\n        return redirect(\"home\")\nclass RestRegister(APIView):\n    def post(self, request):",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
+        "label": "RestRegister",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class RestRegister(APIView):\n    def post(self, request):\n        serializer = RegisterSerializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = User()\n        user.set_password(serializer.validated_data[\"password\"])\n        user.email = serializer.validated_data.get(\"email\")\n        user.username = serializer.validated_data[\"username\"]\n        user.save()\n        refresh = RefreshToken.for_user(user)",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
+        "label": "RestLogin",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class RestLogin(APIView):\n    def post(self, request):\n        response = Response()\n        username = request.data.get('username', None)\n        password = request.data.get('password', None)\n        user = authenticate(username=username, password=password)\n        if not user:\n            return Response(status=status.HTTP_404_NOT_FOUND)\n        if user.is_active:\n            refresh = RefreshToken.for_user(user)",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
+        "label": "Logout",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class Logout(APIView):\n    authentication_classes = [JWTAuthentication]\n    permission_classes = [AllowAny]\n    def get(self, request):\n        user_token = request.COOKIES.get('access_token', None)\n        if user_token:\n            response = Response()\n            response.delete_cookie('access_token')\n            response.data = {\n                'message': 'Logged out successfully.'",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
+        "label": "UserAPIView",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class UserAPIView(APIView):\n    authentication_classes = [TokenAuthentication]\n    permission_classes = [AllowAny]\n    def get(self, request):\n        user_token = request.COOKIES.get('access_token')\n        if not user_token:\n            raise AuthenticationFailed('Unauthenticated user.')\n        payload = jwt.decode(user_token, settings.SECRET_KEY, algorithms=['HS256'])\n        # print(payload)\n        user = User.objects.filter(id=payload['user_id']).first()",
         "detail": "workspace.views",
         "documentation": {}
     },
@@ -2704,7 +5264,7 @@
         "kind": 6,
         "importPath": "workspace.views",
         "description": "workspace.views",
-        "peekOfCode": "class ProjectViewSet(ModelViewSet):\n    permission_classes = [isProjectAdmin | IsProjectMember]\n    def get_serializer_class(self):\n        if self.action == \"list\":\n            return ProjectSerializer\n        if self.request.method == \"GET\":\n            return ProjectDetailSerializer\n        if self.request.method == \"PATCH\":\n            return UpdateProjectSerializer\n        if self.request.method == \"POST\":",
+        "peekOfCode": "class ProjectViewSet(UserView):\n    permission_classes = [isProjectAdmin | IsProjectMember]\n    # authentication_classes = [TokenAuthentication]\n    def get_serializer_class(self):\n        if self.action == \"list\":\n            return ProjectSerializer\n        if self.request.method == \"GET\":\n            return ProjectDetailSerializer\n        if self.request.method == \"PATCH\":\n            return UpdateProjectSerializer",
         "detail": "workspace.views",
         "documentation": {}
     },
@@ -2727,11 +5287,74 @@
         "documentation": {}
     },
     {
+        "label": "FilterAPIView",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class FilterAPIView(APIView):\n    def get(self, request):\n        qs = Project.objects.all()\n        projects_values = self.request.query_params.get('projects', None)\n        if projects_values:\n            projects_ids = tuple(map(int, projects_values.split(',')))\n            qs = qs.filter(id__in=projects_ids)\n        serializer = ProjectSerializer(qs, many=True)\n        return Response(serializer.data)\nclass RenderPDFView(View):",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
+        "label": "RenderPDFView",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class RenderPDFView(View):\n    def filter_projects(self, request):\n        # projects = Project.objects.all()\n        projects = Project.objects.filter(\n            project_users__user_id=self.request.user.id,\n            project_users__role__name__in=[RoleEnum.ADMIN.value, RoleEnum.MEMBER.value]\n        )\n        # projects_values = request.GET.get('projects', None)\n        #\n        # if projects_values:",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
+        "label": "StandardPDFView",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class StandardPDFView(RenderPDFView):\n    def get(self, request, *args, **kwargs):\n        # projects = self.filter_projects(request)\n        projects = self.filter_projects(request)\n        data = {\n            \"projects\": [project.to_dict() for project in projects]\n            # \"projects\": RenderPDFView.filter_projects(self, request)\n        }\n        pdf = self.render_to_pdf('pdf_standard.html', data)\n        return HttpResponse(pdf, content_type='application/pdf')",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
+        "label": "DetailedPDFView",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class DetailedPDFView(RenderPDFView):\n    def get(self, request, *args, **kwargs):\n        projects = self.filter_projects(request)\n        data = {\n            \"projects\": [project.to_dict() for project in projects]\n        }\n        pdf = self.render_to_pdf('pdf_detailed.html', data)\n        return HttpResponse(pdf, content_type='application/pdf')\nclass PDFHTMLView(RenderPDFView):\n    def get(self, request, *args, **kwargs):",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
+        "label": "PDFHTMLView",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class PDFHTMLView(RenderPDFView):\n    def get(self, request, *args, **kwargs):\n        projects = self.filter_projects(request)\n        data = {\n            \"projects\": [project.to_dict() for project in projects]\n        }\n        return render(request, 'pdf_detailed.html', data)\n# Automatically downloads to PDF file\nclass DownloadPDFView(RenderPDFView):\n    def get(self, request, *args, **kwargs):",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
+        "label": "DownloadPDFView",
+        "kind": 6,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "class DownloadPDFView(RenderPDFView):\n    def get(self, request, *args, **kwargs):\n        pdf = self.render_to_pdf('pdf_standard.html', data)\n        response = HttpResponse(pdf, content_type='application/pdf')\n        filename = \"Report_%s.pdf\" % \"12341231\"\n        content = \"attachment; filename='%s'\" % filename\n        response['Content-Disposition'] = content\n        return response\ndef index(request):\n    context = {}",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
         "label": "home",
         "kind": 2,
         "importPath": "workspace.views",
         "description": "workspace.views",
-        "peekOfCode": "def home(request):\n    return render(request, \"workspace/home.html\")\nclass RegistrationView(CreateView):\n    template_name = \"workspace/register.html\"\n    form_class = RegistrationForm\n    # permission_classes = [isProjectAdmin]\n    def get_context_data(self, *args, **kwargs):\n        context = super().get_context_data(*args, **kwargs)\n        context[\"next\"] = self.request.GET.get(\"next\")\n        return context",
+        "peekOfCode": "def home(request):\n    return render(request, \"workspace/home.html\")\nclass UserView(ModelViewSet):\n    def get_user(self):\n        user_token = self.request.COOKIES['access_token']\n        if user_token:\n            payload = jwt.decode(user_token, settings.SECRET_KEY, algorithms=['HS256'])\n            user_id = payload['user_id']\n            user = User.objects.get(id=user_id)\n            return user",
+        "detail": "workspace.views",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "workspace.views",
+        "description": "workspace.views",
+        "peekOfCode": "def index(request):\n    context = {}\n    return render(request, 'index.html', context)",
         "detail": "workspace.views",
         "documentation": {}
     },
